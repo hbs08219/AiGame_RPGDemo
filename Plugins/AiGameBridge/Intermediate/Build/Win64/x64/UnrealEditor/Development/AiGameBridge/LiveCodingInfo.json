@@ -1,0 +1,11 @@
+{
+	"RemapUnityFiles": 
+	{
+		"Module.AiGameBridge.cpp.obj": [
+			"PerModuleInline.gen.cpp.obj",
+			"AiGameBridge.cpp.obj",
+			"AssetIndexExporter.cpp.obj",
+			"DataProxyServer.cpp.obj"
+		]
+	}
+}

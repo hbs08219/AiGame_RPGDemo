@@ -1,0 +1,14 @@
+"D:/Demo/RpgDemo/Plugins/AiGameBridge/Source/AiGameBridge/Private/AiGameBridge.cpp"
+@"D:/Demo/RpgDemo/Plugins/AiGameBridge/Intermediate/Build/Win64/x64/UnrealEditor/Development/AiGameBridge/AiGameBridge.Shared.rsp"
+/FI"D:/Demo/RpgDemo/Intermediate/Build/Win64/x64/RpgDemoEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h"
+/FI"D:/Demo/RpgDemo/Plugins/AiGameBridge/Intermediate/Build/Win64/x64/UnrealEditor/Development/AiGameBridge/Definitions.AiGameBridge.h"
+/Yu"D:/Demo/RpgDemo/Intermediate/Build/Win64/x64/RpgDemoEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h"
+/Fp"D:/Demo/RpgDemo/Intermediate/Build/Win64/x64/RpgDemoEditor/Development/UnrealEd/SharedPCH.UnrealEd.Project.ValApi.ValExpApi.Cpp20.h.pch"
+/Fo"D:/Demo/RpgDemo/Plugins/AiGameBridge/Intermediate/Build/Win64/x64/UnrealEditor/Development/AiGameBridge/AiGameBridge.cpp.obj"
+/experimental:log "D:/Demo/RpgDemo/Plugins/AiGameBridge/Intermediate/Build/Win64/x64/UnrealEditor/Development/AiGameBridge/AiGameBridge.cpp.sarif"
+/sourceDependencies "D:/Demo/RpgDemo/Plugins/AiGameBridge/Intermediate/Build/Win64/x64/UnrealEditor/Development/AiGameBridge/AiGameBridge.cpp.dep.json"
+/nologo
+/TP
+/GR-
+/std:c++20
+/wd5054

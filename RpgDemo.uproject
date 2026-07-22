@@ -1,0 +1,19 @@
+{
+  "FileVersion": 3,
+  "EngineAssociation": "UE_5.8",
+  "Category": "Games",
+  "Description": "RpgDemo UE C++ project",
+  "Modules": [
+    {
+      "Name": "RpgDemo",
+      "Type": "Runtime",
+      "LoadingPhase": "Default"
+    }
+  ],
+  "Plugins": [
+    {
+      "Name": "AiGameBridge",
+      "Enabled": true
+    }
+  ]
+}
