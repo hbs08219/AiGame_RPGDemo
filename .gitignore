@@ -1,0 +1,14 @@
+# Unreal Engine generated artifacts
+Binaries/
+DerivedDataCache/
+Intermediate/
+Saved/
+.vs/
+
+# IDE generated files
+*.sln
+*.slnx
+*.suo
+*.user
+*.opensdf
+*.sdf
