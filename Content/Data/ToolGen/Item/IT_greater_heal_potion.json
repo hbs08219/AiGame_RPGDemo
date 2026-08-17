@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "IT_greater_heal_potion",
+  "name": "大治疗药水",
+  "description": "",
+  "type": "consumable",
+  "price": 400,
+  "stackable": true,
+  "iconAsset": {
+    "schemaVersion": 2,
+    "projectId": "project-fbaf249a-f0ed-46c8-b318-a15e55fd23f3",
+    "kind": "image",
+    "assetId": "asset-80908902-a530-4d44-aafb-a3626d620b24",
+    "versionId": "version-c07fb5f5-9cd4-4e4c-9f58-12898fabe0fc"
+  },
+  "effectType": "healHP",
+  "effectValue": 150,
+  "equip": {}
+}

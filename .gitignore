@@ -12,3 +12,11 @@ Saved/
 *.user
 *.opensdf
 *.sdf
+
+# Unreal build artifact backups
+*.bak/
+*.bak*/
+
+# AiGame generated content (cache + published assets)
+Content/AiGame/Cache/
+Content/AiGame/Published/

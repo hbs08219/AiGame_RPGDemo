@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "id": "ThirdPerson",
+  "type": "thirdPerson",
+  "name": "第三人称相机",
+  "description": "默认第三人称跟随相机",
+  "transition": {
+    "duration": 0.35,
+    "ease": "EaseInOut"
+  },
+  "poses": {
+    "Explore": {
+      "armLength": 305,
+      "fieldOfView": 90,
+      "pitch": -15,
+      "minPitch": -60,
+      "maxPitch": 60,
+      "socketOffset": [
+        0,
+        0,
+        0
+      ],
+      "targetOffset": [
+        0,
+        0,
+        0
+      ],
+      "enableLag": true,
+      "cameraLagSpeed": 10,
+      "cameraRotationLagSpeed": 10
+    }
+  }
+}

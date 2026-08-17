@@ -1,0 +1,10 @@
+{
+  "id": "QA_FogHarborWarriorStats",
+  "name": "雾港战士·新兵属性（已更新）",
+  "hp": 130,
+  "mp": 30,
+  "atk": 25,
+  "def": 20,
+  "speed": 15,
+  "version": 1
+}

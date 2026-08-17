@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "Test",
+  "name": "Test",
+  "states": [
+    {
+      "id": "Idle",
+      "name": "Idle",
+      "x": 200,
+      "y": 200,
+      "isDefault": true
+    }
+  ],
+  "transitions": [],
+  "variables": []
+}

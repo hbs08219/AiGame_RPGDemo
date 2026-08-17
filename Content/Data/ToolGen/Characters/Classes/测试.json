@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "测试",
+  "name": "测试",
+  "description": "",
+  "type": "Player",
+  "faction": "PlayerParty",
+  "appearanceId": "",
+  "attributeTemplateId": "",
+  "initialLevel": 1,
+  "activeSkills": [],
+  "passiveSkills": [],
+  "moveSpeed": {
+    "walk": 300,
+    "run": 600,
+    "sprint": 900
+  },
+  "inventorySize": 50
+}

@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "IT_minor_heal_potion",
+  "name": "小治疗药水",
+  "description": "",
+  "type": "consumable",
+  "price": 50,
+  "stackable": true,
+  "iconAsset": {
+    "schemaVersion": 2,
+    "projectId": "project-fbaf249a-f0ed-46c8-b318-a15e55fd23f3",
+    "kind": "image",
+    "assetId": "asset-76a913a5-75c3-4824-8aae-8adca77efbc5",
+    "versionId": "version-d38d4453-6e32-4238-9eb1-8ada6e4ca79f"
+  },
+  "effectType": "healHP",
+  "effectValue": 30,
+  "equip": {}
+}

@@ -32,10 +32,13 @@ public class AiGameBridge : ModuleRules
 			// --- 资产索引导出 (FAssetIndexExporter) ---
 			"AssetRegistry",   // IAssetRegistry 扫描资产
 			"ImageWrapper",    // FImageUtils 缩略图 → PNG 编码
-		"AssetTools",      // ThumbnailTools / ObjectTools
-		"UnrealEd",        // UE5.8 已并入：ThumbnailManager / ThumbnailHelpers / ObjectTools
+		"AssetTools",      // ThumbnailTools / ObjectTools / ImportAssetTasks（无头导入）
+		"UnrealEd",        // UE5.8 已并入：UAssetImportTask / ThumbnailManager / ObjectTools
 			"AnimGraphRuntime", // UAnimSequence（帧率/帧数导出）
 			"Niagara",         // UNiagaraSystem（loop 导出）
+			// --- 无头资产同步 MCP 服务 (HeadlessSync) ---
+			"ModelContextProtocol", // Runtime 模块：IModelContextProtocolModule AddTool/StartServer（无头可加载）
+			"Projects",        // commandlet 命令行/工程接口
 		});
 
 		// 缩略图渲染需 GameThread 资产加载 + 渲染管线，仅在 Editor 下可用

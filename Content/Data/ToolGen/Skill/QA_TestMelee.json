@@ -1,0 +1,305 @@
+{
+  "id": "QA_TestMelee",
+  "name": "测试近战攻击",
+  "version": 1,
+  "kind": "active",
+  "folderPath": "",
+  "passives": [],
+  "graph": {
+    "nodes": [
+      {
+        "id": "entry",
+        "position": {
+          "x": 80,
+          "y": 80
+        },
+        "data": {
+          "nodeKind": "flow",
+          "flowType": "Entry",
+          "label": "执行入口",
+          "isEntry": true
+        }
+      },
+      {
+        "id": "cast_pre",
+        "position": {
+          "x": 400,
+          "y": 80
+        },
+        "data": {
+          "nodeKind": "action",
+          "actionType": "TimelineAction",
+          "label": "施法前段",
+          "duration": 7,
+          "tracks": []
+        }
+      },
+      {
+        "id": "hit",
+        "position": {
+          "x": 720,
+          "y": 80
+        },
+        "data": {
+          "nodeKind": "action",
+          "actionType": "TimelineAction",
+          "label": "命中判定",
+          "duration": 1,
+          "tracks": [
+            {
+              "trackId": "damage",
+              "name": "伤害轨道",
+              "events": [
+                {
+                  "trackId": "damage",
+                  "key": "damageValue",
+                  "value": 30
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "id": "cast_post",
+        "position": {
+          "x": 1040,
+          "y": 80
+        },
+        "data": {
+          "nodeKind": "action",
+          "actionType": "TimelineAction",
+          "label": "施法后段",
+          "duration": 7,
+          "tracks": []
+        }
+      },
+      {
+        "id": "exit",
+        "position": {
+          "x": 1360,
+          "y": 80
+        },
+        "data": {
+          "nodeKind": "flow",
+          "flowType": "Exit",
+          "label": "执行出口",
+          "isExit": true
+        }
+      }
+    ],
+    "transitions": [
+      {
+        "id": "entry-to-cast_pre",
+        "sourceNodeId": "entry",
+        "targetNodeId": "cast_pre",
+        "conditions": [],
+        "priority": 0,
+        "canForce": false
+      },
+      {
+        "id": "cast_pre-to-hit",
+        "sourceNodeId": "cast_pre",
+        "targetNodeId": "hit",
+        "conditions": [],
+        "priority": 0,
+        "canForce": false
+      },
+      {
+        "id": "hit-to-cast_post",
+        "sourceNodeId": "hit",
+        "targetNodeId": "cast_post",
+        "conditions": [],
+        "priority": 0,
+        "canForce": false
+      },
+      {
+        "id": "cast_post-to-exit",
+        "sourceNodeId": "cast_post",
+        "targetNodeId": "exit",
+        "conditions": [],
+        "priority": 0,
+        "canForce": false
+      }
+    ]
+  },
+  "stateMachine": {
+    "states": [
+      {
+        "id": "state-8d8c5b08-a1f2-4f24-bf81-b9f15fec3edf",
+        "name": "入口状态",
+        "flow": {
+          "nodes": [
+            {
+              "id": "entry",
+              "position": {
+                "x": 80,
+                "y": 200
+              },
+              "data": {
+                "nodeKind": "flow",
+                "flowType": "Entry",
+                "label": "执行入口",
+                "isEntry": true
+              }
+            },
+            {
+              "id": "cast_pre",
+              "position": {
+                "x": 320,
+                "y": 200
+              },
+              "data": {
+                "nodeKind": "action",
+                "actionType": "TimelineAction",
+                "label": "施法前段",
+                "duration": 7,
+                "tracks": []
+              }
+            },
+            {
+              "id": "hit",
+              "position": {
+                "x": 560,
+                "y": 200
+              },
+              "data": {
+                "nodeKind": "action",
+                "actionType": "TimelineAction",
+                "label": "命中判定",
+                "duration": 1,
+                "tracks": [
+                  {
+                    "trackId": "damage",
+                    "name": "伤害轨道",
+                    "events": [
+                      {
+                        "trackId": "damage",
+                        "key": "damageValue",
+                        "value": 30
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "id": "cast_post",
+              "position": {
+                "x": 800,
+                "y": 200
+              },
+              "data": {
+                "nodeKind": "action",
+                "actionType": "TimelineAction",
+                "label": "施法后段",
+                "duration": 7,
+                "tracks": []
+              }
+            },
+            {
+              "id": "exit",
+              "position": {
+                "x": 1040,
+                "y": 200
+              },
+              "data": {
+                "nodeKind": "flow",
+                "flowType": "Exit",
+                "label": "执行出口",
+                "isExit": true
+              }
+            }
+          ],
+          "transitions": [
+            {
+              "id": "entry-to-cast_pre",
+              "sourceNodeId": "entry",
+              "targetNodeId": "cast_pre",
+              "conditions": [],
+              "priority": 0,
+              "canForce": false
+            },
+            {
+              "id": "cast_pre-to-hit",
+              "sourceNodeId": "cast_pre",
+              "targetNodeId": "hit",
+              "conditions": [],
+              "priority": 0,
+              "canForce": false
+            },
+            {
+              "id": "hit-to-cast_post",
+              "sourceNodeId": "hit",
+              "targetNodeId": "cast_post",
+              "conditions": [],
+              "priority": 0,
+              "canForce": false
+            },
+            {
+              "id": "cast_post-to-exit",
+              "sourceNodeId": "cast_post",
+              "targetNodeId": "exit",
+              "conditions": [],
+              "priority": 0,
+              "canForce": false
+            }
+          ]
+        },
+        "position": {
+          "x": 100,
+          "y": 200
+        }
+      },
+      {
+        "id": "state-9434ac0c-dbe1-446d-a41d-1f66eb606a78",
+        "name": "出口状态",
+        "flow": {
+          "nodes": [
+            {
+              "id": "node-entry-06efa9",
+              "position": {
+                "x": 80,
+                "y": 200
+              },
+              "data": {
+                "nodeKind": "flow",
+                "flowType": "Entry",
+                "label": "执行入口",
+                "isEntry": true
+              }
+            },
+            {
+              "id": "node-exit-68b178",
+              "position": {
+                "x": 700,
+                "y": 200
+              },
+              "data": {
+                "nodeKind": "flow",
+                "flowType": "Exit",
+                "label": "执行出口",
+                "isExit": true
+              }
+            }
+          ],
+          "transitions": []
+        },
+        "position": {
+          "x": 400,
+          "y": 200
+        },
+        "isExit": true
+      }
+    ],
+    "transitions": [
+      {
+        "id": "trans-cfe51352-6553-4b45-a676-54404995e50f",
+        "fromStateId": "state-8d8c5b08-a1f2-4f24-bf81-b9f15fec3edf",
+        "toStateId": "state-9434ac0c-dbe1-446d-a41d-1f66eb606a78",
+        "conditions": []
+      }
+    ],
+    "entryStateId": "state-8d8c5b08-a1f2-4f24-bf81-b9f15fec3edf"
+  }
+}

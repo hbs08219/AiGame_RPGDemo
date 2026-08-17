@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "id": "DT_3028aff099accb9f",
+  "name": "治疗药水掉落包",
+  "description": "",
+  "drops": [
+    {
+      "itemId": "IT_heal_potion",
+      "chance": 1,
+      "minCount": 1,
+      "maxCount": 1
+    }
+  ]
+}

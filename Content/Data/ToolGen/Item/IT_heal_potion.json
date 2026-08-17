@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "IT_heal_potion",
+  "name": "治疗药水",
+  "description": "",
+  "type": "consumable",
+  "price": 150,
+  "stackable": true,
+  "iconAsset": {
+    "schemaVersion": 2,
+    "projectId": "project-fbaf249a-f0ed-46c8-b318-a15e55fd23f3",
+    "kind": "image",
+    "assetId": "asset-625fe506-322b-4a4b-b4fc-51ac3245692b",
+    "versionId": "version-d6d47042-7803-4c1b-9469-96fe834051a3"
+  },
+  "effectType": "healHP",
+  "effectValue": 80,
+  "equip": {}
+}

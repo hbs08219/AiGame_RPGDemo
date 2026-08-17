@@ -1,0 +1,65 @@
+{
+  "version": 1,
+  "matrix": [
+    {
+      "state": "Locomotion",
+      "behaviors": {
+        "Move": true,
+        "Jump": true,
+        "Rotate": true,
+        "ActivateSkill": true,
+        "BeHit": true,
+        "UseItem": true,
+        "Interact": true
+      }
+    },
+    {
+      "state": "Attacking",
+      "behaviors": {
+        "Move": false,
+        "Jump": false,
+        "Rotate": false,
+        "ActivateSkill": false,
+        "BeHit": false,
+        "UseItem": false,
+        "Interact": false
+      }
+    },
+    {
+      "state": "SkillCasting",
+      "behaviors": {
+        "Move": false,
+        "Jump": false,
+        "Rotate": false,
+        "ActivateSkill": false,
+        "BeHit": false,
+        "UseItem": false,
+        "Interact": false
+      }
+    },
+    {
+      "state": "Stunned",
+      "behaviors": {
+        "Move": false,
+        "Jump": false,
+        "Rotate": false,
+        "ActivateSkill": false,
+        "BeHit": false,
+        "UseItem": false,
+        "Interact": false
+      }
+    },
+    {
+      "state": "Dead",
+      "behaviors": {
+        "Move": false,
+        "Jump": false,
+        "Rotate": false,
+        "ActivateSkill": false,
+        "BeHit": false,
+        "UseItem": false,
+        "Interact": false
+      }
+    }
+  ]
+}

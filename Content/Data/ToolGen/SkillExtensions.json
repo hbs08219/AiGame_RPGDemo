@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "revision": 1,
+  "tracks": [
+    {
+      "id": "damage",
+      "name": "伤害轨道",
+      "icon": "💥",
+      "color": "#ff4d4f",
+      "eventMode": "point",
+      "properties": [],
+      "eventProperties": [
+        {
+          "key": "damageValue",
+          "name": "伤害值",
+          "type": "number",
+          "required": true,
+          "min": 0
+        }
+      ],
+      "runtimeMapping": "DamageTrackProcessor",
+      "version": 1
+    }
+  ],
+  "nodeTemplates": [],
+  "updatedAt": "2026-08-12T07:13:56.456Z"
+}

@@ -1,0 +1,3512 @@
+{
+  "version": 1,
+  "assets": {
+    "/Niagara/DefaultAssets/DefaultSystem.DefaultSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/VectorFields/VectorFieldVisualizationSystem.VectorFieldVisualizationSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/HairStrands/Emitters/GroomRodsSystem.GroomRodsSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/HairStrands/Emitters/GroomSpringsSystem.GroomSpringsSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/HairStrands/Emitters/SimpleRodsSystem.SimpleRodsSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/HairStrands/Emitters/SimpleSpringsSystem.SimpleSpringsSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/HairStrands/Emitters/StableRodsSystem.StableRodsSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/HairStrands/Emitters/StableSpringsSystem.StableSpringsSystem": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Water/Effects/Niagara/Shoreline/NiagaraShore_System.NiagaraShore_System": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/BehaviorExamples/RenderTargetTexturePainter.RenderTargetTexturePainter": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/Systems/AttributeReaderTrails.AttributeReaderTrails": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/Systems/DirectionalBurst.DirectionalBurst": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/Systems/DirectionalBurstLightweight.DirectionalBurstLightweight": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/Systems/FountainLightweight.FountainLightweight": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/Systems/MinimalLightweight.MinimalLightweight": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/Systems/RadialBurst.RadialBurst": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/Templates/Systems/SimpleExplosion.SimpleExplosion": {
+      "category": "vfx",
+      "auto": true
+    },
+    "/Metasound/DefaultAssets/Sources/MSS_PlayRandom_Loop.MSS_PlayRandom_Loop": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Metasound/DefaultAssets/Sources/MSS_PlayRandom_Oneshot.MSS_PlayRandom_Oneshot": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Meshes/LakeMesh.LakeMesh": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Water/Meshes/RiverMesh.RiverMesh": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Landmass/Landscape/Meshes/S_SpritePlane.S_SpritePlane": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/MediaPlate/SM_MediaPlateScreen.SM_MediaPlateScreen": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/S_Arrow.S_Arrow": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ConcertSyncClient/HeadMesh.HeadMesh": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ConcertSyncClient/MonitorMesh.MonitorMesh": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ConcertSyncClient/SM_GenericHMD.SM_GenericHMD": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ConcertSyncClient/SM_Hand-Lft-Mesh.SM_Hand-Lft-Mesh": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ConcertSyncClient/SM_PresenceCone.SM_PresenceCone": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/Locator.Locator": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/LocatorXYZ.LocatorXYZ": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow2_1mm.ControlRig_Arrow2_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow2_3mm.ControlRig_Arrow2_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow2_solid.ControlRig_Arrow2_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow4_1mm.ControlRig_Arrow4_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow4_3mm.ControlRig_Arrow4_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow4_solid.ControlRig_Arrow4_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow_1mm.ControlRig_Arrow_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow_3mm.ControlRig_Arrow_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Arrow_solid.ControlRig_Arrow_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Box_1mm.ControlRig_Box_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Box_3mm.ControlRig_Box_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Box_solid.ControlRig_Box_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Circle_1mm.ControlRig_Circle_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Circle_3mm.ControlRig_Circle_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Circle_solid.ControlRig_Circle_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Diamond_1mm.ControlRig_Diamond_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Diamond_3mm.ControlRig_Diamond_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Diamond_solid.ControlRig_Diamond_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_HalfCircle_1mm.ControlRig_HalfCircle_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_HalfCircle_3mm.ControlRig_HalfCircle_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_HalfCircle_solid.ControlRig_HalfCircle_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Hexagon_1mm.ControlRig_Hexagon_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Hexagon_3mm.ControlRig_Hexagon_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Hexagon_solid.ControlRig_Hexagon_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Line.ControlRig_Line": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Octagon_1mm.ControlRig_Octagon_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Octagon_3mm.ControlRig_Octagon_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Octagon_solid.ControlRig_Octagon_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Pyramid_1mm.ControlRig_Pyramid_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Pyramid_3mm.ControlRig_Pyramid_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Pyramid_solid.ControlRig_Pyramid_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_QuarterCircle_1mm.ControlRig_QuarterCircle_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_QuarterCircle_3mm.ControlRig_QuarterCircle_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_QuarterCircle_solid.ControlRig_QuarterCircle_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_RoundedSquare_1mm.ControlRig_RoundedSquare_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_RoundedSquare_3mm.ControlRig_RoundedSquare_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_RoundedSquare_solid.ControlRig_RoundedSquare_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_RoundedTriangle_1mm.ControlRig_RoundedTriangle_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_RoundedTriangle_3mm.ControlRig_RoundedTriangle_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_RoundedTriangle_solid.ControlRig_RoundedTriangle_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Sphere_1mm.ControlRig_Sphere_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Sphere_3mm.ControlRig_Sphere_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Sphere_solid.ControlRig_Sphere_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Square_1mm.ControlRig_Square_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Square_3mm.ControlRig_Square_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Square_Joystick.ControlRig_Square_Joystick": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Square_solid.ControlRig_Square_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Star4_1mm.ControlRig_Star4_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Star4_3mm.ControlRig_Star4_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Star4_solid.ControlRig_Star4_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Triangle_1mm.ControlRig_Triangle_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Triangle_3mm.ControlRig_Triangle_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Triangle_solid.ControlRig_Triangle_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Wedge_1mm.ControlRig_Wedge_1mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Wedge_3mm.ControlRig_Wedge_3mm": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRig_Wedge_solid.ControlRig_Wedge_solid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ChaosVD/Meshes/Box.Box": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ChaosVD/Meshes/Sphere.Sphere": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/DatasmithContent/Meshes/cylinder.cylinder": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/DatasmithContent/Meshes/disc.disc": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/DatasmithContent/Meshes/sphere.sphere": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/DatasmithContent/Meshes/square.square": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/InterchangeAxfAssets/Meshes/SM_MatPreviewMesh_01.SM_MatPreviewMesh_01": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Water/Meshes/S_WaterPlane_256.S_WaterPlane_256": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Water/Meshes/S_WaterPlane_FarPlane.S_WaterPlane_FarPlane": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Fab/Placeholders/MeshPlaceholder.MeshPlaceholder": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/S_Gnomon.S_Gnomon": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/MetaHumanSDK/TemplateAssets/SM_MH_Head.SM_MH_Head": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_AxisTripod.PCG_AxisTripod": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_Cube.PCG_Cube": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_CubeWireframe.PCG_CubeWireframe": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_CubeWireframeBasePivot.PCG_CubeWireframeBasePivot": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Landmass/Landscape/Meshes/S_Preview_LS_128x128.S_Preview_LS_128x128": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Landmass/Landscape/Meshes/S_Preview_LS_256x256.S_Preview_LS_256x256": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Landmass/Landscape/Meshes/S_Preview_LS_64x64.S_Preview_LS_64x64": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Landmass/Landscape/Meshes/S_Scatter_127x127_quads.S_Scatter_127x127_quads": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Landmass/Landscape/Meshes/S_Scatter_255x255_quads.S_Scatter_255x255_quads": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Landmass/Landscape/Meshes/S_Scatter_63x63_quads.S_Scatter_63x63_quads": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Water/Caustics/Meshes/CausticPhotonMeshGrid.CausticPhotonMeshGrid": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Water/Caustics/Meshes/CausticsPreviewBase.CausticsPreviewBase": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Water/Caustics/Meshes/CausticsPreviewIsland.CausticsPreviewIsland": {
+      "category": "mesh",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/PCG/GraphTemplates/Meshes/Fence01.Fence01": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/GraphTemplates/Meshes/Fence02.Fence02": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/GraphTemplates/Meshes/Fence03.Fence03": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/GraphTemplates/Meshes/Fence04.Fence04": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Fab/Actors/GlobalFoliageActor/Geometry/Icon_Arrow.Icon_Arrow": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Fab/Actors/GlobalFoliageActor/Geometry/Icon_Arrow_Test.Icon_Arrow_Test": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Fab/Actors/GlobalFoliageActor/Geometry/Icon_Base.Icon_Base": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/Fab/Actors/GlobalFoliageActor/Geometry/Icon_Sock.Icon_Sock": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/Grammar/Assets/PCG_Column.PCG_Column": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/Grammar/Assets/PCG_HoleWindow.PCG_HoleWindow": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/Grammar/Assets/PCG_Wall.PCG_Wall": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/Grammar/Assets/PCG_Window.PCG_Window": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/MeshSockets/Meshes/1M_CubeWithSocket.1M_CubeWithSocket": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Meshes/PCG_Boulder_02.PCG_Boulder_02": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Meshes/PCG_Seedling_01.PCG_Seedling_01": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Meshes/PCG_Tree_01.PCG_Tree_01": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Meshes/PCG_Tree_02.PCG_Tree_02": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Meshes/PCG_Tree_03.PCG_Tree_03": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/PCG/Utilities/Assemblies/ActorTagger/Debug/NullCube.NullCube": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/AnimatorKit/Meshes/SKM_EmptyMesh.SKM_EmptyMesh": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/AnimatorKit/Meshes/SKM_PhysCube.SKM_PhysCube": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/AnimatorKit/Meshes/SKM_PhysEmpty.SKM_PhysEmpty": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/AnimatorKit/Meshes/SKM_PhysSphere.SKM_PhysSphere": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRig/Modules/Meshes/SKM_Root_Template.SKM_Root_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_BipedPhys_Template.SKM_BipedPhys_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_Biped_Template.SKM_Biped_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_Car_Template.SKM_Car_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_Chain_Template.SKM_Chain_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_Doggee_Template.SKM_Doggee_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_Dragon_Template.SKM_Dragon_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_Starfish_Template.SKM_Starfish_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SKM_Tentacle_Template.SKM_Tentacle_Template": {
+      "category": "mesh",
+      "auto": true
+    },
+    "/AnimatorKit/Meshes/SK_EmptyMesh.SK_EmptyMesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimatorKit/Meshes/SK_PhysCube.SK_PhysCube": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRig/Modules/Meshes/SK_Root_Template.SK_Root_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_BipedPhys_Template.SK_BipedPhys_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_Biped_Template.SK_Biped_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_Car_Template.SK_Car_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_Chain_Template.SK_Chain_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_Doggee_Template.SK_Doggee_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_Dragon_Template.SK_Dragon_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_Starfish_Template.SK_Starfish_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/SK_Tentacle_Template.SK_Tentacle_Template": {
+      "category": "misc",
+      "auto": true
+    },
+    "/HairStrands/Materials/HairDebugMaterial.HairDebugMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/HairStrands/Materials/HairDefaultMaterial.HairDefaultMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/HairStrands/Materials/HairCardsDefaultMaterial.HairCardsDefaultMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/HairStrands/Materials/HairMeshesDefaultMaterial.HairMeshesDefaultMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRigXRayMaterial.ControlRigXRayMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/DefaultSpriteMaterial.DefaultSpriteMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/ControlRig/M_Manip.M_Manip": {
+      "category": "misc",
+      "auto": true
+    },
+    "/SpeedTreeImporter/SpeedTree9/SpeedTreeMaster.SpeedTreeMaster": {
+      "category": "misc",
+      "auto": true
+    },
+    "/SpeedTreeImporter/SpeedTree9/SpeedTreeBillboardMaster.SpeedTreeBillboardMaster": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/PointSetOverlaidComponentMaterial.PointSetOverlaidComponentMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/LineSetOverlaidComponentMaterial.LineSetOverlaidComponentMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/BrushBounds.BrushBounds": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Sprite/M_BrushSprite_01.M_BrushSprite_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolset/Materials/M_DynamicMeshComponentVtxColor.M_DynamicMeshComponentVtxColor": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/DefaultSpriteMaterial.DefaultSpriteMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/M_Gnomon.M_Gnomon": {
+      "category": "misc",
+      "auto": true
+    },
+    "/HairStrands/Materials/DebugHairMaterial.DebugHairMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/HairStrands/Materials/NiagaraHairMaterial.NiagaraHairMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/DefaultTextureSpriteMaterial.DefaultTextureSpriteMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/DefaultRIbbonMaterial.DefaultRibbonMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/M_Gnomon_Alpha.M_Gnomon_Alpha": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/MaskedUnlitSpriteMaterial.MaskedUnlitSpriteMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/OpaqueUnlitSpriteMaterial.OpaqueUnlitSpriteMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/DefaultLitSpriteMaterial.DefaultLitSpriteMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/ControlRig/M_Traj.M_Traj": {
+      "category": "misc",
+      "auto": true
+    },
+    "/SkeletalMeshModelingTools/SkeletalMeshGizmoMaterial.SkeletalMeshGizmoMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimationSharing/AnimSharingBase.AnimSharingBase": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/HeadMaterial.HeadMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_CameraFacing-scaling.M_CameraFacing-scaling": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_CameraFacing.M_CameraFacing": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_CameraFacingText.M_CameraFacingText": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_ConcertClientPresence-Desktop.M_ConcertClientPresence-Desktop": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_ConcertClientPresence.M_ConcertClientPresence": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_ConePresence.M_ConePresence": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_Head_Body.M_Head_Body": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_Head_Desktop.M_Head_Desktop": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ConcertSyncClient/M_MonitorScreen.M_MonitorScreen": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaCompositing/DefaultMediaPlaneMaterial.DefaultMediaPlaneMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/MediaPlate/M_MediaPlateCC_Opaque.M_MediaPlateCC_Opaque": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_MediaPlateCC_Translucent.M_MediaPlateCC_Translucent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_MediaPlateCrossFade.M_MediaPlateCrossFade": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_MediaPlate_Masked.M_MediaPlate_Masked": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_MediaPlate_Opaque.M_MediaPlate_Opaque": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_MediaPlate_OverlayComp.M_MediaPlate_OverlayComp": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_MediaPlate_Translucent.M_MediaPlate_Translucent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_Sky.M_Sky": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MediaPlate/M_SkyCC.M_SkyCC": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ResonanceAudio/VisualizationMeshMaterial.VisualizationMeshMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/AxisBLocatorMatZ1.AxisBLocatorMatZ1": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/AxisGLocatorMatY.AxisGLocatorMatY": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/AxisRLocatorMatX.AxisRLocatorMatX": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/GreenLocatorMatX.GreenLocatorMatX": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/GreenLocatorMatY.GreenLocatorMatY": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimatorKit/Locator/GreenLocatorMatZ.GreenLocatorMatZ": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRig/Controls/ControlRigGizmoMaterial.ControlRigGizmoMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ChaosVD/Materials/ChaosVDInstanced.ChaosVDInstanced": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ChaosVD/Materials/ChaosVDInstancedQueryOnly.ChaosVDInstancedQueryOnly": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ChaosVD/Materials/ChaosVDQueryOnlyMesh.ChaosVDQueryOnlyMesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ChaosVD/Materials/ChasoVDSimMesh.ChasoVDSimMesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/UVEditor/Materials/UVEditorBackground.UVEditorBackground": {
+      "category": "misc",
+      "auto": true
+    },
+    "/UVEditor/Materials/UVEditorVTBackground.UVEditorVTBackground": {
+      "category": "misc",
+      "auto": true
+    },
+    "/UVEditor/Materials/UVEditor_UnwrapMaterial.UVEditor_UnwrapMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/AliasReference.AliasReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/Arealight.Arealight": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/C4DReference.C4DReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/CE_OpacityReference.CE_OpacityReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/CE_OpacitySimpleReference.CE_OpacitySimpleReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/CE_OpaqueReference.CE_OpaqueReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/Datasmith_Color.Datasmith_Color": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/Datasmith_Material.Datasmith_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/IFC_ColorReference.IFC_ColorReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/M_DatasmithDecal.M_DatasmithDecal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/RevitReference.RevitReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/SketchUpReference.SketchUpReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/Hotspot.Hotspot": {
+      "category": "misc",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/HotspotIcon.HotspotIcon": {
+      "category": "misc",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/M_UVOverlapChecker.M_UVOverlapChecker": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAxfAssets/BaseMaterials/CPA2.CPA2": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAxfAssets/BaseMaterials/CPA2_Flakes.CPA2_Flakes": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAxfAssets/BaseMaterials/SVBRDF.SVBRDF": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAxfAssets/BaseMaterials/SVBRDF_Alpha.SVBRDF_Alpha": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAxfAssets/BaseMaterials/SVBRDF_Alpha_POM.SVBRDF_Alpha_POM": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAxfAssets/BaseMaterials/SVBRDF_POM.SVBRDF_POM": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BakeBentNormalPreviewMaterial.BakeBentNormalPreviewMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BakePreviewMaterial.BakePreviewMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BakeRenderCaptureOutputMaterial.BakeRenderCaptureOutputMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BakeRenderCaptureOutputSubsurfaceMaterial.BakeRenderCaptureOutputSubsurfaceMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BakeRenderCapturePreviewMaterial.BakeRenderCapturePreviewMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BakeRenderCapturePreviewSubsurfaceMaterial.BakeRenderCapturePreviewSubsurfaceMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BrushAlphaIndicatorMaterial.BrushAlphaIndicatorMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/BrushIndicatorMaterial.BrushIndicatorMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/CheckerMaterial.CheckerMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/FullMaterialBakeOutputMaterial.FullMaterialBakeOutputMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/FullMaterialBakeOutputMaterial_PackedMRS.FullMaterialBakeOutputMaterial_PackedMRS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/FullMaterialBakeOutputSubsurfaceMaterial_PackedMRS.FullMaterialBakeOutputSubsurfaceMaterial_PackedMRS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/FullMaterialBakePreviewMaterial.FullMaterialBakePreviewMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/FullMaterialBakePreviewMaterial_PackedMRS.FullMaterialBakePreviewMaterial_PackedMRS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/FullMaterialBakePreviewSubsurfaceMaterial_PackedMRS.FullMaterialBakePreviewSubsurfaceMaterial_PackedMRS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/GizmoDefaultMaterial.GizmoDefaultMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/ImageBasedMaterial_Master.ImageBasedMaterial_Master": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/InProgressMaterial.InProgressMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/MeshVertexAlphaMaterial.MeshVertexAlphaMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/MeshVertexColorMaterial.MeshVertexColorMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/MeshVertexColorMaterialTwoSided.MeshVertexColorMaterialTwoSided": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/MeshVertexColorSculptMaterial.MeshVertexColorSculptMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/PointSetComponentMaterial_Round.PointSetComponentMaterial_Round": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/PointSetOverlaidComponentMaterial_Round.PointSetOverlaidComponentMaterial_Round": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/PostProcess_PackedMRSA.PostProcess_PackedMRSA": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/PostProcess_WorldPosition.PostProcess_WorldPosition": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SculptMaterial.SculptMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SculptMaterial_TangentNormalFromView.SculptMaterial_TangentNormalFromView": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SculptMaterial_Transparent.SculptMaterial_Transparent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SculptMaterial_TransparentTwoSided.SculptMaterial_TransparentTwoSided": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SelectionMaterial.SelectionMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SimpleBaseMaterial.SimpleBaseMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SimpleBaseMaterial_Transparent.SimpleBaseMaterial_Transparent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SimpleOffsetMaterial.SimpleOffsetMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SimpleOffsetMaterial_Transparent.SimpleOffsetMaterial_Transparent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SimpleTwoSidedOffsetMaterial.SimpleTwoSidedOffsetMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SimpleTwoSidedOffsetMaterial_Transparent.SimpleTwoSidedOffsetMaterial_Transparent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/VolumeEditMaterial.VolumeEditMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Placeholders/FabMeshPlaceholderMaterial.FabMeshPlaceholderMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Niagara/Blueprints/PreviewMat.PreviewMat": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/DefaultDecalMaterial.DefaultDecalMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/M_DepthFade_SpriteSimple.M_DepthFade_SpriteSimple": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/M_NiagaraUVDebug.M_NiagaraUVDebug": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/M_ClearCoat.M_ClearCoat": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/M_Default.M_Default": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/M_Sheen.M_Sheen": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/M_SpecularGlossiness.M_SpecularGlossiness": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/M_Transmission.M_Transmission": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/M_Unlit.M_Unlit": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/ClearCoatMaterial_MR.ClearCoatMaterial_MR": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/ClearCoatMaterial_SG.ClearCoatMaterial_SG": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/DecalMaterial.DecalMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/DecalMaterial.M_DatasmithDecal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/FBXLegacyLambertSurfaceMaterial.FBXLegacyLambertSurfaceMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/FBXLegacyLambertSurfaceMaterialBump.FBXLegacyLambertSurfaceMaterialBump": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterial.FBXLegacyPhongSurfaceMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/FBXLegacyPhongSurfaceMaterialBump.FBXLegacyPhongSurfaceMaterialBump": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/LambertSurfaceMaterial.LambertSurfaceMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/LambertSurfaceMaterialWithUVTransform.LambertSurfaceMaterialWithUVTransform": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/OrenNayerMaterial.OrenNayerMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PBRSurfaceMaterial_MR.PBRSurfaceMaterial_MR": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PBRSurfaceMaterial_SG.PBRSurfaceMaterial_SG": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PhongSurfaceMaskMaterial.PhongSurfaceMaskMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PhongSurfaceMaskMaterialWithUVTransform.PhongSurfaceMaskMaterialWithUVTransform": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PhongSurfaceMaterial.PhongSurfaceMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PhongSurfaceMaterialWithUVTransform.PhongSurfaceMaterialWithUVTransform": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PhongSurfaceTranslucentMaterial.PhongSurfaceTranslucentMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/PhongSurfaceTranslucentMaterialWithUVTransform.PhongSurfaceTranslucentMaterialWithUVTransform": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/SheenMaterial_MR.SheenMaterial_MR": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/SheenMaterial_SG.SheenMaterial_SG": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/SubsurfaceMaterial_MR.SubsurfaceMaterial_MR": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/SubsurfaceMaterial_SG.SubsurfaceMaterial_SG": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/ThinTranslucentMaterial_MR.ThinTranslucentMaterial_MR": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/ThinTranslucentMaterial_SG.ThinTranslucentMaterial_SG": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Materials/UnlitMaterial.UnlitMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Substrate/UsdPreviewSurface.UsdPreviewSurface": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/Substrate/UsdPreviewSurfaceVT.UsdPreviewSurfaceVT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Mutable/Materials/ClipMeshMaterial.ClipMeshMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugMaterial.PCG_DebugMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugMaterialTexture.PCG_DebugMaterialTexture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugMaterialVertexColors.PCG_DebugMaterialVertexColors": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugWhite.PCG_DebugWhite": {
+      "category": "hit",
+      "auto": true
+    },
+    "/PCG/Materials/BrushIndicatorMaterial.BrushIndicatorMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialButton.M_AudioMaterialButton": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialEnvelope_AD.M_AudioMaterialEnvelope_AD": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialEnvelope_ADSR.M_AudioMaterialEnvelope_ADSR": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialKnob.M_AudioMaterialKnob": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialMeter.M_AudioMaterialMeter": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialMeter_Dots.M_AudioMaterialMeter_Dots": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialRoundedSlider.M_AudioMaterialRoundedSlider": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/M_AudioMaterialToggleButton.M_AudioMaterialToggleButton": {
+      "category": "misc",
+      "auto": true
+    },
+    "/HairStrands/Materials/HairDataflowMaterial.HairDataflowMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Takes/UMG/DefaultCountdownMaterial.DefaultCountdownMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/Mat_BungeeMan_BodyTemplate.Mat_BungeeMan_BodyTemplate": {
+      "category": "misc",
+      "auto": true
+    },
+    "/ControlRigModules/Modules/Meshes/Mat_BungeeMan_RubberTemplate.Mat_BungeeMan_RubberTemplate": {
+      "category": "misc",
+      "auto": true
+    },
+    "/BaseMaterial/Materials/Parents/M_OpenPBR_OpaquePOM_Parent.M_OpenPBR_OpaquePOM_Parent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/BaseMaterial/Materials/Parents/M_OpenPBR_Opaque_Parent.M_OpenPBR_Opaque_Parent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Billboard_Material/M_MS_Billboard_Material.M_MS_Billboard_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Decal_Material/M_MS_Decal_Material.M_MS_Decal_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Decal_Material_VT/M_MS_Decal_Material_VT.M_MS_Decal_Material_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Default_Fuzz_Material/M_MS_Default_Fuzz_Material.M_MS_Default_Fuzz_Material": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Default_Fuzz_Material_VT/M_MS_Default_Fuzz_Material_VT.M_MS_Default_Fuzz_Material_VT": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Default_Material/M_MS_Default_Material.M_MS_Default_Material": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Default_Material_VT/M_MS_Default_Material_VT.M_MS_Default_Material_VT": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Default_Transmission_Material/M_MS_Default_Transmission_Material.M_MS_Default_Transmission_Material": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Default_Transmission_Material_VT/M_MS_Default_Transmission_Material_VT.M_MS_Default_Transmission_Material_VT": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Foliage_Material/M_MS_Foliage_Material.M_MS_Foliage_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Glass_Material/M_MS_Glass_Material.M_MS_Glass_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_ImperfectionDecal_Material/M_MS_ImperfectionDecal_Material.M_MS_ImperfectionDecal_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_ImperfectionDecal_Material_VT/M_MS_ImperfectionDecal_Material_VT.M_MS_ImperfectionDecal_Material_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Imperfection_Material/M_MS_Imperfection_Material.M_MS_Imperfection_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Imperfection_Material/M_MS_Imperfection_Material_Var.M_MS_Imperfection_Material_Var": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Imperfection_Material_Var/M_MS_Imperfection_Material_Var.M_MS_Imperfection_Material_Var": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Imperfection_Material_VT/M_MS_Imperfection_Material_Var_VT.M_MS_Imperfection_Material_Var_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Imperfection_Material_VT/M_MS_Imperfection_Material_VT.M_MS_Imperfection_Material_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_SurfaceBlend_Material/M_MS_SurfaceBlend_Material.M_MS_SurfaceBlend_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Surface_Material/M_MS_Surface_Material.M_MS_Surface_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Surface_Material_VT/M_MS_Surface_Material_VT.M_MS_Surface_Material_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/DeltaGenReference.DeltaGenReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/DeltaGenReferenceAbsorb.DeltaGenReferenceAbsorb": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/DeltaGenReferenceClearCoat.DeltaGenReferenceClearCoat": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/DeltaGenReferenceTransparent.DeltaGenReferenceTransparent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VREDReference.VREDReference": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VREDReferenceAbsorb.VREDReferenceAbsorb": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VREDReferenceClearCoat.VREDReferenceClearCoat": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VREDReferenceTransparent.VREDReferenceTransparent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdDecal/M_StdDecal.M_StdDecal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdEmissive/M_StdEmissive.M_StdEmissive": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdOpaque/M_StdOpaque.M_StdOpaque": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdSSS/M_StdSSS.M_StdSSS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdSSS/M_StdSSSFabric.M_StdSSSFabric": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdTranslucent/M_StdTranslucent.M_StdTranslucent": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdTranslucent/M_StdTranslucentFrostedGlass.M_StdTranslucentFrostedGlass": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/Water/M_Water.M_Water": {
+      "category": "misc",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/Proxy/M_GLTF_ClearCoat.M_GLTF_ClearCoat": {
+      "category": "misc",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/Proxy/M_GLTF_Default.M_GLTF_Default": {
+      "category": "skill",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/Proxy/M_GLTF_Sheen.M_GLTF_Sheen": {
+      "category": "misc",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/Proxy/M_GLTF_Transmission.M_GLTF_Transmission": {
+      "category": "misc",
+      "auto": true
+    },
+    "/GLTFExporter/Materials/Proxy/M_GLTF_Unlit.M_GLTF_Unlit": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/DistanceFields/Materials/BlurEdges.BlurEdges": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/DistanceFields/Materials/DebugDF.DebugDF": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/DistanceFields/Materials/DetectEdges.DetectEdges": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/DistanceFields/Materials/FixBand.FixBand": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/DistanceFields/Materials/JumpFloodStep.JumpFloodStep": {
+      "category": "jump",
+      "tags": [
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/DistanceFields/Materials/M_JumpFlood_Distance_2D.M_JumpFlood_Distance_2D": {
+      "category": "jump",
+      "tags": [
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/TextureCreation/Mats/SeedConstant.SeedConstant": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/M_Fluid_Display_01.M_Fluid_Display_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/M_OceanTest.M_OceanTest": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/M_Underside.M_Underside": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/M_Underwater_CrossSection_Test.M_Underwater_CrossSection_Test": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/WaveFoam/DrawWaveCrests.DrawWaveCrests": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/WaveFoam/FoamDeltaCopy.FoamDeltaCopy": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/WaveFoam/FoamDiffuse.FoamDiffuse": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Brushes/CanvasDrawing.CanvasDrawing": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Brushes/CompositeWaterBodyTexture.CompositeWaterBodyTexture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Brushes/FinalizeWaterTexture.FinalizeWaterTexture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Brushes/MeshBrush_Angle.MeshBrush_Angle": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Brushes/MeshBrush_Island.MeshBrush_Island": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Water/Materials/Brushes/MeshBrush_Weightmap.MeshBrush_Weightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Brushes/MeshBrush_Weightmap_Max.MeshBrush_Weightmap_Max": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Brushes/MeshBrush_Width.MeshBrush_Width": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/DebugMPC.DebugMPC": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/DebugRefraction.DebugRefraction": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Debug_Absorption.Debug_Absorption": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Debug_Absorption_SceneColor.Debug_Absorption_SceneColor": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Debug_Waves_Z_Only.Debug_Waves_Z_Only": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Debug_Z_Height.Debug_Z_Height": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Deform_To_Terrain.Deform_To_Terrain": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/GersterWaveRender.GersterWaveRender": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Grid.Grid": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/InvisibleWater.InvisibleWater": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Parallax.Parallax": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/RenderGerstnerWaveData.RenderGerstnerWaveData": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/Debug/Single_Gerstner_Wave.Single_Gerstner_Wave": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/PostProcessing/MPP_Water_ChromaticAbberation.MPP_Water_ChromaticAbberation": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/PostProcessing/M_UnderWater_PostProcess_Mesh.M_UnderWater_PostProcess_Mesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/PostProcessing/M_UnderWater_PostProcess_Volume.M_UnderWater_PostProcess_Volume": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterInfo/DrawWaterInfo.DrawWaterInfo": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_Material.Water_Material": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_PanningTextures.Water_PanningTextures": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Base.M_MS_Base": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Base_Fuzz.M_MS_Base_Fuzz": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Base_Masked.M_MS_Base_Masked": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Base_Trm.M_MS_Base_Trm": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Billboard.M_MS_Billboard": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Decal.M_MS_Decal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Fabric.M_MS_Fabric": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Fabric_Masked.M_MS_Fabric_Masked": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Foliage.M_MS_Foliage": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Glass.M_MS_Glass": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Srf.M_MS_Srf": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Srf_Fuzz.M_MS_Srf_Fuzz": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Srf_Masked.M_MS_Srf_Masked": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/Standard/M_MS_Srf_Trm.M_MS_Srf_Trm": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Base_Fuzz_VT.M_MS_Base_Fuzz_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Base_Masked_VT.M_MS_Base_Masked_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Base_Trm_VT.M_MS_Base_Trm_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Base_VT.M_MS_Base_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Billboard_VT.M_MS_Billboard_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Decal_VT.M_MS_Decal_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Fabric_Masked_VT.M_MS_Fabric_Masked_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Fabric_VT.M_MS_Fabric_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Foliage_VT.M_MS_Foliage_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Glass_VT.M_MS_Glass_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Srf_Fuzz_VT.M_MS_Srf_Fuzz_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Srf_Masked_VT.M_MS_Srf_Masked_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Srf_Trm_VT.M_MS_Srf_Trm_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Materials/VT/M_MS_Srf_VT.M_MS_Srf_VT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/GeometryCache/M_DefaultGeometryCacheMaterial.M_DefaultGeometryCacheMaterial": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/Substrate/M_GLTF.M_GLTF": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VRED/BrushedMetal.BrushedMetal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VRED/Chrome.Chrome": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VRED/Glass.Glass": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VRED/MetallicCarpaint.MetallicCarpaint": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VRED/Phong.Phong": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VRED/Plastic.Plastic": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/FBXImporter/VRED/UnicolorCarpaint.UnicolorCarpaint": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Helpers/M_CaptureMeshDepth.M_CaptureMeshDepth": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Helpers/M_MakeTexture.M_MakeTexture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Helpers/M_NormalizeHeight.M_NormalizeHeight": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/CacheDistanceField.CacheDistanceField": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/CacheDistanceField_RG8.CacheDistanceField_RG8": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/CompositeAlphas.CompositeAlphas": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/CopyRT_WithAlpha.CopyRT_WithAlpha": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/DownSampleMat.DownSampleMat": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/FinalizeCombinedTexture.FinalizeCombinedTexture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/GenNoise_01.GenNoise_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/LandmassBrush_Angle.LandmassBrush_Angle": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/LandmassBrush_Island.LandmassBrush_Island": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/LandmassBrush_Weightmap.LandmassBrush_Weightmap": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/LandmassBrush_Width.LandmassBrush_Width": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/M_SimpleBrush.M_SimpleBrush": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/M_SimpleBrush_Weightmap.M_SimpleBrush_Weightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/RenderSplineDepths.RenderSplineDepths": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/SplineMeshCurlNoise.SplineMeshCurlNoise": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/M_ComputeNormal.M_ComputeNormal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/PreviewContent/Roads/Mats/M_RoadSpline_01.M_RoadSpline_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/PreviewContent/Sky/Mats/M_Sky.M_Sky": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/PreviewContent/Water/Mats/M_Simple_River_01.M_Simple_River_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Debug/DebugTilingTexture.DebugTilingTexture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Debug/DebugWaterTime.DebugWaterTime": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Debug/LF.LF": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/CausticsMeshScatter.CausticsMeshScatter": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/CausticsPreview.CausticsPreview": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/Caustics_SubUV_Frame_Copy.Caustics_SubUV_Frame_Copy": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/DownsampleMax.DownsampleMax": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/DownsampleRT.DownsampleRT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/ExtractTilingTextureFromOverscan.ExtractTilingTextureFromOverscan": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/GenerateSpectrumTable.GenerateSpectrumTable": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/ModulateLuminance.ModulateLuminance": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/NormalizeLuminance.NormalizeLuminance": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/RenderTilingWaterNormal.RenderTilingWaterNormal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/LightFunctions/lf-05.lf-05": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/LightFunctions/M_Caustics_LightFunction_SubUV.M_Caustics_LightFunction_SubUV": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/LightFunctions/M_Caustics_LightFunction_Sun.M_Caustics_LightFunction_Sun": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Preview/CausticsBaseMesh.CausticsBaseMesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Preview/WaterCausticsPreview.WaterCausticsPreview": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_Advect_Height_01.M_Advect_Height_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_Advect_Velocity.M_Advect_Velocity": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_CalcDivergence.M_CalcDivergence": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_ComputeNormal.M_ComputeNormal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_GravAcceleration.M_GravAcceleration": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Debug/M_DebugForceInfo.M_DebugForceInfo": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Debug/M_ForceDisplay_01.M_ForceDisplay_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Debug/PerfTestNoiseMaterial.PerfTestNoiseMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Effects/M_Rain_01.M_Rain_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Examples/M_Simple_Water_With_Sim.M_Simple_Water_With_Sim": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Forces/M_Fluid_Force_Skelmesh.M_Fluid_Force_Skelmesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Forces/M_Fluid_Sim_Force_Boat_Component.M_Fluid_Sim_Force_Boat_Component": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Forces/M_Fluid_Sim_Force_Component.M_Fluid_Sim_Force_Component": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Forces/M_Fluid_Sim_Force_Impulse.M_Fluid_Sim_Force_Impulse": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Seed/M_SeedWater_01.M_SeedWater_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Simulation/M_Fluid_Sim_01.M_Fluid_Sim_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Simulation/M_RT_Normals.M_RT_Normals": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Utility/ComputeVoronoiDistance.ComputeVoronoiDistance": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Utility/CopyRT.CopyRT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Utility/MakeEdgeMask.MakeEdgeMask": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Utility/M_Calc_Terrain_Intersection.M_Calc_Terrain_Intersection": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Utility/M_Combine_Waves_Landscape.M_Combine_Waves_Landscape": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Utility/M_Render_Wave_Heightmap.M_Render_Wave_Heightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Actors/GlobalFoliageActor/Materials/MA_UI_Element.MA_UI_Element": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WireBlinnShader.M_WireBlinnShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WireBlinnTransparentShader.M_WireBlinnTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WireLambertShader.M_WireLambertShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WireLambertTransparentShader.M_WireLambertTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WireLightSourceShader.M_WireLightSourceShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WireLightSourceTransparentShader.M_WireLightSourceTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WirePhongShader.M_WirePhongShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/Materials/M_WirePhongTransparentShader.M_WirePhongTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_DebugDecal.M_DebugDecal": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_AdjustLevels.M_RT_AdjustLevels": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_Blur.M_RT_Blur": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_ColorMask.M_RT_ColorMask": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_Invert.M_RT_Invert": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_Multiply.M_RT_Multiply": {
+      "category": "skill",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_MultiplyByFloat.M_RT_MultiplyByFloat": {
+      "category": "skill",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_Noise.M_RT_Noise": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_NormalVariance.M_RT_NormalVariance": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_PassThrough.M_RT_PassThrough": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_RtoRBG.M_RT_RtoRBG": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_Saturate.M_RT_Saturate": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_SlopeMask.M_RT_SlopeMask": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/M_RT_Subtract.M_RT_Subtract": {
+      "category": "misc",
+      "tags": [
+        "right"
+      ],
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/SceneDepthPP.SceneDepthPP": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/WorldNormalsPP.WorldNormalsPP": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/FlatnessDetection/Materials/BlueWireframe.BlueWireframe": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/FlatnessDetection/Materials/WhiteMaterial.WhiteMaterial": {
+      "category": "hit",
+      "auto": true
+    },
+    "/PCG/SampleContent/Grammar/Materials/PCG_Bricks.PCG_Bricks": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/Grammar/Materials/PCG_Glass.PCG_Glass": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Materials/PCG_Foliage_01.PCG_Foliage_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Materials/PCG_Rocks.PCG_Rocks": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Materials/PCG_Trunk_01.PCG_Trunk_01": {
+      "category": "movement",
+      "tags": [
+        "run",
+        "loop"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_MeshStamp.M_Brush_MeshStamp": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_NoisePass.M_Brush_NoisePass": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_ProceduralNoise.M_Brush_ProceduralNoise": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_ProceduralNoise_Weightmap.M_Brush_ProceduralNoise_Weightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_SimpleAdd.M_Brush_SimpleAdd": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_Terraces.M_Brush_Terraces": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_TextureStamp.M_Brush_TextureStamp": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_TextureStamp_Scattered.M_Brush_TextureStamp_Scattered": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Custom/GenNoise_01_ErosionTestSlope.GenNoise_01_ErosionTestSlope": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Debug/CopyMaterial.CopyMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Debug/DebugDrawing_CustomBrush.DebugDrawing_CustomBrush": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Debug/DrawPartialBoxTest.DrawPartialBoxTest": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Debug/Landscape_Basic.Landscape_Basic": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Debug/M_Sphere.M_Sphere": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Debug/M_Spikes.M_Spikes": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Debug/ReadTextureData.ReadTextureData": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Erosion/Erosion_PackHeightData.Erosion_PackHeightData": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/BrushBounds_LandmassEditor.BrushBounds_LandmassEditor": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/BrushBounds_ShapeMaskPreview.BrushBounds_ShapeMaskPreview": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/ClearRTHeight.ClearRTHeight": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/ClearRTWeight.ClearRTWeight": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/CopyRT.CopyRT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/CopyRT_LandscapeUVs.CopyRT_LandscapeUVs": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/CopyRT_LandscapeUVs_Heightmap.CopyRT_LandscapeUVs_Heightmap": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/CopyRT_Shape.CopyRT_Shape": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Internal/PreviewShapeRT.PreviewShapeRT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/Preview/Landmass_LandscapePreview_Mesh.Landmass_LandscapePreview_Mesh": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/WaterPlugin/CanvasDrawing.CanvasDrawing": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/WaterPlugin/MeshBrush_Angle.MeshBrush_Angle": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/WaterPlugin/MeshBrush_Island.MeshBrush_Island": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/WaterPlugin/MeshBrush_Weightmap.MeshBrush_Weightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/WaterPlugin/MeshBrush_Width.MeshBrush_Width": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/AddNoise/ErosionBrush_AddNoise.ErosionBrush_AddNoise": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Custom/Erosion_CustomMaterial_Example_01.Erosion_CustomMaterial_Example_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Debug/NormalizeHeight.NormalizeHeight": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Normals/Erosion_ComputeNormals.Erosion_ComputeNormals": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Packing/ErosionBrush_ApplyErosion.ErosionBrush_ApplyErosion": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Packing/ErosionBrush_CopyRT.ErosionBrush_CopyRT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Packing/ErosionBrush_PackErosionRelative.ErosionBrush_PackErosionRelative": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Packing/ErosionBrush_UnpackRG8Height.ErosionBrush_UnpackRG8Height": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Particles/ParticleErosion_ErodeTerrain.ParticleErosion_ErodeTerrain": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Particles/ParticleErosion_ParticlePreview.ParticleErosion_ParticlePreview": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Particles/ParticleErosion_ParticleRender.ParticleErosion_ParticleRender": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Particles/ParticleErosion_ScatterPosition.ParticleErosion_ScatterPosition": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Particles/ParticleErosion_ScatterVelocity.ParticleErosion_ScatterVelocity": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Particles/ParticleErosion_WaterSeed.ParticleErosion_WaterSeed": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Particles/ParticleErosion_Weightmap.ParticleErosion_Weightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Preview/ErosionBrush_LandscapeMeshPreview.ErosionBrush_LandscapeMeshPreview": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Preview/ErosionBrush_Landscape_PreviewAsMID.ErosionBrush_Landscape_PreviewAsMID": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Slate/CategoryArrow.CategoryArrow": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/SlopeSmoothing/Erosion_SlopeSmoothing.Erosion_SlopeSmoothing": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/WaterLevelling/Erosion_WaterLevelling.Erosion_WaterLevelling": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/WaterLevelling/Erosion_WaterLevelling_SeedWater.Erosion_WaterLevelling_SeedWater": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/WaterLevelling/Erosion_WaterLevelling_Weightmap.Erosion_WaterLevelling_Weightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Weightmap/Erosion_ApplyWeightmap.Erosion_ApplyWeightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Advect/M_Advect_Height.M_Advect_Height": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Advect/M_Advect_Velocity.M_Advect_Velocity": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Advect/M_CalcDivergence.M_CalcDivergence": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Advect/M_GravAcceleration.M_GravAcceleration": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/CacheDistanceField.CacheDistanceField": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/CachePreviewAlpha.CachePreviewAlpha": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/DebugBug.DebugBug": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/ErosionWeightmap.ErosionWeightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/MeshBrush_Angle.MeshBrush_Angle": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/MeshBrush_Width.MeshBrush_Width": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/M_Foundation.M_Foundation": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/M_MeshBrush_01_Max.M_MeshBrush_01_Max": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/M_SimpleBrush.M_SimpleBrush": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/M_SplineBrush.M_SplineBrush": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/M_WaterVolume_01.M_WaterVolume_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/NoiseBrush.NoiseBrush": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Brushes/NoiseBrushVoronoi.NoiseBrushVoronoi": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Capture/M_MakeTiling.M_MakeTiling": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Capture/M_Normalize_Height.M_Normalize_Height": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Capture/M_Normalize_Height_Water.M_Normalize_Height_Water": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Capture/M_PrepRTforLS.M_PrepRTforLS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Capture/M_PrepWMforLS.M_PrepWMforLS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/BlinkingText.BlinkingText": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/CopyRT.CopyRT": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/CustomNoise.CustomNoise": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/DebugDrawing.DebugDrawing": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/DebugSmoothBlending.DebugSmoothBlending": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/ErosionDebug_01.ErosionDebug_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/ErosionRTDEBUG.ErosionRTDEBUG": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/Intersections.Intersections": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/M_2sided.M_2sided": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/SeedRamp.SeedRamp": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/TickWarning.TickWarning": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Levelling/WaterLevel.WaterLevel": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Old/M_ErosionPass_01.M_ErosionPass_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Old/M_MeshBrush_01.M_MeshBrush_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Old/WaterLevel1DGather.WaterLevel1DGather": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Old/WaterLevel1DScatter.WaterLevel1DScatter": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Old/WaterLevelGather.WaterLevelGather": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Old/WaterLevelScatter.WaterLevelScatter": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/PP/CameraOverlay.CameraOverlay": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Preview/LandscapePreview.LandscapePreview": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Preview/LayersPreview.LayersPreview": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Preview/LayersPreview_Landscape.LayersPreview_Landscape": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Preview/MeshPreview.MeshPreview": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Preview/SandMesh.SandMesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/HeightSmooth.HeightSmooth": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/ParticlePreview.ParticlePreview": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/ParticleRender.ParticleRender": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/ParticleSprite.ParticleSprite": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/ParticleWaterSeed.ParticleWaterSeed": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/ScatterPosition.ScatterPosition": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/ScatterVelocity.ScatterVelocity": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Scatter/StartPositionErode.StartPositionErode": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/ScatterGather/AdvectVelo.AdvectVelo": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/ScatterGather/GatherData.GatherData": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/ScatterGather/GatherVel.GatherVel": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/ScatterGather/ScatterVel.ScatterVel": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Seed/GenNoise_01.GenNoise_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Seed/GenNoise_02_Cup.GenNoise_02_Cup": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Seed/GenNoise_02_Voronoi.GenNoise_02_Voronoi": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Seed/M_CombineWater_TerrainSeed.M_CombineWater_TerrainSeed": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Seed/M_SeedWaveVelocity.M_SeedWaveVelocity": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Seed/SimpleNoise.SimpleNoise": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Seed/UnpackRG8Height.UnpackRG8Height": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Slate/M_Button_Arrow_Fwd.M_Button_Arrow_Fwd": {
+      "category": "misc",
+      "tags": [
+        "forward"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Slate/M_Button_DeleteX.M_Button_DeleteX": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Effects/Niagara/Shoreline/Materials/Shoreline.Shoreline": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/Custom/M_Advect_Height_FoamRocks.M_Advect_Height_FoamRocks": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/Custom/M_Advect_Height_ShoreSim.M_Advect_Height_ShoreSim": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/Custom/M_Advect_Velocity_ShoreSim.M_Advect_Velocity_ShoreSim": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/BP_Elements/Resources/MaterialsAndRTs/DebugMaterials/PP_DebugMat.PP_DebugMat": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/Advanced/M_Brush_CopyLandscape.M_Brush_CopyLandscape": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/Advanced/M_Brush_TextureStamp_BigIsland.M_Brush_TextureStamp_BigIsland": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Advect/Custom/M_AdvectHeight_NiagaraForce.M_AdvectHeight_NiagaraForce": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Advect/Custom/M_AdvectHeight_Waves.M_AdvectHeight_Waves": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Advect/Custom/M_Advect_Velocity_Waves.M_Advect_Velocity_Waves": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/MaskedLitSpriteMaterial.MaskedLitSpriteMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/OpaqueLitSpriteMaterial.OpaqueLitSpriteMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/TranslucentLitSpriteMaterial.TranslucentLitSpriteMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Paper2D/TranslucentUnlitSpriteMaterial.TranslucentUnlitSpriteMaterial": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimationSharing/AnimSharingBlue.AnimSharingBlue": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimationSharing/AnimSharingGreen.AnimSharingGreen": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AnimationSharing/AnimSharingRed.AnimSharingRed": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SculptMaterial_Basic.SculptMaterial_Basic": {
+      "category": "misc",
+      "auto": true
+    },
+    "/MeshModelingToolsetExp/Materials/SculptMaterial_Soft.SculptMaterial_Soft": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Placeholders/DecalPlaceholder.DecalPlaceholder": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Placeholders/FabMeshPlaceholderMaterialInstance.FabMeshPlaceholderMaterialInstance": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugBlue.PCG_DebugBlue": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugGreen.PCG_DebugGreen": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugMaterial_Color.PCG_DebugMaterial_Color": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugOrange.PCG_DebugOrange": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/DebugObjects/PCG_DebugRed.PCG_DebugRed": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialButton.MI_AudioMaterialButton": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialEnvelope_AD.MI_AudioMaterialEnvelope_AD": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialEnvelope_ADSR.MI_AudioMaterialEnvelope_ADSR": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialKnob.MI_AudioMaterialKnob": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialKnob_Big_Ring.MI_AudioMaterialKnob_Big_Ring": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialKnob_Big_Ring2.MI_AudioMaterialKnob_Big_Ring2": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialKnob_Small_Ring.MI_AudioMaterialKnob_Small_Ring": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialMeter.MI_AudioMaterialMeter": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialMeter_Dots_ThreeColumns.MI_AudioMaterialMeter_Dots_ThreeColumns": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialMeter_Dots_TwoColumns.MI_AudioMaterialMeter_Dots_TwoColumns": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialMeter_Lines.MI_AudioMaterialMeter_Lines": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialRoundedSlider.MI_AudioMaterialRoundedSlider": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialRoundedSlider_Medium.MI_AudioMaterialRoundedSlider_Medium": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialRoundedSlider_Thin.MI_AudioMaterialRoundedSlider_Thin": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialRoundedSlider_Wide.MI_AudioMaterialRoundedSlider_Wide": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialToggleButton.MI_AudioMaterialToggleButton": {
+      "category": "misc",
+      "auto": true
+    },
+    "/AudioWidgets/AudioMaterialSlate/MI_AudioMaterialToggleButton2.MI_AudioMaterialToggleButton2": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Bridge/MSPresets/M_MS_Glass_Material/MI_MS_Glass_Material_Inst.MI_MS_Glass_Material_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdDecal/M_StdDecal_OPP.M_StdDecal_OPP": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdDecal/M_StdDecal_OPP_POM.M_StdDecal_OPP_POM": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdDecal/M_StdDecal_POM.M_StdDecal_POM": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/StdOpaque/M_StdOpaque_POM.M_StdOpaque_POM": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/Water/MI_Pool_01.MI_Pool_01": {
+      "category": "misc",
+      "auto": true
+    },
+    "/DatasmithContent/Materials/Water/MI_Pool_02.MI_Pool_02": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/HLOD/HLODWater.HLODWater": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/PostProcessing/MI_UnderWater_PostProcess_Volume_Custom.MI_UnderWater_PostProcess_Volume_Custom": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_FarMesh.Water_FarMesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_Material_CustomMesh.Water_Material_CustomMesh": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_Material_Inst.Water_Material_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_Material_Lake.Water_Material_Lake": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_Material_Ocean.Water_Material_Ocean": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Water_Material_River.Water_Material_River": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/GeometryCache/M_DefaultGeometryCacheMaterial_Blue.M_DefaultGeometryCacheMaterial_Blue": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/GeometryCache/M_DefaultGeometryCacheMaterial_Green.M_DefaultGeometryCacheMaterial_Green": {
+      "category": "skill",
+      "auto": true
+    },
+    "/Niagara/DefaultAssets/GeometryCache/M_DefaultGeometryCacheMaterial_Red.M_DefaultGeometryCacheMaterial_Red": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Blend.MI_ClearCoat_Blend": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Blend_DS.MI_ClearCoat_Blend_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Mask.MI_ClearCoat_Mask": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Mask_DS.MI_ClearCoat_Mask_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Opaque.MI_ClearCoat_Opaque": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_ClearCoat_Opaque_DS.MI_ClearCoat_Opaque_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Default_Blend.MI_Default_Blend": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Default_Blend_DS.MI_Default_Blend_DS": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Default_Mask.MI_Default_Mask": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Default_Mask_DS.MI_Default_Mask_DS": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Default_Opaque.MI_Default_Opaque": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Default_Opaque_DS.MI_Default_Opaque_DS": {
+      "category": "skill",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Blend.MI_Sheen_Blend": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Blend_DS.MI_Sheen_Blend_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Mask.MI_Sheen_Mask": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Mask_DS.MI_Sheen_Mask_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Opaque.MI_Sheen_Opaque": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Sheen_Opaque_DS.MI_Sheen_Opaque_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Blend.MI_SpecularGlossiness_Blend": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Blend_DS.MI_SpecularGlossiness_Blend_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Mask.MI_SpecularGlossiness_Mask": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Mask_DS.MI_SpecularGlossiness_Mask_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Opaque.MI_SpecularGlossiness_Opaque": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_SpecularGlossiness_Opaque_DS.MI_SpecularGlossiness_Opaque_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Transmission.MI_Transmission": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Transmission_DS.MI_Transmission_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Blend.MI_Unlit_Blend": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Blend_DS.MI_Unlit_Blend_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Mask.MI_Unlit_Mask": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Mask_DS.MI_Unlit_Mask_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Opaque.MI_Unlit_Opaque": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/gltf/MaterialInstances/MI_Unlit_Opaque_DS.MI_Unlit_Opaque_DS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Generation/CausticsMeshScatter_UseTexture.CausticsMeshScatter_UseTexture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Preview/CausticsBaseMesh_NoVS.CausticsBaseMesh_NoVS": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Preview/WaterCausticsPreview_Analytical.WaterCausticsPreview_Analytical": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Preview/WaterCausticsPreview_NoCaustics.WaterCausticsPreview_NoCaustics": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Preview/WaterCausticsPreview_SubUV.WaterCausticsPreview_SubUV": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Caustics/Materials/Preview/WaterCausticsPreview_Texture.WaterCausticsPreview_Texture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_Advect_Height_SceneCapture.M_Advect_Height_SceneCapture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_Advect_Height_TerrainSystem.M_Advect_Height_TerrainSystem": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_ComputeNormal_SceneCapture.M_ComputeNormal_SceneCapture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_ComputeNormal_TerrainDepthOnly.M_ComputeNormal_TerrainDepthOnly": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/M_ComputeNormal_TerrainSystem.M_ComputeNormal_TerrainSystem": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Effects/M_Rain_01_Inst.M_Rain_01_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Simulation/M_Fluid_Sim_01_NoTerrain.M_Fluid_Sim_01_NoTerrain": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Simulation/M_Fluid_Sim_01_Reflect.M_Fluid_Sim_01_Reflect": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/LODs/Water_Material_Lake_LOD.Water_Material_Lake_LOD": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/LODs/Water_Material_Ocean_LOD.Water_Material_Ocean_LOD": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/LODs/Water_Material_River_LOD.Water_Material_River_LOD": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Transitions/Water_Material_River_To_Lake_Transition.Water_Material_River_To_Lake_Transition": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Water/Materials/WaterSurface/Transitions/Water_Material_River_To_Ocean_Transition.Water_Material_River_To_Ocean_Transition": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Fab/Actors/GlobalFoliageActor/Materials/MA_UI_Element_Inst.MA_UI_Element_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WireBlinnShader.MI_WireBlinnShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WireBlinnTransparentShader.MI_WireBlinnTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WireLambertShader.MI_WireLambertShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WireLambertTransparentShader.MI_WireLambertTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WireLightSourceShader.MI_WireLightSourceShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WireLightSourceTransparentShader.MI_WireLightSourceTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WirePhongShader.MI_WirePhongShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/InterchangeAssets/CAD/Wire/MaterialInstances/MI_WirePhongTransparentShader.MI_WirePhongTransparentShader": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Materials/PCG_Foliage_01_Inst.PCG_Foliage_01_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/PCG/SampleContent/SimpleForest/Materials/PCG_Foliage_01_Inst_wpo.PCG_Foliage_01_Inst_wpo": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/M_Brush_TextureStamp_Weightmap.M_Brush_TextureStamp_Weightmap": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Slate/CategoryArrow_Rotated.CategoryArrow_Rotated": {
+      "category": "movement",
+      "auto": true
+    },
+    "/Landmass/Landscape/ErosionBrush/Materials/Slate/CategoryArrow_Up.CategoryArrow_Up": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/CustomNoise_Inst.CustomNoise_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Debug/ErosionDebug_01_Inst.ErosionDebug_01_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/PP/CameraOverlay_Inst.CameraOverlay_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Preview/LayersPreview_Inst.LayersPreview_Inst": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/OldPrototype_BP/Mats/Slate/M_Button_Arrow_Back.M_Button_Arrow_Back": {
+      "category": "misc",
+      "tags": [
+        "backward"
+      ],
+      "auto": true
+    },
+    "/Water/FluidSimulation/Materials/Advect/Custom/M_Advect_Height_ShoreSim_SceneCapture.M_Advect_Height_ShoreSim_SceneCapture": {
+      "category": "misc",
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/Advanced/M_Brush_CopyLandscape_Weightmap.M_Brush_CopyLandscape_Weightmap": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    },
+    "/Landmass/Landscape/BlueprintBrushes/Materials/BrushMaterials/Advanced/M_Brush_TextureStamp_BigIsland_Weightmap.M_Brush_TextureStamp_BigIsland_Weightmap": {
+      "category": "jump",
+      "tags": [
+        "land",
+        "oneshot"
+      ],
+      "auto": true
+    }
+  },
+  "categories": [
+    {
+      "id": "idle",
+      "displayName": "待机",
+      "color": "#8c8c8c",
+      "order": 10
+    },
+    {
+      "id": "movement",
+      "displayName": "移动",
+      "color": "#1677ff",
+      "order": 20
+    },
+    {
+      "id": "jump",
+      "displayName": "跳跃",
+      "color": "#13c2c2",
+      "order": 30
+    },
+    {
+      "id": "attack",
+      "displayName": "攻击",
+      "color": "#f5222d",
+      "order": 40
+    },
+    {
+      "id": "defend",
+      "displayName": "防御",
+      "color": "#fa8c16",
+      "order": 50
+    },
+    {
+      "id": "hit",
+      "displayName": "受击/死亡",
+      "color": "#a0d911",
+      "order": 60
+    },
+    {
+      "id": "skill",
+      "displayName": "技能",
+      "color": "#722ed1",
+      "order": 70
+    },
+    {
+      "id": "vfx",
+      "displayName": "特效",
+      "color": "#eb2f96",
+      "order": 80
+    },
+    {
+      "id": "sfx",
+      "displayName": "音效",
+      "color": "#52c41a",
+      "order": 90
+    },
+    {
+      "id": "mesh",
+      "displayName": "网格",
+      "color": "#faad14",
+      "order": 100
+    },
+    {
+      "id": "misc",
+      "displayName": "其他",
+      "color": "#8c8c8c",
+      "order": 999
+    }
+  ],
+  "tagDefinitions": [
+    {
+      "id": "forward",
+      "displayName": "前向",
+      "color": "#1677ff"
+    },
+    {
+      "id": "backward",
+      "displayName": "后向",
+      "color": "#1677ff"
+    },
+    {
+      "id": "left",
+      "displayName": "左",
+      "color": "#1677ff"
+    },
+    {
+      "id": "right",
+      "displayName": "右",
+      "color": "#1677ff"
+    },
+    {
+      "id": "loop",
+      "displayName": "循环",
+      "color": "#13c2c2"
+    },
+    {
+      "id": "oneshot",
+      "displayName": "单次",
+      "color": "#13c2c2"
+    },
+    {
+      "id": "walk",
+      "displayName": "走",
+      "color": "#1677ff"
+    },
+    {
+      "id": "run",
+      "displayName": "跑",
+      "color": "#1677ff"
+    },
+    {
+      "id": "fall",
+      "displayName": "下落",
+      "color": "#13c2c2"
+    },
+    {
+      "id": "land",
+      "displayName": "落地",
+      "color": "#13c2c2"
+    },
+    {
+      "id": "combo",
+      "displayName": "连招",
+      "color": "#f5222d"
+    },
+    {
+      "id": "aim",
+      "displayName": "瞄准",
+      "color": "#f5222d"
+    },
+    {
+      "id": "fire",
+      "displayName": "射击",
+      "color": "#f5222d"
+    },
+    {
+      "id": "reload",
+      "displayName": "装弹",
+      "color": "#fa8c16"
+    }
+  ],
+  "updatedAt": "2026-08-11T07:54:36.987Z"
+}
