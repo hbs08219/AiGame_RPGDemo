@@ -1,0 +1,290 @@
+{
+  "version": 1,
+  "generatedBy": "AGMaker asset publish bridge",
+  "assets": [
+    {
+      "projectId": "project-fbaf249a-f0ed-46c8-b318-a15e55fd23f3",
+      "assetId": "asset-c7757f37-bf80-42fe-9db8-861a04ec1184",
+      "versionId": "version-38d9e33b-932f-4768-aac0-cffd4e621ec1",
+      "objectPath": "/Game/AiGame/Published/sprite_sheet.sprite_sheet",
+      "clips": [
+        {
+          "id": "clip_218e221e",
+          "name": "walk_up",
+          "state": "walk",
+          "dir": "up",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 2,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 1,
+              "x": 20,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            },
+            {
+              "index": 2,
+              "x": 40,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            },
+            {
+              "index": 3,
+              "x": 60,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 4,
+              "x": 78,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            },
+            {
+              "index": 5,
+              "x": 98,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "id": "clip_2dcbdd07",
+          "name": "walk_down",
+          "state": "walk",
+          "dir": "down",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 118,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 1,
+              "x": 136,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            },
+            {
+              "index": 2,
+              "x": 156,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            },
+            {
+              "index": 3,
+              "x": 176,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 4,
+              "x": 194,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            },
+            {
+              "index": 5,
+              "x": 214,
+              "y": 430,
+              "width": 18,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "id": "clip_3f4f4d88",
+          "name": "walk_left",
+          "state": "walk",
+          "dir": "left",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 234,
+              "y": 430,
+              "width": 17,
+              "height": 32
+            },
+            {
+              "index": 1,
+              "x": 253,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 2,
+              "x": 271,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 3,
+              "x": 289,
+              "y": 430,
+              "width": 17,
+              "height": 32
+            },
+            {
+              "index": 4,
+              "x": 308,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 5,
+              "x": 326,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "id": "clip_44da9062",
+          "name": "walk_right",
+          "state": "walk",
+          "dir": "right",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 344,
+              "y": 430,
+              "width": 17,
+              "height": 32
+            },
+            {
+              "index": 1,
+              "x": 363,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 2,
+              "x": 381,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 3,
+              "x": 399,
+              "y": 430,
+              "width": 17,
+              "height": 32
+            },
+            {
+              "index": 4,
+              "x": 418,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            },
+            {
+              "index": 5,
+              "x": 436,
+              "y": 430,
+              "width": 16,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "id": "clip_6c581c59",
+          "name": "idle_right",
+          "state": "idle",
+          "dir": "right",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 410,
+              "y": 2,
+              "width": 18,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "id": "clip_7489d8db",
+          "name": "idle_down",
+          "state": "idle",
+          "dir": "down",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 430,
+              "y": 2,
+              "width": 18,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "id": "clip_8efc7cc1",
+          "name": "idle_up",
+          "state": "idle",
+          "dir": "up",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 450,
+              "y": 2,
+              "width": 18,
+              "height": 33
+            }
+          ]
+        },
+        {
+          "id": "clip_4182bad4",
+          "name": "idle_left",
+          "state": "idle",
+          "dir": "left",
+          "fps": 10,
+          "loop": true,
+          "frames": [
+            {
+              "index": 0,
+              "x": 470,
+              "y": 2,
+              "width": 18,
+              "height": 33
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

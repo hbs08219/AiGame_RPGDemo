@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "NPC_02",
+  "name": "商人",
+  "description": "起始之村的旅行商人,售卖药品",
+  "appearanceId": "Princess",
+  "role": "shop",
+  "interactRadius": 200,
+  "dialogueId": "DLG_02",
+  "ambientLine": "",
+  "shop": {
+    "greetingDialogueId": "",
+    "items": ["IT_89c3afbb35474028", "IT_a1b2c3d4e5f60718"],
+    "buyback": true
+  }
+}

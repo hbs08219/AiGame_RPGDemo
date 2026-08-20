@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_silver_locket",
+  "name": "银吊坠",
+  "description": "一枚镂空花纹的银质吊坠，打开后内侧刻着模糊的缩写字母。背后大概有一段尘封的浪漫故事。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 250,
+  "stackable": true
+}

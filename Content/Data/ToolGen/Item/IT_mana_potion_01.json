@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mana_potion_01",
+  "name": "初级法力药水",
+  "description": "一瓶泛着微弱蓝光的法力药剂，能恢复少量法力值，适合初入江湖的修士使用。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 20,
+  "equip": {},
+  "price": 40,
+  "stackable": true
+}

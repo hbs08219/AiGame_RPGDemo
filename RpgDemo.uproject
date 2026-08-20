@@ -1,19 +1,51 @@
 {
-  "FileVersion": 3,
-  "EngineAssociation": "UE_5.8",
-  "Category": "Games",
-  "Description": "RpgDemo UE C++ project",
-  "Modules": [
-    {
-      "Name": "RpgDemo",
-      "Type": "Runtime",
-      "LoadingPhase": "Default"
-    }
-  ],
-  "Plugins": [
-    {
-      "Name": "AiGameBridge",
-      "Enabled": true
-    }
-  ]
+	"FileVersion": 3,
+	"EngineAssociation": "UE_5.8",
+	"Category": "Games",
+	"Description": "RpgDemo UE C++ project",
+	"Modules": [
+		{
+			"Name": "RpgDemo",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+	"Plugins": [
+		{
+			"Name": "AiGameBridge",
+			"Enabled": true
+		},
+		{
+			"Name": "Puerts",
+			"Enabled": true
+		},
+		{
+			"Name": "AiGameScriptHost",
+			"Enabled": true
+		},
+		{
+			"Name": "MCPClientToolset",
+			"Enabled": true
+		},
+		{
+			"Name": "ModelContextProtocol",
+			"Enabled": true
+		},
+		{
+			"Name": "EditorToolset",
+			"Enabled": true
+		},
+		{
+			"Name": "PythonScriptPlugin",
+			"Enabled": true
+		},
+		{
+			"Name": "NiagaraToolsets",
+			"Enabled": true
+		},
+		{
+			"Name": "AllToolsets",
+			"Enabled": true
+		}
+	]
 }

@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "defaultContexts": ["Game"],
+  "contexts": {
+    "Game": {
+      "priority": 0,
+      "actions": {},
+      "axes2D": {
+        "Move": {
+          "scaleX": 1,
+          "scaleY": 1,
+          "positiveX": "D",
+          "negativeX": "A",
+          "positiveY": "W",
+          "negativeY": "S"
+        }
+      }
+    }
+  }
+}

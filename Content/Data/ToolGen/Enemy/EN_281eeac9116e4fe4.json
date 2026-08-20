@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "EN_281eeac9116e4fe4",
+  "name": "测试敌人",
+  "description": "",
+  "characterId": "Princess",
+  "level": 1,
+  "dropTableId": "DT_239e4829b11e423c",
+  "rewardExp": 5,
+  "rewardGold": 3,
+  "aiStrategy": "random"
+}

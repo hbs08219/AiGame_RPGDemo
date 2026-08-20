@@ -2,32 +2,39 @@
   "version": 1,
   "id": "ThirdPerson",
   "type": "thirdPerson",
-  "name": "第三人称相机",
-  "description": "默认第三人称跟随相机",
+  "description": "全局第三人称相机配置（所有角色共用）",
   "transition": {
     "duration": 0.35,
-    "ease": "EaseInOut"
+    "ease": "Linear"
   },
+  "fixedAngle": true,
+  "fixedYaw": 90,
   "poses": {
     "Explore": {
-      "armLength": 305,
-      "fieldOfView": 90,
-      "pitch": -15,
-      "minPitch": -60,
+      "armLength": 1500,
+      "fieldOfView": 58,
+      "pitch": -45,
+      "minPitch": 25,
       "maxPitch": 60,
       "socketOffset": [
         0,
         0,
-        0
+        60
       ],
       "targetOffset": [
         0,
         0,
-        0
+        -41
       ],
       "enableLag": true,
       "cameraLagSpeed": 10,
       "cameraRotationLagSpeed": 10
     }
+  },
+  "lockOn": {
+    "_comment": "Phase 2 由 ULockOnComponent 实现，本字段当前未读取",
+    "searchRadius": 1500,
+    "maxLockDistance": 2500,
+    "screenCenterAngleDeg": 30
   }
 }

@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "id": "DLG_apothecary",
+  "name": "药师对话",
+  "description": "矿洞的麻烦:步骤2 给驱魔香→advance;其余闲聊。",
+  "startNodeId": "a0",
+  "nodes": [
+    {
+      "id": "a0",
+      "type": "condition",
+      "position": { "x": 80, "y": 60 },
+      "branches": [
+        { "kind": "questStep", "key": "QST_mine_trouble", "value": 2, "next": "a_s2" }
+      ],
+      "elseNext": "a_idle"
+    },
+    {
+      "id": "a_s2",
+      "type": "line",
+      "position": { "x": 380, "y": 40 },
+      "speaker": "药师",
+      "text": "铁匠让你来取驱魔香?我这就给你包一份。",
+      "next": "a_s2_give"
+    },
+    {
+      "id": "a_s2_give",
+      "type": "action",
+      "position": { "x": 380, "y": 140 },
+      "action": "giveItem",
+      "itemId": "IT_exorcism_incense",
+      "count": 1,
+      "next": "a_s2b"
+    },
+    {
+      "id": "a_s2b",
+      "type": "line",
+      "position": { "x": 380, "y": 240 },
+      "speaker": "药师",
+      "text": "点燃后烟一散,低等魔物就受不了。拿去交给铁匠吧。",
+      "next": "a_s2_adv"
+    },
+    {
+      "id": "a_s2_adv",
+      "type": "action",
+      "position": { "x": 380, "y": 340 },
+      "action": "advanceQuest",
+      "questId": "QST_mine_trouble",
+      "next": ""
+    },
+    {
+      "id": "a_idle",
+      "type": "line",
+      "position": { "x": 80, "y": 300 },
+      "speaker": "药师",
+      "text": "草药的清香能安神。需要什么尽管说。",
+      "next": ""
+    }
+  ]
+}

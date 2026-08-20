@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "NPC_01",
+  "name": "村长",
+  "description": "起始之村的村长,了解矿洞魔物的情报",
+  "appearanceId": "Princess_Battle",
+  "role": "dialogue",
+  "interactRadius": 200,
+  "dialogueId": "DLG_01",
+  "ambientLine": "",
+  "shop": {
+    "greetingDialogueId": "",
+    "items": [],
+    "buyback": true
+  }
+}

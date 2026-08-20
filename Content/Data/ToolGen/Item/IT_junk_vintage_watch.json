@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_vintage_watch",
+  "name": "旧手表",
+  "description": "一只停摆多年的机械表，表盘上有细微裂纹，但表带材质还不错。修一修或许还能用，或者当古董卖。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 80,
+  "stackable": true
+}

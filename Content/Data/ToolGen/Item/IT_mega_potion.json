@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mega_potion",
+  "name": "超级药水",
+  "description": "药师以秘法炼制的高浓度回复药剂，一瓶下去能起死回生，是行军打仗的必备珍品。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 450,
+  "equip": {},
+  "price": 1000,
+  "stackable": true
+}

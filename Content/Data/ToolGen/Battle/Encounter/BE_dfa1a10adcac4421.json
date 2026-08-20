@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "id": "BE_dfa1a10adcac4421",
+  "name": "测试战斗",
+  "description": "",
+  "battleLogicId": "BL_89c4e9706447429b",
+  "enemySlots": [
+    {
+      "slotId": "enemy_1",
+      "enemyId": "EN_281eeac9116e4fe4"
+    },
+    {
+      "slotId": "enemy_c7feb5",
+      "enemyId": "EN_281eeac9116e4fe4"
+    },
+    {
+      "slotId": "enemy_18af73",
+      "enemyId": "EN_281eeac9116e4fe4"
+    }
+  ],
+  "rewardExp": 11,
+  "rewardGold": 22,
+  "rewardDropTableId": "DT_239e4829b11e423c"
+}

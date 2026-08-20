@@ -1,0 +1,185 @@
+{
+  "version": 1,
+  "id": "DLG_01",
+  "name": "村长初次对话",
+  "description": "矿洞的麻烦:发布(接受帮忙→startQuest)+ 复命(步骤4→advance 完成发奖)+ 进行中提醒 + 完成后闲聊。顶部 condition 路由;未接任务/旧runtime 走 elseNext 回到原开场。",
+  "startNodeId": "q0",
+  "nodes": [
+    {
+      "id": "q0",
+      "type": "condition",
+      "position": { "x": 80, "y": 40 },
+      "branches": [
+        { "kind": "questStep", "key": "QST_mine_trouble", "value": 4, "next": "q_turnin" },
+        { "kind": "questActive", "key": "QST_mine_trouble", "value": 1, "next": "q_remind" },
+        { "kind": "questCompleted", "key": "QST_mine_trouble", "value": 1, "next": "q_after" }
+      ],
+      "elseNext": "n1"
+    },
+    {
+      "id": "q_turnin",
+      "type": "line",
+      "position": { "x": 420, "y": 40 },
+      "speaker": "村长",
+      "text": "回来了!铁匠都跟我说了——矿洞口的史莱姆退散了。",
+      "next": "q_turnin2"
+    },
+    {
+      "id": "q_turnin2",
+      "type": "line",
+      "position": { "x": 420, "y": 140 },
+      "speaker": "村长",
+      "text": "你为村子解决了大麻烦。这点心意请务必收下,是村里人的一份谢意。",
+      "next": "q_turnin_adv"
+    },
+    {
+      "id": "q_turnin_adv",
+      "type": "action",
+      "position": { "x": 420, "y": 240 },
+      "action": "advanceQuest",
+      "questId": "QST_mine_trouble",
+      "next": "q_turnin_end"
+    },
+    {
+      "id": "q_turnin_end",
+      "type": "line",
+      "position": { "x": 420, "y": 340 },
+      "speaker": "",
+      "text": "村长郑重地向你道谢,矿洞的麻烦总算了结了。",
+      "next": ""
+    },
+    {
+      "id": "q_remind",
+      "type": "line",
+      "position": { "x": 420, "y": 460 },
+      "speaker": "村长",
+      "text": "矿洞的事就拜托你了。铁匠那边应该正等着你呢。",
+      "next": ""
+    },
+    {
+      "id": "q_after",
+      "type": "line",
+      "position": { "x": 420, "y": 560 },
+      "speaker": "村长",
+      "text": "自从矿洞通了,村里的日子又热闹起来了。多谢你,旅行者。",
+      "next": ""
+    },
+
+    {
+      "id": "n1",
+      "type": "line",
+      "position": { "x": 80, "y": 700 },
+      "speaker": "村长",
+      "text": "哦,是旅行者啊。好久不见,村里最近可热闹了。",
+      "next": "n2"
+    },
+    {
+      "id": "n2",
+      "type": "line",
+      "position": { "x": 80, "y": 800 },
+      "speaker": "",
+      "text": "你微微点头,等着村长继续说下去。",
+      "next": "n3"
+    },
+    {
+      "id": "n3",
+      "type": "line",
+      "position": { "x": 80, "y": 900 },
+      "speaker": "村长",
+      "text": "自从北边的矿洞被魔物占据,村里的年轻人都不敢去了。你有什么想问的吗?",
+      "next": "n4"
+    },
+    {
+      "id": "n4",
+      "type": "choice",
+      "position": { "x": 80, "y": 1000 },
+      "text": "你想问什么?",
+      "options": [
+        { "label": "矿洞里有什么魔物?", "next": "n5" },
+        { "label": "需要我帮忙吗?", "next": "n7" },
+        { "label": "只是想打个招呼,再见。", "next": "n12" }
+      ]
+    },
+    {
+      "id": "n5",
+      "type": "line",
+      "position": { "x": 420, "y": 700 },
+      "speaker": "村长",
+      "text": "听说是一群史莱姆占据了矿洞入口。它们虽然不强,但数量不少,村里的铁匠急得团团转。",
+      "next": "n6"
+    },
+    {
+      "id": "n6",
+      "type": "line",
+      "position": { "x": 420, "y": 800 },
+      "speaker": "",
+      "text": "你点了点头,心想史莱姆倒是不难对付。",
+      "next": "n4"
+    },
+    {
+      "id": "n7",
+      "type": "line",
+      "position": { "x": 760, "y": 700 },
+      "speaker": "村长",
+      "text": "年轻人,你愿意帮忙真是太好了!我这里有几样东西,你应该用得上。",
+      "next": "n8"
+    },
+    {
+      "id": "n8",
+      "type": "action",
+      "position": { "x": 760, "y": 800 },
+      "action": "giveItem",
+      "itemId": "IT_89c3afbb35474028",
+      "count": 3,
+      "next": "n9"
+    },
+    {
+      "id": "n9",
+      "type": "line",
+      "position": { "x": 760, "y": 900 },
+      "speaker": "",
+      "text": "村长从怀里掏出了三瓶药水递给你。",
+      "next": "n10"
+    },
+    {
+      "id": "n10",
+      "type": "line",
+      "position": { "x": 760, "y": 1000 },
+      "speaker": "村长",
+      "text": "村里的铁匠正为矿洞口的史莱姆发愁。你先去村口的铁匠铺找他问问吧,需要帮手尽管开口。",
+      "next": "q_accept"
+    },
+    {
+      "id": "q_accept",
+      "type": "action",
+      "position": { "x": 760, "y": 1100 },
+      "action": "startQuest",
+      "questId": "QST_mine_trouble",
+      "next": "n11"
+    },
+    {
+      "id": "n11",
+      "type": "line",
+      "position": { "x": 760, "y": 1200 },
+      "speaker": "",
+      "text": "你收下了药水,记下村长的嘱托,准备先去找铁匠。",
+      "next": "n13"
+    },
+    {
+      "id": "n12",
+      "type": "line",
+      "position": { "x": 80, "y": 1140 },
+      "speaker": "村长",
+      "text": "哈哈,有空随时来坐坐。村里的事情不急,慢慢来。",
+      "next": "n13"
+    },
+    {
+      "id": "n13",
+      "type": "line",
+      "position": { "x": 80, "y": 1240 },
+      "speaker": "村长",
+      "text": "愿风指引你的道路,旅行者。",
+      "next": ""
+    }
+  ]
+}

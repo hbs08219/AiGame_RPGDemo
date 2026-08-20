@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_half_bottle_vinegar",
+  "name": "半瓶醋",
+  "description": "不知道谁喝剩的半瓶子醋，标签都泡烂了，酸味刺鼻。喝一口浑身通透，大概率提神醒脑——但要是赶上醋劲上头，反而会胃里翻江倒海。正所谓「半瓶醋晃荡」，说的就是这玩意儿，也说的是敢喝它的人。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 400,
+  "equip": {},
+  "price": 600,
+  "stackable": true
+}

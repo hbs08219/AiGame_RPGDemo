@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_exorcism_incense",
+  "name": "驱魔香",
+  "description": "药师调制的驱邪香料,点燃后烟雾能逼退低等魔物。铁匠托你取来对付矿洞口的史莱姆。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 0,
+  "equip": {},
+  "price": 0,
+  "stackable": true
+}

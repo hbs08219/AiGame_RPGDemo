@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_bronze_statue",
+  "name": "铜雕像",
+  "description": "一尊巴掌大的青铜小雕像，造型是一只沉思的猫头鹰，做工相当考究。摆在书桌上会显得你很有品位。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 300,
+  "stackable": true
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mystery_drink",
+  "name": "神秘路人试喝装",
+  "description": "一位神秘路人硬塞给你的试喝装液体，瓶身贴着手写标签「绝对有效！」。据说喝下去可能回血、可能扣血、也可能只是打个嗝——路人塞完就跑了，你看着这瓶不明液体陷入了沉思。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 80,
+  "equip": {},
+  "price": 30,
+  "stackable": true
+}

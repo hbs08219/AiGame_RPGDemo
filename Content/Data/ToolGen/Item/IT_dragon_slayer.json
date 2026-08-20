@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "IT_dragon_slayer",
+  "name": "屠龙刀",
+  "description": "传说中的神兵利器，相传由上古神铁锻造而成，对龙族有特效。刀身隐隐散发着龙吟之声，是战士梦寐以求的终极武器。",
+  "type": "equipment",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {
+    "slot": "weapon",
+    "damage": 250,
+    "durability": 800,
+    "maxDurability": 800,
+    "rarity": "legendary",
+    "levelReq": 50,
+    "critChance": 0.15,
+    "element": "none",
+    "specialEffect": "对龙族伤害+50%"
+  },
+  "price": 15000,
+  "stackable": false
+}

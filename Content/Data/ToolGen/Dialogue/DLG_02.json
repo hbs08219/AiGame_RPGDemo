@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "id": "DLG_02",
+  "name": "商人对话",
+  "description": "商店NPC对话:寒暄→开店",
+  "startNodeId": "n1",
+  "nodes": [
+    {
+      "id": "n1",
+      "type": "line",
+      "position": { "x": 120, "y": 80 },
+      "speaker": "商人",
+      "text": "欢迎光临!我这里有一些不错的货品,随便看看。",
+      "next": "n2"
+    },
+    {
+      "id": "n2",
+      "type": "choice",
+      "position": { "x": 120, "y": 180 },
+      "text": "",
+      "options": [
+        { "label": "看看有什么卖的", "next": "n3" },
+        { "label": "下次再来", "next": "n4" }
+      ]
+    },
+    {
+      "id": "n3",
+      "type": "action",
+      "position": { "x": 350, "y": 180 },
+      "action": "openShop",
+      "next": "n5"
+    },
+    {
+      "id": "n4",
+      "type": "line",
+      "position": { "x": 120, "y": 300 },
+      "speaker": "商人",
+      "text": "随时欢迎,旅行者!",
+      "next": ""
+    },
+    {
+      "id": "n5",
+      "type": "line",
+      "position": { "x": 350, "y": 300 },
+      "speaker": "商人",
+      "text": "感谢惠顾,路上小心!",
+      "next": ""
+    }
+  ]
+}

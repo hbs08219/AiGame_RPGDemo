@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "id": "IT_heavenly_sword",
+  "name": "倚天剑",
+  "description": "上古神兵，相传为天外陨铁所铸，剑身泛着幽幽寒光。传闻持此剑者可斩断一切虚妄，是武林中人人觊觎的史诗级神兵。",
+  "type": "equipment",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {
+    "slot": "weapon",
+    "attack": 120,
+    "defense": 5,
+    "durability": 400,
+    "maxDurability": 400,
+    "rarity": "epic",
+    "levelReq": 25,
+    "critChance": 0.1,
+    "element": "none",
+    "specialEffect": "攻击时有10%几率触发「倚天剑意」，额外造成30%伤害"
+  },
+  "price": 5000,
+  "stackable": false
+}

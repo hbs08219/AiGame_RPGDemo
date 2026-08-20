@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_a1b2c3d4e5f60718",
+  "name": "回血丹",
+  "description": "高级回血药,恢复大量生命。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 200,
+  "equip": {},
+  "price": 500,
+  "stackable": true
+}

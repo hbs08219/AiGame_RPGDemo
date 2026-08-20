@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "id": "Character",
+  "name": "Character",
+  "states": [
+    {
+      "id": "Idle",
+      "name": "Idle",
+      "x": 204.5,
+      "y": 211.5,
+      "isDefault": true
+    },
+    {
+      "id": "Walk",
+      "name": "Walk",
+      "x": 471,
+      "y": 212,
+      "isDefault": false
+    }
+  ],
+  "transitions": [
+    {
+      "id": "IdleToWalk",
+      "from": "Idle",
+      "to": "Walk",
+      "conditions": [],
+      "blendTime": 0.15,
+      "blendType": "Standard"
+    }
+  ],
+  "variables": []
+}

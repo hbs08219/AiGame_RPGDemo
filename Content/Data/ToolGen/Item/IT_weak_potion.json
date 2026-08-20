@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_weak_potion",
+  "name": "弱效药水",
+  "description": "一种基础的治疗药剂，能恢复少量生命值，适合在战斗间隙使用。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 25,
+  "equip": {},
+  "price": 50,
+  "stackable": true
+}

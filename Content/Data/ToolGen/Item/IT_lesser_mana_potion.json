@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_lesser_mana_potion",
+  "name": "次级法力药水",
+  "description": "比初级药水稍浓，蓝色液体中隐约有魔力流转。适合初阶法师应急使用。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 40,
+  "equip": {},
+  "price": 80,
+  "stackable": true
+}

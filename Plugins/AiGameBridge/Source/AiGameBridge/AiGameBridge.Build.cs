@@ -33,6 +33,7 @@ public class AiGameBridge : ModuleRules
 			"AssetRegistry",   // IAssetRegistry 扫描资产
 			"ImageWrapper",    // FImageUtils 缩略图 → PNG 编码
 		"AssetTools",      // ThumbnailTools / ObjectTools / ImportAssetTasks（无头导入）
+		"InterchangeEngine", // GLB/glTF 走 Interchange 原生导入，不依赖已移除的 Legacy Factory
 		"UnrealEd",        // UE5.8 已并入：UAssetImportTask / ThumbnailManager / ObjectTools
 			"AnimGraphRuntime", // UAnimSequence（帧率/帧数导出）
 			"Niagara",         // UNiagaraSystem（loop 导出）

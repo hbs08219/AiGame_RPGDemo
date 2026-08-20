@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_antique_key",
+  "name": "古董钥匙",
+  "description": "一把造型精致的铜钥匙，表面有绿色的铜锈，据说是某栋百年老宅的遗物。没人知道它还能打开什么。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 100,
+  "stackable": true
+}

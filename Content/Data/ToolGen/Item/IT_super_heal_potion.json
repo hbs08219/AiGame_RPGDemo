@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_super_heal_potion",
+  "name": "星辰回血丹",
+  "description": "以星辰碎片与月瓣草 fusion 而成的传说级回复药剂，蕴含星辰之力，能瞬间恢复大量生命值，是药师的巅峰之作。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 500,
+  "equip": {},
+  "price": 1000,
+  "stackable": true
+}

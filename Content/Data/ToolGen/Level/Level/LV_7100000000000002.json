@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "LV_7100000000000002",
+  "name": "战斗竞技场 01",
+  "type": "battle",
+  "umap": "/Game/Maps/BattleArenas/Arena_01",
+  "battleArenaRef": "",
+  "description": "示范战斗 arena(掩体方块 + 立柱),供世界关卡 battleArenaRef 引用"
+}

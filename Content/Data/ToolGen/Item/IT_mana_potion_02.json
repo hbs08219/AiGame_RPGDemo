@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mana_potion_02",
+  "name": "中级法力药水",
+  "description": "以月瓣草精华调配的中级法力药剂，蓝光纯净，能恢复适量法力值。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 40,
+  "equip": {},
+  "price": 80,
+  "stackable": true
+}

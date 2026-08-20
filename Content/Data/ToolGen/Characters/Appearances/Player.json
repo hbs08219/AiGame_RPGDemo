@@ -1,0 +1,36 @@
+{
+  "version": 7,
+  "id": "Player",
+  "name": "Player",
+  "description": "",
+  "renderMode": "2d",
+  "spriteRender": {
+    "worldScale": 4,
+    "localOffset": [0, 0, -30],
+    "yaw": 90,
+    "movementThreshold": 5,
+    "idleStateId": "Idle",
+    "walkStateId": "Walk",
+    "defaultDirection": "down",
+    "pixelSampling": "nearest",
+    "mipmaps": false
+  },
+  "stateMachineId": "Character",
+  "portraitAsset": {
+    "schemaVersion": 2,
+    "projectId": "project-fbaf249a-f0ed-46c8-b318-a15e55fd23f3",
+    "assetId": "asset-3675d9c5-9a70-402e-addc-42458f8303cd",
+    "versionId": "version-82fbfb19-36e4-432e-9472-bb64758a4c57",
+    "kind": "image"
+  },
+  "spriteSheetAsset": {
+    "schemaVersion": 2,
+    "projectId": "project-fbaf249a-f0ed-46c8-b318-a15e55fd23f3",
+    "assetId": "asset-c7757f37-bf80-42fe-9db8-861a04ec1184",
+    "versionId": "version-38d9e33b-932f-4768-aac0-cffd4e621ec1",
+    "kind": "sprite-sheet"
+  },
+  "stateClipIds": {
+    "Walk": "clip_218e221e"
+  }
+}

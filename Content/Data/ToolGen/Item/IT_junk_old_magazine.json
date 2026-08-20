@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_old_magazine",
+  "name": "旧杂志",
+  "description": "一本封面卷边的过气时尚杂志，内容早已过时，除了垫桌脚和打发厕所时光外没什么大用。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 5,
+  "stackable": true
+}

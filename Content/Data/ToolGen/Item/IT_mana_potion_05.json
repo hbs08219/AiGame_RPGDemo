@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mana_potion_05",
+  "name": "终极法力药水",
+  "description": "传说级法力圣药，据传蕴含龙晶碎片粉末，能在瞬息之间灌注澎湃法力，唯有真正的法系大师才配得上它。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 100,
+  "equip": {},
+  "price": 200,
+  "stackable": true
+}

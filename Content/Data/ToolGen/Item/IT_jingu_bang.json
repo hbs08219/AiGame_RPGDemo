@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "IT_jingu_bang",
+  "name": "如意金箍棒",
+  "description": "太上老君炼丹炉中所铸，大禹治水时用作定海神针，后为齐天大圣孙悟空所得。重一万三千五百斤，能随心意大小变化，乃三界第一神兵。",
+  "type": "equipment",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {
+    "slot": "weapon",
+    "damage": 320,
+    "durability": 1000,
+    "maxDurability": 1000,
+    "rarity": "legendary",
+    "levelReq": 55,
+    "critChance": 0.18,
+    "element": "none",
+    "specialEffect": "可变大小，无视防御+10%"
+  },
+  "price": 20000,
+  "stackable": false
+}

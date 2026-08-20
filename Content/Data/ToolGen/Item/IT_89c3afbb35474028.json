@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_89c3afbb35474028",
+  "name": "测试道具",
+  "description": "",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 50,
+  "equip": {},
+  "price": 1000,
+  "stackable": true
+}

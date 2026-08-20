@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "NPC_apothecary",
+  "name": "药师",
+  "description": "起始之村的药师,擅长调制药剂与驱魔香",
+  "appearanceId": "Princess",
+  "role": "dialogue",
+  "interactRadius": 200,
+  "dialogueId": "DLG_apothecary",
+  "ambientLine": "",
+  "shop": {
+    "greetingDialogueId": "",
+    "items": [],
+    "buyback": true
+  }
+}

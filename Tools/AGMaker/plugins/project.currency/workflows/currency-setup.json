@@ -1,0 +1,77 @@
+{
+  "version": 1,
+  "id": "ROOT_currency_setup",
+  "rootId": "ROOT_currency_setup",
+  "rev": 1,
+  "contentVersion": 1,
+  "nodes": {
+    "ROOT_currency_setup": {
+      "id": "ROOT_currency_setup",
+      "rootId": "ROOT_currency_setup",
+      "version": 1,
+      "kind": "root",
+      "title": "货币体系搭建",
+      "parentId": null,
+      "order": 0,
+      "status": "draft",
+      "goal": "配置并验证项目货币与兑换体系。",
+      "acceptance": [
+        { "text": "所有目标货币均通过 validate_currency", "checked": false },
+        { "text": "基准货币已设置且 unitValueInBase 为 1", "checked": false },
+        { "text": "典型金额兑换试算结果符合设计", "checked": false }
+      ],
+      "skills": ["project.currency.usage"],
+      "plan": "列出当前货币与兑换配置，确认现状。\n\n创建或更新货币并逐项校验。\n\n通过 currencyId 设置基准货币。\n\n可选地使用 override 配置定向兑换对。\n\n对典型金额执行 quote_exchange 复核。",
+      "tools": [
+        "com.aigame.currency.list_currencies",
+        "com.aigame.currency.create_currency",
+        "com.aigame.currency.update_currency",
+        "com.aigame.currency.validate_currency",
+        "com.aigame.currency.set_base_currency",
+        "com.aigame.currency.upsert_exchange_override",
+        "com.aigame.currency.quote_exchange"
+      ],
+      "editors": ["currency-manager"],
+      "children": ["INSPECT_currency", "CONFIGURE_currency", "VERIFY_currency"]
+    },
+    "INSPECT_currency": {
+      "id": "INSPECT_currency",
+      "rootId": "ROOT_currency_setup",
+      "version": 1,
+      "kind": "task",
+      "title": "检查现有货币体系",
+      "parentId": "ROOT_currency_setup",
+      "order": 1,
+      "status": "draft",
+      "description": "使用 list_currencies 与 get_exchange_config 确认当前配置。",
+      "skills": ["project.currency.usage"],
+      "tools": ["com.aigame.currency.list_currencies", "com.aigame.currency.get_exchange_config"]
+    },
+    "CONFIGURE_currency": {
+      "id": "CONFIGURE_currency",
+      "rootId": "ROOT_currency_setup",
+      "version": 1,
+      "kind": "task",
+      "title": "配置货币和兑换规则",
+      "parentId": "ROOT_currency_setup",
+      "order": 2,
+      "status": "draft",
+      "description": "创建或更新货币，设置基准货币，并按需要设置定向兑换对。",
+      "skills": ["project.currency.usage"],
+      "tools": ["com.aigame.currency.create_currency", "com.aigame.currency.update_currency", "com.aigame.currency.set_base_currency", "com.aigame.currency.upsert_exchange_override"]
+    },
+    "VERIFY_currency": {
+      "id": "VERIFY_currency",
+      "rootId": "ROOT_currency_setup",
+      "version": 1,
+      "kind": "task",
+      "title": "校验与试算",
+      "parentId": "ROOT_currency_setup",
+      "order": 3,
+      "status": "draft",
+      "description": "校验所有货币与兑换配置，并执行典型金额的兑换试算。",
+      "skills": ["project.currency.usage"],
+      "tools": ["com.aigame.currency.validate_currency", "com.aigame.currency.get_exchange_config", "com.aigame.currency.quote_exchange"]
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "id": "IT_craft_knife",
+  "name": "美工刀",
+  "description": "一把锋利的小型刀剑，刃长15厘米，适合精细切割和近身防身。工匠们常用它来处理各种材料，偶尔也能在紧急时用作武器。",
+  "type": "equipment",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {
+    "slot": "weapon",
+    "attack": 25,
+    "defense": 0,
+    "durability": 100
+  },
+  "price": 150,
+  "stackable": false
+}

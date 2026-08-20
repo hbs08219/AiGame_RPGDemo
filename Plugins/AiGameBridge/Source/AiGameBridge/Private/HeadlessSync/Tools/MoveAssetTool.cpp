@@ -17,7 +17,7 @@ DEFINE_LOG_CATEGORY_STATIC(LogAiGameHeadlessMove, Log, All);
 namespace
 {
 	constexpr TCHAR PublishedRoot[] = TEXT("/Game/AiGame/Published");
-	constexpr TCHAR CacheRoot[] = TEXT("/Game/AiGame/Cache");
+	constexpr TCHAR MoveCacheRoot[] = TEXT("/Game/AiGame/Cache");
 
 	bool IsCanonicalObjectPath(const FString& ObjectPath)
 	{
@@ -31,7 +31,7 @@ namespace
 	bool IsManagedRoot(const FString& Path)
 	{
 		return Path == PublishedRoot || Path.StartsWith(FString(PublishedRoot) + TEXT("/"))
-			|| Path == CacheRoot || Path.StartsWith(FString(CacheRoot) + TEXT("/"));
+			|| Path == MoveCacheRoot || Path.StartsWith(FString(MoveCacheRoot) + TEXT("/"));
 	}
 
 	FModelContextProtocolToolResult MakeMoveResult(const FString& ObjectPath, const FString& PackagePath, const FString& Checksum, const FString& Message)

@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "dgSpecHash": "en/c4rr7DsA=",
+  "success": true,
+  "projectFilePath": "D:\\Demo\\RpgDemo\\Plugins\\Puerts\\Source\\CSharpParamDefaultValueMetas\\CSharpParamDefaultValueMetas.ubtplugin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\yangghu\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference Microsoft.CSharp 将不会删除。请考虑从依赖项中移除此包，因为可能不需要它。",
+      "projectPath": "D:\\Demo\\RpgDemo\\Plugins\\Puerts\\Source\\CSharpParamDefaultValueMetas\\CSharpParamDefaultValueMetas.ubtplugin.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Demo\\RpgDemo\\Plugins\\Puerts\\Source\\CSharpParamDefaultValueMetas\\CSharpParamDefaultValueMetas.ubtplugin.csproj",
+      "libraryId": "Microsoft.CSharp",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
+}

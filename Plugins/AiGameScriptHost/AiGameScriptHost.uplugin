@@ -1,0 +1,24 @@
+{
+	"FileVersion": 3,
+	"FriendlyName": "AiGame Script Host",
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"Description": "PuerTS 脚本运行时宿主（UPuertsHost：UGameInstanceSubsystem）。在引擎初始化后创建 FJsEnv 并启动 TS 入口模块 “Main”（传 this 作为 Host），世界与本地玩家就绪后广播 OnReady。gameplay 逻辑全部在 TypeScript/，经此宿主桥接访问引擎与底层系统。由「游戏运行时模板」随 init 可选步骤分发。",
+	"Category": "Programming",
+	"CreatedBy": "AiGame Team",
+	"EnabledByDefault": true,
+	"CanContainContent": false,
+	"Plugins": [
+		{
+			"Name": "Puerts",
+			"Enabled": true
+		}
+	],
+	"Modules": [
+		{
+			"Name": "AiGameScriptHost",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

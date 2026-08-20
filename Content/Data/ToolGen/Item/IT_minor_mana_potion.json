@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_minor_mana_potion",
+  "name": "初级法力药水",
+  "description": "一瓶泛着微光的蓝色药水，能恢复少量法力。新手冒险者的随身必备。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 20,
+  "equip": {},
+  "price": 40,
+  "stackable": true
+}

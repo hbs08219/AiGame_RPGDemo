@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "LV_f56c7ef217a4177f",
+  "name": "新建关卡",
+  "type": "world",
+  "umap": "/Game/Maps/Lvl_ThirdPerson",
+  "battleArenaRef": "",
+  "description": ""
+}

@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mana_potion_03",
+  "name": "高级法力药水",
+  "description": "经过多次蒸馏提纯的高级法力药剂，蓝光璀璨，能恢复大量法力值，深得老练术士青睐。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 60,
+  "equip": {},
+  "price": 120,
+  "stackable": true
+}

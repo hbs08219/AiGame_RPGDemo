@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_plastic_bottle",
+  "name": "空塑料瓶",
+  "description": "一个普通的矿泉水瓶，标签已经被撕掉。回收站也许愿意出几个硬币，但留着占地方。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 5,
+  "stackable": true
+}

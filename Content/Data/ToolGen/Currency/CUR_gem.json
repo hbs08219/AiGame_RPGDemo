@@ -1,0 +1,7 @@
+{
+  "id": "CUR_gem",
+  "name": "钻石",
+  "description": "付费货币，充值获得，可兑换金币。1 钻石 = 100 金币。",
+  "precision": 0,
+  "unitValueInBase": 100
+}

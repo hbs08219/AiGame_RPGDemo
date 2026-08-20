@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_worn_sneakers",
+  "name": "破球鞋",
+  "description": "一双鞋底快磨平的旧球鞋，鞋带颜色都分不清了，散发着若有若无的气味。扔了可惜，穿着难受。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 20,
+  "stackable": true
+}

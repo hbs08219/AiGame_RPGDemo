@@ -1,0 +1,71 @@
+{
+  "version": 1,
+  "id": "BL_89c4e9706447429b",
+  "name": "测试战斗",
+  "description": "",
+  "folderPath": "",
+  "formation": [
+    {
+      "id": "ally_1",
+      "side": "ally",
+      "x": 1,
+      "y": 4,
+      "label": "我方1"
+    },
+    {
+      "id": "enemy_1",
+      "side": "enemy",
+      "x": 5,
+      "y": 4,
+      "label": "敌方1"
+    },
+    {
+      "id": "enemy_c7feb5",
+      "side": "enemy",
+      "x": 7,
+      "y": 1,
+      "label": "敌方2"
+    },
+    {
+      "id": "enemy_18af73",
+      "side": "enemy",
+      "x": 7,
+      "y": 7,
+      "label": "敌方3"
+    }
+  ],
+  "formationGrid": 9,
+  "stateMachine": {
+    "states": [
+      {
+        "id": "Phase1",
+        "name": "第一阶段",
+        "flow": {
+          "nodes": [
+            {
+              "id": "node-95060cbe",
+              "position": {
+                "x": 330,
+                "y": 540
+              },
+              "data": {
+                "nodeKind": "listener",
+                "listenerType": "OnEvent",
+                "label": "OnEvent",
+                "eventType": "RoundStart"
+              }
+            }
+          ],
+          "transitions": []
+        },
+        "position": {
+          "x": 200,
+          "y": 200
+        }
+      }
+    ],
+    "transitions": [],
+    "entryStateId": "Phase1"
+  },
+  "variables": []
+}

@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "id": "LV_7100000000000001",
+  "name": "主城·测试镇",
+  "type": "world",
+  "umap": "/Game/Maps/Town_01",
+  "battleArenaRef": "LV_7100000000000002",
+  "description": "greybox 城镇,替代测试场景 Lvl_ThirdPerson"
+}

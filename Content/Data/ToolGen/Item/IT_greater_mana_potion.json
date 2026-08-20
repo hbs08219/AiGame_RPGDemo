@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_greater_mana_potion",
+  "name": "高级法力药水",
+  "description": "浓郁的法力精华凝聚其中，瓶身微温。中阶法师的可靠伴侣。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 80,
+  "equip": {},
+  "price": 160,
+  "stackable": true
+}

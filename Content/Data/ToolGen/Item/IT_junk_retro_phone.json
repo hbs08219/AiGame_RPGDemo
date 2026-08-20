@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_retro_phone",
+  "name": "复古手机",
+  "description": "一台经典的翻盖手机，开机居然还能玩「贪吃蛇」。怀旧党看到了会欣喜若狂，实用党只会嗤之以鼻。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 50,
+  "stackable": true
+}

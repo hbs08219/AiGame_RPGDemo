@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "id": "QST_mine_trouble",
+  "name": "矿洞的麻烦",
+  "type": "main",
+  "description": "北边的矿洞被史莱姆占据,村里的铁匠正为此发愁。村长请你跑一趟,把铁匠和药师那边的事张罗起来,帮村子赶走矿洞口的魔物。",
+  "prerequisites": {
+    "level": 0,
+    "requiredQuests": []
+  },
+  "steps": [
+    { "id": "s1", "type": "talk", "desc": "去村口的铁匠铺找铁匠打听矿洞的情况", "targetNpcId": "NPC_blacksmith" },
+    { "id": "s2", "type": "talk", "desc": "到药铺找药师取一份「驱魔香」", "targetNpcId": "NPC_apothecary" },
+    { "id": "s3", "type": "talk", "desc": "把驱魔香送回给铁匠", "targetNpcId": "NPC_blacksmith" },
+    { "id": "s4", "type": "talk", "desc": "回去向村长复命", "targetNpcId": "NPC_01" }
+  ],
+  "rewards": {
+    "exp": 80,
+    "gold": 200,
+    "items": [ { "id": "IT_a1b2c3d4e5f60718", "count": 3 } ]
+  }
+}

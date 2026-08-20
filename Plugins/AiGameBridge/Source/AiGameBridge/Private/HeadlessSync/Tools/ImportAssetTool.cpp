@@ -3,13 +3,18 @@
 #include "HeadlessSync/Tools/ImportAssetTool.h"
 
 #include "AssetImportTask.h"
+#include "AssetRegistry/AssetRegistryModule.h"
 #include "AssetToolsModule.h"
 #include "Dom/JsonObject.h"
 #include "Dom/JsonValue.h"
 #include "JsonDomBuilder.h"
+#include "InterchangeManager.h"
+#include "InterchangeSourceData.h"
 #include "Misc/Paths.h"
 #include "ModelContextProtocolToolResults.h"
+#include "Engine/StaticMesh.h"
 #include "UObject/Package.h"
+#include "UObject/SavePackage.h"
 
 DEFINE_LOG_CATEGORY_STATIC(LogAiGameHeadlessImport, Log, All);
 
@@ -82,21 +87,66 @@ FModelContextProtocolToolResult FImportAssetTool::Run(const TSharedPtr<FJsonObje
 		return MakeErrorResult(FString::Printf(TEXT("import_asset: 源文件不存在 %s"), *SourcePath));
 	}
 
-	// 构造导入任务（同步阻塞，bAutomated 抑制一切对话框）
-	UAssetImportTask* Task = NewObject<UAssetImportTask>();
-	Task->Filename = SourcePath;
-	Task->DestinationPath = DestinationRoot;
-	// DestinationName 留空：让工厂按源文件名命名，Interchange 下本字段被忽略。
-	Task->bAutomated = true;
-	Task->bReplaceExisting = bOverwrite;
-	Task->bReplaceExistingSettings = bOverwrite;
-	Task->bSave = true;
-	Task->bAsync = false;
+	TArray<FString> Imported;
+	const FString Extension = FPaths::GetExtension(SourcePath, false).ToLower();
+	if (Extension == TEXT("glb") || Extension == TEXT("gltf"))
+	{
+		// UE 5.8 已移除 Legacy GLTF importer，GLB 必须走 Interchange。
+		// 使用同步导入，保证 MCP 返回成功时静态网格已经可安全用于关卡替换。
+		UE::Interchange::FScopedInterchangeImportEnableState EnableInterchange(true);
+		UE::Interchange::FScopedSourceData SourceData(SourcePath);
+		UInterchangeSourceData* InterchangeSource = SourceData.GetSourceData();
+		if (!InterchangeSource)
+		{
+			return MakeErrorResult(FString::Printf(TEXT("import_asset: 无法创建 GLB 源数据 %s"), *SourcePath));
+		}
+		FImportAssetParameters ImportParams;
+		ImportParams.bIsAutomated = true;
+		ImportParams.bReplaceExisting = bOverwrite;
+		ImportParams.DestinationName = AssetName;
+		// GLB 必须使用完整的 glTF 资产栈；并以“导入”而非“网格重导入”上下文执行，
+		// 否则 UE 会自动关闭 TexturePipeline，导致只生成白模静态网格。
+		ImportParams.OverridePipelines.Add(FSoftObjectPath(TEXT("/Interchange/Pipelines/DefaultGLTFAssetsPipeline.DefaultGLTFAssetsPipeline")));
+		ImportParams.OverridePipelines.Add(FSoftObjectPath(TEXT("/Interchange/Pipelines/DefaultGLTFPipeline.DefaultGLTFPipeline")));
+		UE::Interchange::FAssetImportResultRef ImportResult = UInterchangeManager::GetInterchangeManager().ImportAssetWithResult(DestinationRoot, InterchangeSource, ImportParams);
+		ImportResult->WaitUntilDone(true);
+		if (!ImportResult->IsValid())
+		{
+			return MakeErrorResult(FString::Printf(TEXT("import_asset: Interchange GLB 导入失败 source=%s dest=%s"), *SourcePath, *DestinationRoot));
+		}
 
-	IAssetTools& AssetTools = FAssetToolsModule::GetModule().Get();
-	AssetTools.ImportAssetTasks({ Task });
+		// 从本次结果中获取资产，避免扫描历史目录时取到旧白模；将所有生成的材质、纹理及网格包写盘。
+		UObject* StaticMeshObject = ImportResult->GetFirstAssetOfClass(UStaticMesh::StaticClass());
+		if (StaticMeshObject)
+		{
+			Imported.Add(StaticMeshObject->GetPathName());
+		}
+		for (UObject* ImportedObject : ImportResult->GetImportedObjects())
+		{
+			if (!ImportedObject) continue;
+			UPackage* Package = ImportedObject->GetOutermost();
+			const FString PackageFilename = FPackageName::LongPackageNameToFilename(Package->GetName(), FPackageName::GetAssetPackageExtension());
+			FSavePackageArgs SaveArgs;
+			SaveArgs.TopLevelFlags = RF_Public | RF_Standalone;
+			UPackage::SavePackage(Package, ImportedObject, *PackageFilename, SaveArgs);
+		}
+	}
+	else
+	{
+		// 其他格式保持既有 Factory 导入链路。
+		UAssetImportTask* Task = NewObject<UAssetImportTask>();
+		Task->Filename = SourcePath;
+		Task->DestinationPath = DestinationRoot;
+		Task->bAutomated = true;
+		Task->bReplaceExisting = bOverwrite;
+		Task->bReplaceExistingSettings = bOverwrite;
+		Task->bSave = true;
+		Task->bAsync = false;
+		IAssetTools& AssetTools = FAssetToolsModule::GetModule().Get();
+		AssetTools.ImportAssetTasks({ Task });
+		Imported = Task->ImportedObjectPaths;
+	}
 
-	const TArray<FString>& Imported = Task->ImportedObjectPaths;
 	if (Imported.Num() == 0)
 	{
 		UE_LOG(LogAiGameHeadlessImport, Warning,

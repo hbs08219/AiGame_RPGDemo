@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_vinyl_record",
+  "name": "老唱片",
+  "description": "一张爵士乐黑胶唱片，封面泛黄但碟片保存尚好。收藏爱好者可能愿意为它出个好价钱。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 60,
+  "stackable": true
+}

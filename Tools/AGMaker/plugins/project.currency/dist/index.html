@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>货币管理 · project.currency</title>
+<style>
+  :root { --bg:#0f1115; --panel:#171a21; --border:#2a2f3a; --fg:#e6e9ef; --muted:#8b93a3; --accent:#4f8cff; --good:#3fb96b; --warn:#e0a23c; --bad:#e05c5c; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:"Segoe UI","Microsoft YaHei",system-ui,sans-serif; background:var(--bg); color:var(--fg); }
+  header { padding:14px 20px; border-bottom:1px solid var(--border); display:flex; align-items:center; gap:10px; }
+  header h1 { font-size:18px; margin:0; }
+  header .tag { font-size:12px; color:var(--muted); }
+  main { display:grid; grid-template-columns:1fr 1fr; gap:16px; padding:16px 20px; }
+  .panel { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:16px; }
+  .panel h2 { margin:0 0 12px; font-size:15px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  th,td { text-align:left; padding:8px 6px; border-bottom:1px solid var(--border); }
+  th { color:var(--muted); font-weight:600; }
+  .base-pill { display:inline-block; padding:1px 8px; border-radius:99px; font-size:11px; background:rgba(79,140,255,.15); color:var(--accent); border:1px solid rgba(79,140,255,.35); }
+  .muted { color:var(--muted); }
+  label { display:block; font-size:12px; color:var(--muted); margin:10px 0 4px; }
+  input,select { width:100%; padding:8px; background:#0d0f14; border:1px solid var(--border); border-radius:6px; color:var(--fg); font-size:14px; }
+  button { margin-top:14px; width:100%; padding:10px; background:var(--accent); border:none; border-radius:6px; color:#fff; font-size:14px; cursor:pointer; }
+  button:hover { filter:brightness(1.1); }
+  #quoteResult { margin-top:14px; padding:12px; border-radius:8px; background:#0d0f14; border:1px solid var(--border); font-size:13px; display:none; }
+  #quoteResult .net { font-size:22px; font-weight:700; color:var(--good); }
+  .row { display:flex; justify-content:space-between; padding:2px 0; }
+  .err { color:var(--bad); }
+  .statusbar { padding:8px 20px; font-size:12px; color:var(--muted); border-top:1px solid var(--border); }
+  .full { grid-column:1 / -1; }
+</style>
+</head>
+<body>
+<header>
+  <h1>💰 货币管理</h1>
+  <span class="tag">project.currency · 数据经 /plugins/project.currency/platform/* 受控代理</span>
+</header>
+<main>
+  <section class="panel">
+    <h2>货币列表</h2>
+    <table id="currencyTable">
+      <thead><tr><th>ID</th><th>名称</th><th>精度</th><th>单位价值</th><th></th></tr></thead>
+      <tbody><tr><td colspan="5" class="muted">加载中…</td></tr></tbody>
+    </table>
+  </section>
+
+  <section class="panel">
+    <h2>兑换试算</h2>
+    <label>源货币</label><select id="qFrom"></select>
+    <label>目标货币</label><select id="qTo"></select>
+    <label>数量</label><input id="qAmount" type="number" min="0" step="any" value="100" />
+    <button id="qBtn">试算</button>
+    <div id="quoteResult"></div>
+  </section>
+
+  <section class="panel full">
+    <h2>兑换体系</h2>
+    <div id="exchangeInfo" class="muted">加载中…</div>
+  </section>
+</main>
+<div class="statusbar" id="status">就绪</div>
+
+<script>
+(function () {
+  "use strict";
+  var BASE = "/plugins/project.currency/platform";
+  var state = { currencies: [], config: null };
+
+  function setStatus(msg, isErr) {
+    var el = document.getElementById("status");
+    el.textContent = msg;
+    el.style.color = isErr ? "var(--bad)" : "var(--muted)";
+  }
+
+  // 受控代理请求。失败时回退到本地空数据，保证页面可用。
+  function api(pathname, options) {
+    return fetch(BASE + pathname, options).then(function (r) {
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      return r.json();
+    });
+  }
+
+  function loadData() {
+    // 货币列表 + 兑换配置。具体代理路径以宿主 platform/toolgen 契约为准，失败时降级。
+    return api("/toolgen/list?dir=Currency")
+      .then(function (listRes) {
+        var files = (listRes && (listRes.files || listRes.items || listRes.entries)) || [];
+        var reads = files.filter(function (f) {
+          var n = typeof f === "string" ? f : (f.name || f.path || "");
+          return /\.json$/i.test(n) && n.indexOf("_exchange") === -1;
+        }).map(function (f) {
+          var n = typeof f === "string" ? f : (f.name || f.path || "");
+          return api("/toolgen/read?path=" + encodeURIComponent("Currency/" + n))
+            .then(function (doc) { return (doc && doc.data) || doc; })
+            .catch(function () { return null; });
+        });
+        return Promise.all(reads);
+      })
+      .then(function (docs) {
+        state.currencies = docs.filter(function (d) { return d && d.id; });
+        return api("/toolgen/read?path=" + encodeURIComponent("Currency/_exchange.json"))
+          .then(function (cfg) { state.config = (cfg && cfg.data) || cfg; })
+          .catch(function () { state.config = { version: 1, baseCurrencyId: null, overrides: [] }; });
+      })
+      .catch(function (e) {
+        setStatus("数据加载失败（platform 代理可能不可用）：" + e.message, true);
+      });
+  }
+
+  function renderCurrencies() {
+    var tbody = document.querySelector("#currencyTable tbody");
+    if (!state.currencies.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="muted">暂无货币（可用 Agent 调 create_currency 创建）</td></tr>';
+      return;
+    }
+    var baseId = state.config && state.config.baseCurrencyId;
+    tbody.innerHTML = state.currencies.map(function (c) {
+      var prec = c.precision == null ? 0 : c.precision;
+      var uiv = c.unitValueInBase == null ? 1 : c.unitValueInBase;
+      var pill = (c.id === baseId) ? '<span class="base-pill">基准</span>' : "";
+      return "<tr><td>" + esc(c.id) + "</td><td>" + esc(c.name || "") + "</td><td>" + prec + "</td><td>" + uiv + "</td><td>" + pill + "</td></tr>";
+    }).join("");
+  }
+
+  function renderSelectors() {
+    var opts = state.currencies.map(function (c) { return '<option value="' + esc(c.id) + '">' + esc(c.name || c.id) + " (" + esc(c.id) + ")</option>"; }).join("");
+    document.getElementById("qFrom").innerHTML = opts;
+    document.getElementById("qTo").innerHTML = opts;
+    if (state.currencies.length > 1) document.getElementById("qTo").selectedIndex = 1;
+  }
+
+  function renderExchange() {
+    var el = document.getElementById("exchangeInfo");
+    var cfg = state.config;
+    if (!cfg || !cfg.baseCurrencyId) { el.innerHTML = '<span class="muted">尚未设置基准货币</span>'; return; }
+    var html = '<div class="row"><span>基准货币</span><strong>' + esc(cfg.baseCurrencyId) + "</strong></div>";
+    var ov = cfg.overrides || [];
+    if (ov.length) {
+      html += '<div style="margin-top:8px"><span class="muted">定向兑换对：</span></div>';
+      html += ov.map(function (p) {
+        var fee = p.feeRate ? ("（手续费 " + (p.feeRate * 100).toFixed(1) + "%）") : "";
+        return '<div class="row"><span>' + esc(p.from) + " → " + esc(p.to) + "</span><span>1 : " + p.rate + fee + "</span></div>";
+      }).join("");
+    } else {
+      html += '<div class="muted" style="margin-top:6px">无定向兑换对，全部走基准锚定换算</div>';
+    }
+    el.innerHTML = html;
+  }
+
+  // 与平台 currency-exchange.cjs 完全一致的本地试算（override 优先，否则基准锚定，net 按目标 precision 截断）。
+  function truncateToPrecision(value, precision) {
+    var factor = Math.pow(10, precision);
+    var scaled = value * factor;
+    var denoised = Math.round(scaled * 1e6) / 1e6;
+    return Math.floor(denoised) / factor;
+  }
+  function localQuote(from, to, amount) {
+    var byId = {};
+    state.currencies.forEach(function (c) { byId[c.id] = c; });
+    var fromDoc = byId[from], toDoc = byId[to];
+    if (!fromDoc) throw new Error("源货币 " + from + " 不存在");
+    if (!toDoc) throw new Error("目标货币 " + to + " 不存在");
+    var toPrec = toDoc.precision == null ? 0 : toDoc.precision;
+    if (from === to) return { gross: amount, fee: 0, net: truncateToPrecision(amount, toPrec), path: "identity", rate: 1 };
+    var ov = (state.config && state.config.overrides) || [];
+    for (var i = 0; i < ov.length; i++) {
+      var p = ov[i];
+      if (p.from === from && p.to === to) {
+        var feeRate = p.feeRate || 0;
+        var gross = amount * p.rate;
+        var fee = gross * feeRate;
+        return { gross: gross, fee: fee, net: truncateToPrecision(gross - fee, toPrec), path: "override", rate: p.rate };
+      }
+    }
+    var baseId = state.config && state.config.baseCurrencyId;
+    if (!baseId) throw new Error("未设基准货币且无 " + from + "→" + to + " 兑换对（EXCHANGE_NO_PATH）");
+    var fromV = fromDoc.unitValueInBase == null ? 1 : fromDoc.unitValueInBase;
+    var toV = toDoc.unitValueInBase == null ? 1 : toDoc.unitValueInBase;
+    var g = (amount * fromV) / toV;
+    return { gross: g, fee: 0, net: truncateToPrecision(g, toPrec), path: "base", rate: fromV / toV };
+  }
+
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (m) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]; }); }
+
+  document.getElementById("qBtn").addEventListener("click", function () {
+    var from = document.getElementById("qFrom").value;
+    var to = document.getElementById("qTo").value;
+    var amount = parseFloat(document.getElementById("qAmount").value);
+    var box = document.getElementById("quoteResult");
+    box.style.display = "block";
+    if (!(amount > 0)) { box.innerHTML = '<span class="err">数量必须 > 0</span>'; return; }
+    try {
+      var r = localQuote(from, to, amount);
+      var pathLabel = { identity: "同币种", override: "定向兑换对", base: "基准锚定" }[r.path] || r.path;
+      box.innerHTML =
+        '<div class="row"><span class="muted">路径</span><span>' + pathLabel + "</span></div>" +
+        '<div class="row"><span class="muted">比率</span><span>1 : ' + r.rate + "</span></div>" +
+        '<div class="row"><span class="muted">毛额</span><span>' + r.gross + "</span></div>" +
+        '<div class="row"><span class="muted">手续费</span><span>' + r.fee + "</span></div>" +
+        '<div class="row" style="margin-top:6px"><span class="muted">到手</span><span class="net">' + r.net + "</span></div>";
+    } catch (e) {
+      box.innerHTML = '<span class="err">' + esc(e.message) + "</span>";
+    }
+  });
+
+  loadData().then(function () {
+    renderCurrencies(); renderSelectors(); renderExchange();
+    setStatus("已加载 " + state.currencies.length + " 种货币");
+  });
+})();
+</script>
+</body>
+</html>

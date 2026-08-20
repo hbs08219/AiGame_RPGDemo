@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_superior_mana_potion",
+  "name": "终极法力药水",
+  "description": "炼金术的巅峰之作，深蓝液体中闪烁着星辰般的光点。一瓶足以让法力枯竭者重回巅峰。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 100,
+  "equip": {},
+  "price": 200,
+  "stackable": true
+}

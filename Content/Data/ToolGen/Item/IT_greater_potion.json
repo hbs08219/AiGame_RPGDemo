@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_greater_potion",
+  "name": "高级回血丹",
+  "description": "药师以月瓣草精炼而成的强力回复丹药，能在战斗中迅速恢复大量生命值。",
+  "type": "consumable",
+  "effectType": "healHP",
+  "effectValue": 300,
+  "equip": {},
+  "price": 600,
+  "stackable": true
+}

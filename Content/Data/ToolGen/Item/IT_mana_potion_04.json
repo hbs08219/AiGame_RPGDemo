@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mana_potion_04",
+  "name": "超级法力药水",
+  "description": "以稀有灵草炼制而成的超级法力药剂，散发着令人心醉的湛蓝光辉，法力回复极为可观。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 80,
+  "equip": {},
+  "price": 160,
+  "stackable": true
+}

@@ -1,0 +1,92 @@
+{
+  "version": 1,
+  "id": "DLG_blacksmith",
+  "name": "铁匠对话",
+  "description": "矿洞的麻烦:步骤1 指路药师→advance;步骤3 收驱魔香→advance;条件按任务状态分流。",
+  "startNodeId": "b0",
+  "nodes": [
+    {
+      "id": "b0",
+      "type": "condition",
+      "position": { "x": 80, "y": 60 },
+      "branches": [
+        { "kind": "questStep", "key": "QST_mine_trouble", "value": 1, "next": "b_s1" },
+        { "kind": "questStep", "key": "QST_mine_trouble", "value": 3, "next": "b_s3" },
+        { "kind": "questCompleted", "key": "QST_mine_trouble", "value": 1, "next": "b_done" }
+      ],
+      "elseNext": "b_idle"
+    },
+    {
+      "id": "b_s1",
+      "type": "line",
+      "position": { "x": 380, "y": 40 },
+      "speaker": "铁匠",
+      "text": "你是村长派来的?太好了!那群史莱姆赖在矿洞口,我连矿石都运不出来。",
+      "next": "b_s1b"
+    },
+    {
+      "id": "b_s1b",
+      "type": "line",
+      "position": { "x": 380, "y": 140 },
+      "speaker": "铁匠",
+      "text": "光靠蛮力赶不走它们。你去药铺找药师,要一份『驱魔香』,点了能逼它们退散。",
+      "next": "b_s1c"
+    },
+    {
+      "id": "b_s1c",
+      "type": "line",
+      "position": { "x": 380, "y": 240 },
+      "speaker": "",
+      "text": "你记下了药师的去处。",
+      "next": "b_s1_adv"
+    },
+    {
+      "id": "b_s1_adv",
+      "type": "action",
+      "position": { "x": 380, "y": 340 },
+      "action": "advanceQuest",
+      "questId": "QST_mine_trouble",
+      "next": ""
+    },
+    {
+      "id": "b_s3",
+      "type": "line",
+      "position": { "x": 720, "y": 40 },
+      "speaker": "铁匠",
+      "text": "驱魔香拿来了?好家伙,这下有救了!",
+      "next": "b_s3b"
+    },
+    {
+      "id": "b_s3b",
+      "type": "line",
+      "position": { "x": 720, "y": 140 },
+      "speaker": "铁匠",
+      "text": "我这就带人去矿洞口熏一熏。你帮了大忙,快回去跟村长说一声吧!",
+      "next": "b_s3_adv"
+    },
+    {
+      "id": "b_s3_adv",
+      "type": "action",
+      "position": { "x": 720, "y": 240 },
+      "action": "advanceQuest",
+      "questId": "QST_mine_trouble",
+      "next": ""
+    },
+    {
+      "id": "b_idle",
+      "type": "line",
+      "position": { "x": 80, "y": 320 },
+      "speaker": "铁匠",
+      "text": "唉,矿洞口那群史莱姆……真让人头疼。",
+      "next": ""
+    },
+    {
+      "id": "b_done",
+      "type": "line",
+      "position": { "x": 80, "y": 440 },
+      "speaker": "铁匠",
+      "text": "矿洞口清净多了,多亏了你!往后打铁的料子不愁啦。",
+      "next": ""
+    }
+  ]
+}

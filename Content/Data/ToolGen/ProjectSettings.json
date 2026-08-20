@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "defaultMap": "LV_MistportTown_08",
+  "playerCharacter": "Player",
+  "defaultCamera": "ThirdPerson",
+  "defaultCameraPose": "Explore",
+  "defaultInputContext": "Default",
+  "battle": {
+    "transitionFadeDuration": 0.6,
+    "minBlackHold": 0.8,
+    "arenaMap": "/Game/Maps/BattleArenas/Arena_01",
+    "fixedCameraId": "Battle",
+    "moveDuration": 0.6,
+    "attackDuration": 0.4,
+    "returnDuration": 0.6,
+    "victoryHold": 1.5,
+    "defeatHold": 2,
+    "rewardHold": 2,
+    "skillWindup": 0.4
+  },
+  "skillEditor": {
+    "timelineDefaultFps": 10
+  },
+  "save": {
+    "fadeOutDuration": 0.35,
+    "blackHold": 0.1,
+    "fadeInDuration": 0.35
+  },
+  "assetCenter": {
+    "maxFileSizeMB": 100
+  }
+}

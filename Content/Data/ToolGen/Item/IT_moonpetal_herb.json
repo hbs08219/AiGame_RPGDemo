@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_moonpetal_herb",
+  "name": "月瓣草",
+  "description": "一种只开在月光下的奇特草药，花瓣呈银白色月牙形。药师说它是调制驱魔香的关键材料。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 30,
+  "stackable": true
+}

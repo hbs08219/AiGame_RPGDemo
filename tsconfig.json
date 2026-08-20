@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2017",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "strict": true,
+    "noImplicitAny": false,
+    "sourceMap": false,
+    "skipLibCheck": true,
+    "incremental": true,
+    "outDir": "Content/JavaScript",
+    "rootDir": "TypeScript",
+    "types": []
+  },
+  "include": ["TypeScript/**/*.ts"]
+}

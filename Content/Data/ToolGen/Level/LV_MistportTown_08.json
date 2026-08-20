@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "id": "LV_MistportTown_08",
+  "name": "雾港小镇",
+  "type": "world",
+  "umap": "/Game/Maps/LV_MistportTown_08",
+  "battleArenaRef": "",
+  "description": "雾港小镇主世界关卡。固定俯视 2.5D 角色移动由本关卡运行时配置驱动。",
+  "worldRuntime": {
+    "movementMode": "fixedPlane",
+    "playerSpawn": {
+      "x": 0,
+      "y": 0,
+      "z": 110,
+      "facing": "down"
+    },
+    "movementPlaneZ": 110
+  }
+}

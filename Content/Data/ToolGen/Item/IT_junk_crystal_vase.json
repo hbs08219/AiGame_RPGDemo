@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_junk_crystal_vase",
+  "name": "水晶花瓶",
+  "description": "一只雕花精美的小花瓶，底座有细微磨损但仍透光通透。放在旧货摊上属于那种「懂的人自然懂」的货色。",
+  "type": "material",
+  "effectType": "",
+  "effectValue": 0,
+  "equip": {},
+  "price": 200,
+  "stackable": true
+}

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "id": "NPC_blacksmith",
+  "name": "铁匠",
+  "description": "起始之村的铁匠,为矿洞口的史莱姆挡了运矿的路而发愁",
+  "appearanceId": "Princess_Battle",
+  "role": "dialogue",
+  "interactRadius": 200,
+  "dialogueId": "DLG_blacksmith",
+  "ambientLine": "",
+  "shop": {
+    "greetingDialogueId": "",
+    "items": [],
+    "buyback": true
+  }
+}

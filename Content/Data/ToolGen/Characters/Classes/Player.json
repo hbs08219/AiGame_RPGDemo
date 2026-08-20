@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "id": "Player",
+  "name": "Player",
+  "description": "",
+  "type": "Player",
+  "faction": "PlayerParty",
+  "appearanceId": "Player",
+  "attributeTemplateId": "QA_FogHarborWarriorStats",
+  "initialLevel": 1,
+  "activeSkills": [],
+  "passiveSkills": [],
+  "moveSpeed": {
+    "walk": 400,
+    "run": 600,
+    "sprint": 900
+  },
+  "inventorySize": 50
+}

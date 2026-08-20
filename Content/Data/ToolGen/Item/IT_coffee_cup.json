@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_coffee_cup",
+  "name": "咖啡杯",
+  "description": "一杯热气腾腾的咖啡，喝下后能提神醒脑，恢复少量法力值。药师闲暇时爱泡上一杯，据说配方来自远洋商人。",
+  "type": "consumable",
+  "effectType": "healMP",
+  "effectValue": 40,
+  "equip": {},
+  "price": 250,
+  "stackable": true
+}

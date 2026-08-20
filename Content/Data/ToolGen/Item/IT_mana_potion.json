@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "id": "IT_mana_potion",
+  "name": "中级法力药水",
+  "description": "标准浓度的法力药水，蓝色液体清澈透亮。炼金术士行会的招牌产品。",
+  "type": "consumable",
+  "effectType": "restoreMP",
+  "effectValue": 60,
+  "equip": {},
+  "price": 120,
+  "stackable": true
+}

@@ -1,0 +1,7 @@
+{
+  "id": "CUR_gold",
+  "name": "金币",
+  "description": "免费货币，打怪与任务奖励获得，是兑换体系的基准货币。",
+  "precision": 0,
+  "unitValueInBase": 1
+}
