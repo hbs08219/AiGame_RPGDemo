@@ -20,3 +20,10 @@ Saved/
 # AiGame generated content (cache + published assets)
 Content/AiGame/Cache/
 Content/AiGame/Published/
+
+# UE 打包/构建产物与本地编辑器配置（勿入库）
+Build/
+Builds/
+Config/DefaultEditor.ini
+Config/DefaultEditorPerProjectUserSettings.ini
+*.tsbuildinfo

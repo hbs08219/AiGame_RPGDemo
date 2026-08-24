@@ -1,9 +1,0 @@
-{
-  "id": "project.currency.usage",
-  "name": "货币体系配置",
-  "category": "gameplay",
-  "instructions": [
-    "先列出当前货币与兑换配置；创建或修改后逐项校验，再执行典型金额的兑换试算。",
-    "设置基准货币时传入 { currencyId: \"CUR_gold\" }；配置定向兑换对时传入 { override: { from, to, rate, feeRate? } }。"
-  ]
-}
