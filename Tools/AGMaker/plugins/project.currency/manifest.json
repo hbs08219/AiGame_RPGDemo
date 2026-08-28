@@ -5,7 +5,7 @@
   "distribution": "project-private",
   "enabledByDefault": false,
   "name": "货币系统",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "项目私有插件：货币系统",
   "author": "Project Team",
   "category": "plugin-workshop/gameplay",
@@ -44,7 +44,7 @@
   "domainCapabilities": [
     {
       "id": "project.currency",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "title": "货币系统",
       "description": "项目私有插件：货币系统",
       "maturity": "experimental",
