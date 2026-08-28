@@ -1,0 +1,112 @@
+{
+  "manifestVersion": 1,
+  "id": "project.currency",
+  "kind": "game-tool",
+  "distribution": "project-private",
+  "enabledByDefault": false,
+  "name": "货币系统",
+  "version": "0.1.0",
+  "description": "项目私有插件：货币系统",
+  "author": "Project Team",
+  "category": "plugin-workshop/gameplay",
+  "compatibility": {
+    "workbench": ">=0.1.0"
+  },
+  "capabilities": [
+    "toolgen.read",
+    "toolgen.write"
+  ],
+  "dataRoots": [],
+  "contributes": {
+    "dataResources": [
+      {
+        "displayName": "货币",
+        "id": "currency",
+        "operations": {
+          "create": true,
+          "delete": true,
+          "findReferences": false,
+          "get": true,
+          "list": true,
+          "update": true,
+          "validate": true
+        },
+        "root": "currency/currency",
+        "schema": "schemas/currency.schema.json",
+        "storage": {
+          "fileName": "{id}.json",
+          "idField": "id",
+          "mode": "document-per-file"
+        }
+      }
+    ]
+  },
+  "domainCapabilities": [
+    {
+      "id": "project.currency",
+      "version": "0.1.0",
+      "title": "货币系统",
+      "description": "项目私有插件：货币系统",
+      "maturity": "experimental",
+      "scope": "plugin",
+      "risk": "medium",
+      "requires": [],
+      "contracts": {
+        "runtime": [],
+        "schema": [
+          "schemas/currency.schema.json"
+        ],
+        "actions": [],
+        "editor": [
+          "dist/index.html"
+        ],
+        "skills": [
+          "skills/usage.json"
+        ],
+        "knowledge": [
+          "README.md"
+        ],
+        "recipes": [],
+        "migrations": []
+      },
+      "verification": {
+        "contractTests": [
+          "plugin-manifest.contract"
+        ],
+        "integrationTests": [
+          "plugin-workshop.integration"
+        ],
+        "runtimeSmokeTests": [],
+        "e2eScenarios": [
+          "plugin-workshop-preview"
+        ]
+      }
+    }
+  ],
+  "carries": {
+    "skills": [
+      "skills/*.json"
+    ],
+    "knowledgeDocs": [
+      "README.md"
+    ],
+    "workflowTemplates": [],
+    "engineeringTypes": [],
+    "assetWorkflowTemplates": []
+  },
+  "tools": [
+    {
+      "id": "project-currency-editor",
+      "name": "货币系统编辑器",
+      "description": "货币系统 的项目私有静态编辑器。",
+      "icon": "🧩",
+      "category": "plugin-workshop/gameplay",
+      "url": "/plugins/project.currency/",
+      "capabilities": [
+        "toolgen.read",
+        "toolgen.write"
+      ]
+    }
+  ],
+  "dependencies": []
+}
