@@ -27,3 +27,6 @@ Builds/
 Config/DefaultEditor.ini
 Config/DefaultEditorPerProjectUserSettings.ini
 *.tsbuildinfo
+
+# 插件运行时验证残留数据（勿入库）
+Content/Data/ToolGen/Currency/currency/
