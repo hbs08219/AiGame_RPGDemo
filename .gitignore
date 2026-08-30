@@ -31,3 +31,4 @@ Config/DefaultEditorPerProjectUserSettings.ini
 # 插件运行时验证残留数据（勿入库）
 Content/Data/ToolGen/Currency/currency/
 Content/Data/ToolGen/title/title/GEN_*.json
+Content/Data/ToolGen/title-*/ 
