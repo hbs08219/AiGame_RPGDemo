@@ -1,0 +1,11 @@
+{
+  "id": "project.title.usage",
+  "title": "称号系统 使用说明",
+  "instructions": [
+    "称号系统用于为 RPGDemo 配置称号，每个称号包含必填的称号名（name，全工程唯一）和可选的称号描述（description）。",
+    "称号数据以结构化 JSON 持久化在项目数据目录 title/title/ 下，每个称号一个以 id 命名的文件，可被后续运行时读取。",
+    "使用编辑器可视化新建、编辑、删除称号；称号名为空或与其他称号重复时会被阻止并提示。",
+    "Agent 可通过声明式 Action（list_titles / create_title / update_title / delete_title）读写称号数据，而非裸文件操作。"
+  ]
+}
+

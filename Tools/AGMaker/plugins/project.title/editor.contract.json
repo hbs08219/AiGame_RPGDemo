@@ -1,0 +1,88 @@
+{
+  "version": 1,
+  "pluginId": "project.title",
+  "dataAccess": {
+    "mechanism": "plugin-action-api",
+    "capabilities": [
+      "toolgen.read",
+      "toolgen.write"
+    ],
+    "available": true
+  },
+  "crud": {
+    "read": {
+      "available": true,
+      "operation": "list",
+      "method": "POST",
+      "actionName": "project.title.list_titles",
+      "path": "/plugin-tool/project.title/project.title.list_titles"
+    },
+    "create": {
+      "available": true,
+      "operation": "create",
+      "method": "POST",
+      "actionName": "project.title.create_title",
+      "path": "/plugin-tool/project.title/project.title.create_title"
+    },
+    "update": {
+      "available": true,
+      "operation": "update",
+      "method": "POST",
+      "actionName": "project.title.update_title",
+      "path": "/plugin-tool/project.title/project.title.update_title"
+    },
+    "delete": {
+      "available": true,
+      "operation": "delete",
+      "method": "POST",
+      "actionName": "project.title.delete_title",
+      "path": "/plugin-tool/project.title/project.title.delete_title"
+    }
+  },
+  "coreResourceId": "title",
+  "resources": [
+    {
+      "id": "title",
+      "displayName": "称号",
+      "operations": {
+        "create": true,
+        "delete": true,
+        "findReferences": false,
+        "get": true,
+        "list": true,
+        "update": true,
+        "validate": true
+      },
+      "actions": {
+        "read": {
+          "available": true,
+          "operation": "list",
+          "method": "POST",
+          "actionName": "project.title.list_titles",
+          "path": "/plugin-tool/project.title/project.title.list_titles"
+        },
+        "create": {
+          "available": true,
+          "operation": "create",
+          "method": "POST",
+          "actionName": "project.title.create_title",
+          "path": "/plugin-tool/project.title/project.title.create_title"
+        },
+        "update": {
+          "available": true,
+          "operation": "update",
+          "method": "POST",
+          "actionName": "project.title.update_title",
+          "path": "/plugin-tool/project.title/project.title.update_title"
+        },
+        "delete": {
+          "available": true,
+          "operation": "delete",
+          "method": "POST",
+          "actionName": "project.title.delete_title",
+          "path": "/plugin-tool/project.title/project.title.delete_title"
+        }
+      }
+    }
+  ]
+}

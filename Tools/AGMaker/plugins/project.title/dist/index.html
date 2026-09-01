@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>称号系统</title>
+  <style>
+    :root {
+      --bg: #101522;
+      --bg-panel: #161c2b;
+      --bg-elevated: #1d2536;
+      --border: #2a3348;
+      --text: #e7ebf4;
+      --text-dim: #aeb7cb;
+      --text-faint: #98a3ba;
+      --accent: #7c3aed;
+      --accent-hover: #8b4df5;
+      --accent-soft: rgba(124, 58, 237, 0.16);
+      --danger: #e5484d;
+      --danger-soft: rgba(229, 72, 77, 0.14);
+      --ok: #46a758;
+      --warn: #f5a623;
+      --radius: 10px;
+      --radius-sm: 7px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      font-size: 14px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+    }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 1px; }
+    button, input, textarea { font: inherit; color: inherit; }
+
+    header.topbar {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg-panel);
+      border-bottom: 1px solid var(--border);
+    }
+    header.topbar h1 { font-size: 16px; margin: 0; font-weight: 600; }
+    header.topbar .spacer { flex: 1; }
+
+    main[data-layout="list-detail"] {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      min-height: 0;
+      overflow: hidden;
+    }
+
+    aside.list-pane {
+      background: var(--bg-panel);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+    }
+    .list-header { padding: 12px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
+    .list-header input[type="search"] {
+      width: 100%; padding: 8px 10px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    .list-header input[type="search"]::placeholder { color: var(--text-faint); }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+      padding: 8px 12px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--bg-elevated);
+      cursor: pointer; transition: background .12s ease, border-color .12s ease;
+      white-space: nowrap;
+    }
+    .btn:hover { background: #232c40; border-color: #3a4661; }
+    .btn:disabled { opacity: .45; cursor: not-allowed; }
+    .btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .btn.primary:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
+    .btn.primary:disabled { background: #4a3b6e; border-color: #4a3b6e; }
+    .btn.danger { background: transparent; border-color: var(--danger); color: var(--danger); }
+    .btn.danger:hover { background: var(--danger-soft); }
+
+    ul.title-list {
+      list-style: none; margin: 0; padding: 8px;
+      overflow-y: auto; flex: 1;
+    }
+    li.title-item {
+      padding: 10px 12px; border-radius: var(--radius-sm);
+      cursor: pointer; border: 1px solid transparent;
+      margin-bottom: 4px;
+    }
+    li.title-item:hover { background: var(--bg-elevated); }
+    li.title-item.selected { background: var(--accent-soft); border-color: var(--accent); }
+    li.title-item .t-name { font-weight: 500; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    li.title-item .t-desc { color: var(--text-dim); font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .list-empty { padding: 24px 16px; color: var(--text-faint); text-align: center; }
+
+    section.detail-pane {
+      display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+    }
+    .detail-toolbar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 12px 16px; border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .detail-toolbar .spacer { flex: 1; }
+    .detail-body { flex: 1; overflow-y: auto; padding: 20px 24px; }
+    .detail-body h2 { font-size: 14px; margin: 0 0 16px; font-weight: 600; color: var(--text); }
+    .field-group { margin-bottom: 16px; max-width: 560px; }
+    label { display: block; margin-bottom: 6px; font-size: 13px; color: var(--text-dim); }
+    input[type="text"], textarea {
+      width: 100%; padding: 9px 11px;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+    }
+    input[readonly] { background: #151a28; color: var(--text-faint); cursor: default; }
+    textarea { min-height: 96px; resize: vertical; }
+    .help-text { margin-top: 4px; font-size: 12px; color: var(--text-faint); }
+    .field-error { margin-top: 4px; font-size: 12px; color: var(--danger); }
+
+    #output {
+      padding: 10px 14px; border-radius: var(--radius-sm);
+      font-size: 13px; margin: 0 16px 16px;
+    }
+    #output.ok { background: rgba(70, 167, 88, 0.12); color: #8fe09c; }
+    #output.err { background: var(--danger-soft); color: #f2a5a8; }
+    #output.info { background: rgba(124, 58, 237, 0.1); color: #b79bf0; }
+
+    .no-selection {
+      display: flex; align-items: center; justify-content: center;
+      height: 100%; color: var(--text-faint); text-align: center; padding: 24px;
+    }
+
+    @media (max-width: 720px) {
+      main[data-layout="list-detail"] { grid-template-columns: 1fr; grid-template-rows: 220px 1fr; }
+      aside.list-pane { border-right: none; border-bottom: 1px solid var(--border); }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <h1>称号系统</h1>
+    <span class="spacer"></span>
+    <span style="color:var(--text-faint);font-size:12px;">称号配置</span>
+  </header>
+
+  <main data-layout="list-detail">
+    <aside class="list-pane">
+      <div class="list-header">
+        <input type="search" aria-label="搜索" placeholder="搜索称号…">
+        <button type="button" class="btn primary" data-crud-operation="create" data-placement="list-header">新建称号</button>
+      </div>
+      <ul class="title-list" aria-label="称号列表"></ul>
+    </aside>
+
+    <section class="detail-pane">
+      <div class="detail-toolbar">
+        <span class="spacer"></span>
+        <button type="button" class="btn" data-crud-operation="read">刷新</button>
+        <button type="button" class="btn primary" data-crud-operation="update">保存修改</button>
+        <button type="button" class="btn danger" data-crud-operation="delete">删除</button>
+      </div>
+      <div class="detail-body">
+        <div class="no-selection" id="no-selection">请从列表选择一个称号查看或编辑</div>
+        <form data-editor-form hidden aria-label="称号编辑表单">
+          <h2>基本信息</h2>
+          <div class="field-group">
+            <label for="title-id">称号 ID</label>
+            <input id="title-id" name="id" type="text" readonly>
+            <div class="help-text">ID 由系统自动生成，不可修改</div>
+          </div>
+          <div class="field-group">
+            <label for="title-name">称号名</label>
+            <input id="title-name" name="name" type="text" placeholder="如：屠龙勇士">
+            <div class="help-text">称号的显示名称，全工程唯一</div>
+            <div class="field-error" id="err-name" hidden></div>
+          </div>
+          <div class="field-group">
+            <label for="title-description">称号描述</label>
+            <textarea id="title-description" name="description" placeholder="称号的说明文字（可选）"></textarea>
+            <div class="help-text">称号的说明文字，可选</div>
+          </div>
+        </form>
+      </div>
+      <div id="output" role="status" aria-live="polite">正在加载称号列表…</div>
+    </section>
+  </main>
+
+  <script id="agmaker-editor-contract" type="application/json">
+  {
+    "version": 1,
+    "pluginId": "project.title",
+    "dataAccess": { "mechanism": "plugin-action-api", "capabilities": ["toolgen.read", "toolgen.write"], "available": true },
+    "crud": {
+      "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
+      "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
+      "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
+      "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
+    },
+    "coreResourceId": "title",
+    "resources": [
+      {
+        "id": "title",
+        "displayName": "称号",
+        "operations": { "create": true, "delete": true, "findReferences": false, "get": true, "list": true, "update": true, "validate": true },
+        "actions": {
+          "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
+          "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
+          "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
+          "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
+        }
+      }
+    ]
+  }
+  </script>
+
+  <script>
+  (function () {
+    'use strict';
+
+    var projectId = new URLSearchParams(window.location.search).get('projectId') || '';
+    var form = document.querySelector('[data-editor-form]');
+    var listEl = document.querySelector('.title-list');
+    var searchEl = document.querySelector('input[type="search"]');
+    var output = document.getElementById('output');
+    var noSelection = document.getElementById('no-selection');
+    var errName = document.getElementById('err-name');
+
+    var authToken = '';
+    var revision = '';
+    var started = false;
+    var items = [];            // 当前已加载的称号列表
+    var current = null;        // 当前选中/编辑的称号 { id, name, description, revision, isNew }
+    var dirty = false;
+
+    function headers() {
+      return {
+        'Content-Type': 'application/json',
+        'X-Aigame-Project-Context': 'iframe',
+        'X-Aigame-Project-Id': projectId,
+        Authorization: `Bearer ${authToken}`
+      };
+    }
+
+    function readResponse(response) {
+      return response.json().then(function (payload) {
+        if (!response.ok || payload.error) {
+          var err = new Error(payload.error || ('HTTP ' + response.status));
+          err.status = response.status;
+          throw err;
+        }
+        return payload.data && payload.data.result;
+      });
+    }
+
+    function setOutput(text, kind) {
+      output.textContent = text;
+      output.className = kind || '';
+      output.removeAttribute('hidden');
+    }
+
+    function setError(text) {
+      errName.textContent = text || '';
+      errName.hidden = !text;
+    }
+
+    function clearFieldErrors() { setError(''); }
+
+    function generateId() {
+      return 'TT_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 6);
+    }
+
+    function renderList(filter) {
+      var kw = (filter || '').trim().toLowerCase();
+      listEl.innerHTML = '';
+      var shown = items.filter(function (it) {
+        if (!kw) return true;
+        return String(it.name || '').toLowerCase().indexOf(kw) >= 0 ||
+               String(it.description || '').toLowerCase().indexOf(kw) >= 0;
+      });
+      if (shown.length === 0) {
+        var empty = document.createElement('li');
+        empty.className = 'list-empty';
+        empty.textContent = kw ? '没有匹配的称号' : '暂无称号，点击「新建称号」开始配置';
+        listEl.appendChild(empty);
+        return;
+      }
+      shown.forEach(function (it) {
+        var li = document.createElement('li');
+        li.className = 'title-item';
+        li.setAttribute('data-resource-id', 'title');
+        li.setAttribute('role', 'button');
+        li.setAttribute('tabindex', '0');
+        li.setAttribute('aria-label', '称号：' + (it.name || it.id || ''));
+        if (current && !current.isNew && current.id === it.id) li.classList.add('selected');
+
+        var name = document.createElement('div');
+        name.className = 't-name';
+        name.textContent = it.name || it.id || '(未命名)';
+
+        var desc = document.createElement('div');
+        desc.className = 't-desc';
+        desc.textContent = it.description || '';
+
+        li.appendChild(name);
+        li.appendChild(desc);
+        li.addEventListener('click', function () { selectItem(it); });
+        li.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); selectItem(it); }
+        });
+        listEl.appendChild(li);
+      });
+    }
+
+    function selectItem(it) {
+      if (dirty && !confirm('当前有未保存的修改，是否放弃并切换？')) return;
+      current = { id: it.id, name: it.name || '', description: it.description || '', revision: it.revision || '', isNew: false };
+      revision = current.revision || '';
+      dirty = false;
+      populateForm();
+      setOutput('已加载称号：' + (it.name || it.id), 'info');
+      renderList(searchEl.value);
+    }
+
+    function startNew() {
+      if (dirty && !confirm('当前有未保存的修改，是否放弃并新建？')) return;
+      current = { id: generateId(), name: '', description: '', revision: '', isNew: true };
+      revision = '';
+      dirty = false;
+      populateForm();
+      setOutput('正在新建称号，填写后点击「保存修改」', 'info');
+      renderList(searchEl.value);
+      var nameInput = document.getElementById('title-name');
+      if (nameInput) nameInput.focus();
+    }
+
+    function populateForm() {
+      if (!current) return;
+      form.elements.id.value = current.id || '';
+      form.elements.name.value = current.name || '';
+      form.elements.description.value = current.description || '';
+      form.hidden = false;
+      noSelection.hidden = true;
+      clearFieldErrors();
+    }
+
+    function showNoSelection() {
+      current = null;
+      form.hidden = true;
+      noSelection.hidden = false;
+      clearFieldErrors();
+    }
+
+    function validateForm() {
+      clearFieldErrors();
+      var name = (form.elements.name.value || '').trim();
+      if (!name) { setError('称号名不能为空'); return false; }
+      var dup = items.some(function (it) {
+        return String(it.name || '').trim().toLowerCase() === name.toLowerCase() &&
+               (!current || it.id !== current.id);
+      });
+      if (dup) { setError('称号名与已有称号重复，请更换'); return false; }
+      return true;
+    }
+
+    function markDirty() { dirty = true; }
+
+    function listTitles() {
+      return fetch(`/plugin-tool/project.title/project.title.list_titles?projectId=${encodeURIComponent(projectId)}`, {
+        method: 'POST', credentials: 'include', headers: headers(),
+        body: JSON.stringify({ limit: 200 })
+      }).then(readResponse);
+    }
+
+    function createTitle() {
+      return fetch(`/plugin-tool/project.title/project.title.create_title?projectId=${encodeURIComponent(projectId)}`, {
+        method: 'POST', credentials: 'include', headers: headers(),
+        body: JSON.stringify({
+          document: {
+            id: form.elements.id.value,
+            name: form.elements.name.value.trim(),
+            description: form.elements.description.value
+          }
+        })
+      }).then(readResponse);
+    }
+
+    function updateTitle() {
+      return fetch(`/plugin-tool/project.title/project.title.update_title?projectId=${encodeURIComponent(projectId)}`, {
+        method: 'POST', credentials: 'include', headers: headers(),
+        body: JSON.stringify({
+          id: form.elements.id.value,
+          patch: {
+            name: form.elements.name.value.trim(),
+            description: form.elements.description.value
+          },
+          revision: revision
+        })
+      }).then(readResponse);
+    }
+
+    function deleteTitle() {
+      return fetch(`/plugin-tool/project.title/project.title.delete_title?projectId=${encodeURIComponent(projectId)}`, {
+        method: 'POST', credentials: 'include', headers: headers(),
+        body: JSON.stringify({ id: form.elements.id.value, revision: revision })
+      }).then(readResponse);
+    }
+
+    function refreshList(keepSelection) {
+      return listTitles().then(function (result) {
+        items = (result && result.items) || [];
+        renderList(searchEl.value);
+        if (keepSelection && current && !current.isNew) {
+          var match = items.find(function (it) { return it.id === current.id; });
+          if (match) {
+            current.revision = match.revision || current.revision;
+            current.name = match.name || current.name;
+            current.description = match.description || current.description;
+            revision = current.revision;
+          }
+        }
+        return result;
+      });
+    }
+
+    function showConflict() {
+      var box = document.createElement('span');
+      box.textContent = '版本冲突：该称号已被其他人更新，请重新加载远端版本后重试。';
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'btn';
+      btn.setAttribute('data-conflict-action', 'reload');
+      btn.textContent = '重新加载远端';
+      btn.addEventListener('click', function () {
+        refreshList(true).then(function () {
+          if (current) revision = current.revision || revision;
+          setOutput('已重新加载远端版本，请重试保存', 'info');
+        }).catch(function (e) {
+          setOutput('重新加载失败：' + e.message, 'err');
+        });
+      });
+      output.innerHTML = '';
+      output.appendChild(box);
+      output.appendChild(document.createTextNode(' '));
+      output.appendChild(btn);
+      output.className = 'err';
+    }
+
+    function doSave() {
+      if (!current) { setOutput('请先选择或新建一个称号', 'err'); return Promise.resolve(); }
+      if (!validateForm()) { setOutput('请修正表单中的错误后再保存', 'err'); return Promise.resolve(); }
+      var action = current.isNew ? createTitle() : updateTitle();
+      setOutput('正在保存…', 'info');
+      return action
+        .then(function (result) {
+          if (result) revision = result.revision || revision;
+          if (current.isNew) {
+            current = {
+              id: form.elements.id.value,
+              name: form.elements.name.value.trim(),
+              description: form.elements.description.value,
+              revision: result && result.revision,
+              isNew: false
+            };
+          } else {
+            current.name = form.elements.name.value.trim();
+            current.description = form.elements.description.value;
+            current.revision = revision;
+          }
+          dirty = false;
+          setOutput('保存成功', 'ok');
+          return refreshList(true);
+        })
+        .catch(function (e) {
+          if (/冲突/.test(e.message || '')) { showConflict(); }
+          else setOutput('保存失败：' + e.message, 'err');
+        });
+    }
+
+    function doDelete() {
+      if (!current || current.isNew) { setOutput('请先选择一个已有称号再删除', 'err'); return Promise.resolve(); }
+      if (!confirm('确定删除称号「' + (current.name || current.id) + '」？此操作不可恢复。')) {
+        setOutput('已取消删除', 'info');
+        return Promise.resolve();
+      }
+      setOutput('正在删除…', 'info');
+      return deleteTitle()
+        .then(function () {
+          dirty = false;
+          revision = '';
+          showNoSelection();
+          return refreshList(false);
+        })
+        .then(function () { setOutput('删除成功', 'ok'); })
+        .catch(function (e) { setOutput('删除失败：' + e.message, 'err'); });
+    }
+
+    function run(operation) {
+      if (!projectId) { setOutput('缺少项目上下文，无法操作', 'err'); return; }
+      if (operation === 'read') {
+        setOutput('正在加载称号列表…', 'info');
+        return refreshList(false)
+          .then(function () { setOutput('加载成功', 'ok'); })
+          .catch(function (e) { setOutput('加载失败：' + e.message, 'err'); });
+      }
+      if (operation === 'create') {
+        // 「新建称号」：若表单已填写内容则直接创建；否则重置为新的空草稿
+        if ((form.elements.name.value || '').trim()) {
+          return doSave();
+        }
+        startNew();
+        return Promise.resolve();
+      }
+      if (operation === 'update') {
+        return doSave();
+      }
+      if (operation === 'delete') {
+        return doDelete();
+      }
+      return Promise.resolve();
+    }
+
+    // 绑定 CRUD 按钮
+    document.querySelectorAll('[data-crud-operation]').forEach(function (btn) {
+      btn.addEventListener('click', function () { run(btn.getAttribute('data-crud-operation')); });
+    });
+
+    // 表单 dirty 追踪 + 名称错误即时清除
+    ['name', 'description'].forEach(function (field) {
+      var el = form.elements[field];
+      if (!el) return;
+      el.addEventListener('input', function () {
+        markDirty();
+        if (field === 'name') setError('');
+      });
+    });
+
+    // 搜索
+    searchEl.addEventListener('input', function () { renderList(searchEl.value); });
+
+    // 初始状态：显示一个空草稿（ID 自动生成），便于直接新建
+    startNew();
+    setOutput('正在加载称号列表…', 'info');
+
+    // 鉴权桥接：向宿主请求 token
+    window.addEventListener('message', function (event) {
+      if (event.data && event.data.type === 'aigame-auth-token' && event.data.token) {
+        authToken = event.data.token;
+        if (!started) {
+          started = true;
+          run('read');
+        }
+      }
+    });
+    window.parent.postMessage({ type: 'aigame-auth-token-request' }, '*');
+  })();
+  </script>
+</body>
+</html>
