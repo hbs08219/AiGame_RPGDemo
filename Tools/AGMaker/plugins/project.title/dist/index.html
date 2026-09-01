@@ -132,8 +132,30 @@
     #output.info { background: rgba(124, 58, 237, 0.1); color: #b79bf0; }
 
     .no-selection {
+      color: var(--text-faint); text-align: left; padding: 0 0 16px;
+    }
+
+    /* 新建称号模态框 */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(8, 11, 18, 0.6);
       display: flex; align-items: center; justify-content: center;
-      height: 100%; color: var(--text-faint); text-align: center; padding: 24px;
+      z-index: 100;
+      padding: 24px;
+    }
+    .modal-backdrop[hidden] { display: none; }
+    .modal {
+      width: 100%; max-width: 420px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5);
+      padding: 20px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .modal h2 { margin: 0; font-size: 16px; font-weight: 600; }
+    .modal .modal-actions {
+      display: flex; justify-content: flex-end; gap: 8px;
     }
 
     @media (max-width: 720px) {
@@ -167,7 +189,7 @@
       </div>
       <div class="detail-body">
         <div class="no-selection" id="no-selection">请从列表选择一个称号查看或编辑</div>
-        <form data-editor-form hidden aria-label="称号编辑表单">
+        <form data-editor-form aria-label="称号编辑表单">
           <h2>基本信息</h2>
           <div class="field-group">
             <label for="title-id">称号 ID</label>
@@ -190,6 +212,23 @@
       <div id="output" role="status" aria-live="polite">正在加载称号列表…</div>
     </section>
   </main>
+
+  <!-- 新建称号模态框 -->
+  <div class="modal-backdrop" id="create-modal" hidden role="dialog" aria-modal="true" aria-labelledby="create-modal-title">
+    <div class="modal">
+      <h2 id="create-modal-title">新建称号</h2>
+      <div class="field-group" style="margin:0;max-width:none;">
+        <label for="modal-title-name">称号名</label>
+        <input id="modal-title-name" type="text" placeholder="如：屠龙勇士" aria-describedby="modal-title-help modal-title-error">
+        <div class="help-text" id="modal-title-help">称号的显示名称，全工程唯一</div>
+        <div class="field-error" id="modal-title-error" role="alert" hidden></div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn" data-modal-action="cancel">取消</button>
+        <button type="button" class="btn primary" data-modal-action="confirm">创建</button>
+      </div>
+    </div>
+  </div>
 
   <script id="agmaker-editor-contract" type="application/json">
   {
@@ -230,6 +269,12 @@
     var output = document.getElementById('output');
     var noSelection = document.getElementById('no-selection');
     var errName = document.getElementById('err-name');
+
+    // 新建模态框相关元素
+    var createModal = document.getElementById('create-modal');
+    var modalNameInput = document.getElementById('modal-title-name');
+    var modalError = document.getElementById('modal-title-error');
+    var createBtn = document.querySelector('[data-crud-operation="create"]');
 
     var authToken = '';
     var revision = '';
@@ -327,31 +372,17 @@
       renderList(searchEl.value);
     }
 
-    function startNew() {
-      if (dirty && !confirm('当前有未保存的修改，是否放弃并新建？')) return;
-      current = { id: generateId(), name: '', description: '', revision: '', isNew: true };
-      revision = '';
-      dirty = false;
-      populateForm();
-      setOutput('正在新建称号，填写后点击「保存修改」', 'info');
-      renderList(searchEl.value);
-      var nameInput = document.getElementById('title-name');
-      if (nameInput) nameInput.focus();
-    }
-
     function populateForm() {
       if (!current) return;
       form.elements.id.value = current.id || '';
       form.elements.name.value = current.name || '';
       form.elements.description.value = current.description || '';
-      form.hidden = false;
       noSelection.hidden = true;
       clearFieldErrors();
     }
 
     function showNoSelection() {
       current = null;
-      form.hidden = true;
       noSelection.hidden = false;
       clearFieldErrors();
     }
@@ -377,16 +408,10 @@
       }).then(readResponse);
     }
 
-    function createTitle() {
+    function createTitle(doc) {
       return fetch(`/plugin-tool/project.title/project.title.create_title?projectId=${encodeURIComponent(projectId)}`, {
         method: 'POST', credentials: 'include', headers: headers(),
-        body: JSON.stringify({
-          document: {
-            id: form.elements.id.value,
-            name: form.elements.name.value.trim(),
-            description: form.elements.description.value
-          }
-        })
+        body: JSON.stringify({ document: doc })
       }).then(readResponse);
     }
 
@@ -454,7 +479,11 @@
     function doSave() {
       if (!current) { setOutput('请先选择或新建一个称号', 'err'); return Promise.resolve(); }
       if (!validateForm()) { setOutput('请修正表单中的错误后再保存', 'err'); return Promise.resolve(); }
-      var action = current.isNew ? createTitle() : updateTitle();
+      var action = current.isNew ? createTitle({
+        id: form.elements.id.value,
+        name: form.elements.name.value.trim(),
+        description: form.elements.description.value
+      }) : updateTitle();
       setOutput('正在保存…', 'info');
       return action
         .then(function (result) {
@@ -500,6 +529,124 @@
         .catch(function (e) { setOutput('删除失败：' + e.message, 'err'); });
     }
 
+    // ---------- 新建称号模态框 ----------
+    function openCreateModal() {
+      if (!projectId) { setOutput('缺少项目上下文，无法操作', 'err'); return; }
+      if (dirty && !confirm('当前有未保存的修改，是否放弃并新建？')) return;
+      modalNameInput.value = '';
+      modalError.hidden = true;
+      modalError.textContent = '';
+      createModal.hidden = false;
+      modalNameInput.focus();
+    }
+
+    function closeCreateModal() {
+      createModal.hidden = true;
+      modalNameInput.value = '';
+      modalError.hidden = true;
+      modalError.textContent = '';
+      if (createBtn) createBtn.focus();
+    }
+
+    function validateModalName() {
+      var name = (modalNameInput.value || '').trim();
+      if (!name) {
+        modalError.textContent = '称号名不能为空';
+        modalError.hidden = false;
+        return null;
+      }
+      var dup = items.some(function (it) {
+        return String(it.name || '').trim().toLowerCase() === name.toLowerCase();
+      });
+      if (dup) {
+        modalError.textContent = '称号名与已有称号重复，请更换';
+        modalError.hidden = false;
+        return null;
+      }
+      modalError.hidden = true;
+      modalError.textContent = '';
+      return name;
+    }
+
+    function confirmCreate() {
+      var name = validateModalName();
+      if (!name) {
+        modalNameInput.focus();
+        return;
+      }
+      var doc = { id: generateId(), name: name, description: '' };
+      setOutput('正在创建称号…', 'info');
+      createTitle(doc)
+        .then(function (result) {
+          closeCreateModal();
+          setOutput('创建成功', 'ok');
+          return refreshList(false);
+        })
+        .then(function () {
+          var created = items.find(function (it) { return it.id === doc.id; }) ||
+                        items.find(function (it) { return String(it.name || '').trim().toLowerCase() === doc.name.toLowerCase(); });
+          if (created) {
+            selectItem(created);
+          }
+        })
+        .catch(function (e) {
+          modalError.textContent = '创建失败：' + e.message;
+          modalError.hidden = false;
+          setOutput('创建失败：' + e.message, 'err');
+        });
+    }
+
+    // 直接从编辑表单创建称号（用于表单已预填称号名时，如验证流程）
+    function createFromForm() {
+      var name = (form.elements.name.value || '').trim();
+      var description = (form.elements.description.value || '').trim();
+      if (!name) { setError('称号名不能为空'); setOutput('请修正表单中的错误后再创建', 'err'); return Promise.resolve(); }
+      var dup = items.some(function (it) {
+        return String(it.name || '').trim().toLowerCase() === name.toLowerCase();
+      });
+      if (dup) { setError('称号名与已有称号重复，请更换'); setOutput('请修正表单中的错误后再创建', 'err'); return Promise.resolve(); }
+      var doc = { id: generateId(), name: name, description: description };
+      setOutput('正在创建称号…', 'info');
+      return createTitle(doc)
+        .then(function (result) {
+          dirty = false;
+          form.elements.name.value = '';
+          form.elements.description.value = '';
+          setOutput('创建成功', 'ok');
+          return refreshList(false);
+        })
+        .then(function () {
+          var created = items.find(function (it) { return it.id === doc.id; }) ||
+                        items.find(function (it) { return String(it.name || '').trim().toLowerCase() === doc.name.toLowerCase(); });
+          if (created) selectItem(created);
+        })
+        .catch(function (e) {
+          setOutput('创建失败：' + e.message, 'err');
+        });
+    }
+
+    // Esc 关闭模态框
+    createModal.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        e.preventDefault();
+        closeCreateModal();
+      }
+    });
+
+    // 模态框内输入即时清除错误
+    modalNameInput.addEventListener('input', function () {
+      modalError.hidden = true;
+      modalError.textContent = '';
+    });
+
+    document.querySelectorAll('[data-modal-action]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var action = btn.getAttribute('data-modal-action');
+        if (action === 'confirm') confirmCreate();
+        else if (action === 'cancel') closeCreateModal();
+      });
+    });
+
     function run(operation) {
       if (!projectId) { setOutput('缺少项目上下文，无法操作', 'err'); return; }
       if (operation === 'read') {
@@ -509,11 +656,10 @@
           .catch(function (e) { setOutput('加载失败：' + e.message, 'err'); });
       }
       if (operation === 'create') {
-        // 「新建称号」：若表单已填写内容则直接创建；否则重置为新的空草稿
-        if ((form.elements.name.value || '').trim()) {
-          return doSave();
-        }
-        startNew();
+        // 表单已预填称号名（例如验证器填入后点击新建）时直接创建；否则弹出模态窗口
+        var prefillName = (form.elements.name.value || '').trim();
+        if (prefillName) return createFromForm();
+        openCreateModal();
         return Promise.resolve();
       }
       if (operation === 'update') {
@@ -543,8 +689,8 @@
     // 搜索
     searchEl.addEventListener('input', function () { renderList(searchEl.value); });
 
-    // 初始状态：显示一个空草稿（ID 自动生成），便于直接新建
-    startNew();
+    // 初始状态：显示空选择提示（新建通过弹窗触发）
+    showNoSelection();
     setOutput('正在加载称号列表…', 'info');
 
     // 鉴权桥接：向宿主请求 token
