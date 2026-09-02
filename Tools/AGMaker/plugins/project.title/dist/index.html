@@ -292,14 +292,29 @@
       };
     }
 
+    // 归一化后端返回的条目结构：后端 item 为 { id, document:{...}, revision, etag }，
+    // 统一展开成 { id, name, description, revision }，便于列表渲染、唯一性校验与选中。
+    function normalizeItem(raw) {
+      if (!raw) return raw;
+      var doc = raw.document && typeof raw.document === 'object' ? raw.document : {};
+      return {
+        id: raw.id != null ? raw.id : doc.id,
+        name: raw.name != null ? raw.name : (doc.name != null ? doc.name : ''),
+        description: raw.description != null ? raw.description : (doc.description != null ? doc.description : ''),
+        revision: raw.revision || raw.etag || ''
+      };
+    }
+
     function readResponse(response) {
       return response.json().then(function (payload) {
         if (!response.ok || payload.error) {
           var err = new Error(payload.error || ('HTTP ' + response.status));
           err.status = response.status;
+          err.code = payload.code || '';
           throw err;
         }
-        return payload.data && payload.data.result;
+        // 真实后端返回 { ok, ..., result }；兼容可能的 { data: { result } } 包装。
+        return payload.result || (payload.data && payload.data.result);
       });
     }
 
@@ -438,7 +453,8 @@
 
     function refreshList(keepSelection) {
       return listTitles().then(function (result) {
-        items = (result && result.items) || [];
+        var rawItems = (result && result.items) || [];
+        items = rawItems.map(normalizeItem);
         renderList(searchEl.value);
         if (keepSelection && current && !current.isNew) {
           var match = items.find(function (it) { return it.id === current.id; });
@@ -506,7 +522,7 @@
           return refreshList(true);
         })
         .catch(function (e) {
-          if (/冲突/.test(e.message || '')) { showConflict(); }
+          if (/冲突/.test(e.message || '') || /revision/i.test(e.message || '') || e.code === 'REVISION_CONFLICT') { showConflict(); }
           else setOutput('保存失败：' + e.message, 'err');
         });
     }
