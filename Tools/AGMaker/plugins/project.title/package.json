@@ -1,0 +1,12 @@
+{
+  "name": "@agmaker/project-title-plugin",
+  "version": "0.1.3",
+  "private": true,
+  "description": "AGMaker 项目私有称号编辑器的可再生静态交付物",
+  "scripts": {
+    "build": "node scripts/build.cjs",
+    "check:build": "node scripts/build.cjs --check",
+    "test": "node --test test/*.test.cjs",
+    "test:build": "npm run check:build && npm test"
+  }
+}

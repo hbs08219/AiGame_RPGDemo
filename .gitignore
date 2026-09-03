@@ -32,3 +32,6 @@ Config/DefaultEditorPerProjectUserSettings.ini
 Content/Data/ToolGen/Currency/currency/
 Content/Data/ToolGen/title/title/GEN_*.json
 Content/Data/ToolGen/title-*/ 
+
+# Plugin workshop local backups
+Tools/AGMaker/plugins/*.backup-*/
