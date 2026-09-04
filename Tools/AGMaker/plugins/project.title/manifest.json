@@ -5,7 +5,7 @@
   "distribution": "project-private",
   "enabledByDefault": false,
   "name": "称号系统",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "项目私有插件：称号系统",
   "author": "Project Team",
   "category": "plugin-workshop/gameplay",
@@ -33,9 +33,6 @@
         },
         "root": "title/title",
         "schema": "schemas/title.schema.json",
-        "uniqueFields": [
-          "name"
-        ],
         "storage": {
           "fileName": "{id}.json",
           "idField": "id",
@@ -47,7 +44,7 @@
   "domainCapabilities": [
     {
       "id": "project.title",
-      "version": "0.1.3",
+      "version": "0.1.4",
       "title": "称号系统",
       "description": "项目私有插件：称号系统",
       "maturity": "experimental",

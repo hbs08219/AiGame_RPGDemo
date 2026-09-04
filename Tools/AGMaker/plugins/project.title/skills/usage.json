@@ -4,7 +4,7 @@
   "instructions": [
     "项目私有插件：称号系统，管理称号名与称号描述。",
     "读取称号列表使用 Action project.title.list_titles（POST /plugin-tool/project.title/project.title.list_titles）。",
-    "创建称号使用 Action project.title.create_title，需提供 id（唯一标识）、name（必填，全项目唯一）、description（可选）。",
+    "创建称号使用 Action project.title.create_title，需提供 id（唯一标识）、name（必填，全项目唯一）、description（可选）；在编辑器中点击列表头部「新建称号」会弹出模态窗口，填写称号名后确认创建。",
     "更新称号使用 Action project.title.update_title，需提供完整的 id、name、description 与当前 revision。",
     "删除临时称号使用 Action project.title.delete_title，必须先从列表读取目标的当前 revision，并在用户明确确认后仅删除该 id。",
     "不得直接读写 Content/Data/ToolGen/title/title/ 下的原始 JSON 文件。",
