@@ -387,7 +387,7 @@
 
   function buildIdField() {
     var wrap = document.createElement('div'); wrap.className = 'field';
-    var label = document.createElement('label'); label.setAttribute('for', 'field-id'); label.textContent = '唯一标识';
+    var label = document.createElement('label'); label.setAttribute('for', 'field-id'); label.textContent = '称号ID';
     var input = document.createElement('input'); input.type = 'text'; input.id = 'field-id'; input.name = 'id';
     input.readOnly = true; input.value = state.form.id; input.setAttribute('data-field-path', 'id');
     var help = document.createElement('div'); help.className = 'help'; help.textContent = '系统自动生成的唯一标识，不可编辑';

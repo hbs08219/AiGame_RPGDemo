@@ -5,10 +5,10 @@
   "distribution": "project-private",
   "enabledByDefault": false,
   "name": "称号系统",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "项目私有插件：称号系统",
   "author": "Project Team",
-  "category": "plugin-workshop/gameplay",
+  "category": "plugin-workshop/iteration",
   "compatibility": {
     "workbench": ">=0.1.0"
   },
@@ -44,7 +44,7 @@
   "domainCapabilities": [
     {
       "id": "project.title",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "title": "称号系统",
       "description": "项目私有插件：称号系统",
       "maturity": "experimental",
