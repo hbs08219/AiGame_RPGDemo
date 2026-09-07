@@ -508,21 +508,83 @@
     renderDetail();
   }
 
-  function onDeleteClick() {
-    if (!state.selectedId) return;
-    var label = state.form.name || state.form.id;
-    if (!window.confirm('确定删除称号「' + label + '」？此操作不可恢复。')) return;
-    var targetId = state.form.id;
-    deleteTitle(targetId, state.revision).then(function () {
-      state.items = state.items.filter(function (it) { return it.id !== targetId; });
+  var deleteInProgress = false;
+
+  function isEmbeddedEditor() {
+    // 预览与桌面宿主会把编辑器放在 iframe 中。即使未授予 allow-modals，
+    // 某些浏览器仍暴露 window.confirm，但会静默抑制它，因此嵌入时统一使用编辑器内确认框。
+    try { return window.self !== window.top; } catch (err) { return true; }
+  }
+
+  function deleteSelectedTitle(target) {
+    if (deleteInProgress) return;
+    deleteInProgress = true;
+    var deleteButton = document.getElementById('btn-delete');
+    if (deleteButton) deleteButton.disabled = true;
+
+    deleteTitle(target.id, target.revision).then(function () {
+      deleteInProgress = false;
+      state.items = state.items.filter(function (it) { return it.id !== target.id; });
       state.selectedId = null; state.revision = null;
       state.form = { id: '', name: '', description: '' };
       state.originalSnapshot = null; state.dirty = false; state.nameError = ''; state.saveState = 'idle';
       showBanner('info', '删除成功');
       loadList();
     }).catch(function (err) {
+      deleteInProgress = false;
+      renderDetail();
       showBanner('error', '删除失败：' + ((err && err.message) || '未知错误'));
     });
+  }
+
+  function openDeleteConfirmation(target) {
+    var overlay = document.createElement('div');
+    overlay.className = 'modal-overlay';
+    overlay.id = 'delete-confirmation-modal';
+    overlay.innerHTML =
+      '<div class="modal-box" role="alertdialog" aria-modal="true" aria-labelledby="delete-confirmation-title" aria-describedby="delete-confirmation-description">' +
+      '<h3 id="delete-confirmation-title">确认删除称号</h3>' +
+      '<p id="delete-confirmation-description">确定删除称号「' + escapeHtml(target.label) + '」？此操作不可恢复。</p>' +
+      '<div class="modal-actions">' +
+      '<button type="button" class="btn" data-delete-confirm-action="cancel">取消</button>' +
+      '<button type="button" class="btn danger" data-delete-confirm-action="confirm">确认删除</button>' +
+      '</div></div>';
+    elModalRoot.appendChild(overlay);
+
+    var cancelButton = overlay.querySelector('[data-delete-confirm-action="cancel"]');
+    var confirmButton = overlay.querySelector('[data-delete-confirm-action="confirm"]');
+    function close() {
+      closeModal(overlay);
+      var deleteButton = document.getElementById('btn-delete');
+      if (deleteButton) deleteButton.focus();
+    }
+    cancelButton.addEventListener('click', close);
+    confirmButton.addEventListener('click', function () {
+      if (confirmButton.disabled) return;
+      confirmButton.disabled = true;
+      close();
+      deleteSelectedTitle(target);
+    });
+    overlay.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') { ev.preventDefault(); close(); return; }
+      if (ev.key === 'Tab') {
+        var focusables = [cancelButton, confirmButton].filter(function (button) { return !button.disabled; });
+        if (ev.shiftKey && document.activeElement === focusables[0]) { ev.preventDefault(); focusables[focusables.length - 1].focus(); }
+        else if (!ev.shiftKey && document.activeElement === focusables[focusables.length - 1]) { ev.preventDefault(); focusables[0].focus(); }
+      }
+    });
+    cancelButton.focus();
+  }
+
+  function onDeleteClick() {
+    if (!state.selectedId || deleteInProgress) return;
+    var target = { id: state.form.id, label: state.form.name || state.form.id, revision: state.revision };
+    if (isEmbeddedEditor()) {
+      openDeleteConfirmation(target);
+      return;
+    }
+    if (!window.confirm('确定删除称号「' + target.label + '」？此操作不可恢复。')) return;
+    deleteSelectedTitle(target);
   }
 
   // ---------- 新建称号模态窗口 ----------
