@@ -47,3 +47,18 @@ test('project.title 已交付的 dist 与受控源一致', () => {
     stdio: 'pipe',
   });
 });
+
+test('project.title 删除审批桥只把一次性令牌用于本次删除请求', () => {
+  const source = fs.readFileSync(SOURCE_PATH, 'utf8');
+
+  assert.match(source, /type: 'aigame-plugin-delete-approval-request'/);
+  assert.match(source, /pluginId: 'project\.title'/);
+  assert.match(source, /actionName: 'project\.title\.delete_title'/);
+  assert.match(source, /input: \{ id: target\.id, revision: target\.revision \}/);
+  assert.match(source, /data\.type !== 'aigame-plugin-delete-approval-result' \|\| data\.requestId !== requestId/);
+  assert.match(source, /data\.ok === true && typeof data\.token === 'string' && data\.token/);
+  assert.match(source, /result\['X-Harness-Interactive-Approval'\] = interactiveApproval/);
+  assert.match(source, /headers\(interactiveApproval\)/);
+  assert.match(source, /DELETE_APPROVAL_TIMEOUT_MS = 30000/);
+  assert.doesNotMatch(source, /localStorage|sessionStorage/);
+});

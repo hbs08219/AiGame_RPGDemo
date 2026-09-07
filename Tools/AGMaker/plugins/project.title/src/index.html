@@ -157,13 +157,16 @@
   var authToken = '';
   var authReady = false;
 
-  function headers() {
-    return {
+  function headers(interactiveApproval) {
+    var result = {
       'Content-Type': 'application/json',
       'X-Aigame-Project-Context': 'iframe',
       'X-Aigame-Project-Id': projectId,
       Authorization: `Bearer ${authToken}`
     };
+    // 一次性审批令牌只存在于调用栈中，只附加到对应的 delete 请求。
+    if (interactiveApproval) result['X-Harness-Interactive-Approval'] = interactiveApproval;
+    return result;
   }
 
   function readActionResponse(res) {
@@ -220,9 +223,9 @@
       method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: record.id, patch: { name: record.name, description: record.description }, revision: revision })
     }).then(readActionResponse).then(function (json) { return extractItem(json, record); });
   }
-  function deleteTitle(id, revision) {
+  function deleteTitle(id, revision, interactiveApproval) {
     return fetch(`/plugin-tool/project.title/project.title.delete_title?projectId=${encodeURIComponent(projectId)}`, {
-      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: id, revision: revision })
+      method: 'POST', credentials: 'include', headers: headers(interactiveApproval), body: JSON.stringify({ id: id, revision: revision })
     }).then(readActionResponse);
   }
 
@@ -339,7 +342,7 @@
     var actions = document.createElement('div'); actions.className = 'actions';
     actions.innerHTML =
       '<button type="button" class="btn danger" id="btn-delete" data-crud-operation="delete"' +
-      (hasSelection ? ' title="删除当前称号（需二次确认）"' : ' disabled title="请先在列表中选择一个称号"') +
+      (hasSelection && !deleteInProgress ? ' title="删除当前称号（需审批确认）"' : ' disabled title="' + (deleteInProgress ? '正在等待删除审批' : '请先在列表中选择一个称号') + '"') +
       '>删除</button>' +
       '<button type="button" class="btn primary" id="btn-save" data-crud-operation="update"' +
       ((!hasSelection || state.saveState === 'saving') ? ' disabled' : '') +
@@ -509,20 +512,96 @@
   }
 
   var deleteInProgress = false;
+  var DELETE_APPROVAL_TIMEOUT_MS = 30000;
 
-  function isEmbeddedEditor() {
-    // 预览与桌面宿主会把编辑器放在 iframe 中。即使未授予 allow-modals，
-    // 某些浏览器仍暴露 window.confirm，但会静默抑制它，因此嵌入时统一使用编辑器内确认框。
-    try { return window.self !== window.top; } catch (err) { return true; }
+  function makeDeleteApprovalRequestId() {
+    if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
+    if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
+      var values = new Uint32Array(4);
+      window.crypto.getRandomValues(values);
+      return 'delete-' + Array.prototype.map.call(values, function (value) { return value.toString(16); }).join('-');
+    }
+    return 'delete-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
   }
 
-  function deleteSelectedTitle(target) {
+  function requestDeleteApproval(target) {
+    return new Promise(function (resolve, reject) {
+      var requestId = makeDeleteApprovalRequestId();
+      var settled = false;
+      var timeoutId = window.setTimeout(function () {
+        finish(new Error('删除审批超时，请重新确认。'));
+      }, DELETE_APPROVAL_TIMEOUT_MS);
+
+      function finish(error, token) {
+        if (settled) return;
+        settled = true;
+        window.clearTimeout(timeoutId);
+        window.removeEventListener('message', onApprovalResult);
+        if (error) reject(error);
+        else resolve(token);
+      }
+
+      function onApprovalResult(event) {
+        var data = event.data;
+        if (event.source !== window.parent || !data || data.type !== 'aigame-plugin-delete-approval-result' || data.requestId !== requestId) return;
+        if (data.ok === true && typeof data.token === 'string' && data.token) {
+          finish(null, data.token);
+          return;
+        }
+        finish(new Error(data.error || '删除审批未获通过。'));
+      }
+
+      window.addEventListener('message', onApprovalResult);
+      try {
+        window.parent.postMessage({
+          type: 'aigame-plugin-delete-approval-request',
+          requestId: requestId,
+          pluginId: 'project.title',
+          actionName: 'project.title.delete_title',
+          input: { id: target.id, revision: target.revision }
+        }, '*');
+      } catch (err) {
+        finish(new Error('无法请求删除审批。'));
+      }
+    });
+  }
+
+  function reloadCurrentTitle(id) {
+    return listTitles().then(function (items) {
+      state.items = items;
+      state.listStatus = 'loaded';
+      var latest = items.find(function (item) { return item.id === id; });
+      if (latest) {
+        state.selectedId = latest.id;
+        state.revision = latest.revision || null;
+        state.form = { id: latest.id, name: latest.name || '', description: latest.description || '' };
+        state.originalSnapshot = cloneForm(state.form);
+      } else {
+        state.selectedId = null; state.revision = null;
+        state.form = { id: '', name: '', description: '' };
+        state.originalSnapshot = null;
+      }
+      state.dirty = false;
+      state.nameError = '';
+      state.saveState = 'idle';
+    });
+  }
+
+  function deleteFailureMessage(err) {
+    if (err && err.status === 409) return '删除冲突：记录已变化，已重新加载当前记录。';
+    return '删除失败：' + ((err && err.message) || '未知错误') + ' 已重新加载当前记录。';
+  }
+
+  function requestApprovedDelete(target) {
     if (deleteInProgress) return;
     deleteInProgress = true;
-    var deleteButton = document.getElementById('btn-delete');
-    if (deleteButton) deleteButton.disabled = true;
+    renderDetail();
+    showBanner('info', '正在等待删除审批…');
 
-    deleteTitle(target.id, target.revision).then(function () {
+    requestDeleteApproval(target).then(function (interactiveApproval) {
+      // 令牌是此回调的局部值；deleteTitle 只在本次请求头中使用它。
+      return deleteTitle(target.id, target.revision, interactiveApproval);
+    }).then(function () {
       deleteInProgress = false;
       state.items = state.items.filter(function (it) { return it.id !== target.id; });
       state.selectedId = null; state.revision = null;
@@ -532,8 +611,14 @@
       loadList();
     }).catch(function (err) {
       deleteInProgress = false;
-      renderDetail();
-      showBanner('error', '删除失败：' + ((err && err.message) || '未知错误'));
+      var message = deleteFailureMessage(err);
+      reloadCurrentTitle(target.id).then(function () {
+        renderAll();
+        showBanner('error', message);
+      }).catch(function () {
+        renderAll();
+        showBanner('error', message + ' 重新加载失败，请手动刷新列表。');
+      });
     });
   }
 
@@ -563,7 +648,7 @@
       if (confirmButton.disabled) return;
       confirmButton.disabled = true;
       close();
-      deleteSelectedTitle(target);
+      requestApprovedDelete(target);
     });
     overlay.addEventListener('keydown', function (ev) {
       if (ev.key === 'Escape') { ev.preventDefault(); close(); return; }
@@ -578,13 +663,13 @@
 
   function onDeleteClick() {
     if (!state.selectedId || deleteInProgress) return;
-    var target = { id: state.form.id, label: state.form.name || state.form.id, revision: state.revision };
-    if (isEmbeddedEditor()) {
-      openDeleteConfirmation(target);
+    if (typeof state.revision !== 'string' || !state.revision) {
+      showBanner('error', '无法确认当前称号版本，正在重新加载记录。');
+      reloadCurrentTitle(state.selectedId).then(renderAll).catch(function () { renderAll(); });
       return;
     }
-    if (!window.confirm('确定删除称号「' + target.label + '」？此操作不可恢复。')) return;
-    deleteSelectedTitle(target);
+    var target = { id: state.form.id, label: state.form.name || state.form.id, revision: state.revision };
+    openDeleteConfirmation(target);
   }
 
   // ---------- 新建称号模态窗口 ----------
