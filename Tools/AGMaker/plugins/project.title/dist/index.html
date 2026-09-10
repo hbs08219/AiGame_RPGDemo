@@ -17,19 +17,19 @@
     "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
     "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
     "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
-    "delete": { "available": false, "disabled": true, "operation": "delete" }
+    "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
   },
   "coreResourceId": "title",
   "resources": [
     {
       "id": "title",
       "displayName": "称号",
-      "operations": { "create": true, "delete": false, "findReferences": false, "get": true, "list": true, "update": true, "validate": true },
+      "operations": { "create": true, "delete": true, "findReferences": false, "get": true, "list": true, "update": true, "validate": true },
       "actions": {
         "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
         "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
         "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
-        "delete": { "available": false, "disabled": true, "operation": "delete" }
+        "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
       }
     }
   ]
@@ -38,7 +38,7 @@
 <style>
   :root {
     --bg-0: #14161a; --bg-1: #1b1e24; --bg-2: #232730; --bg-3: #2b303a;
-    --border: #383e4a; --text-0: #e8eaee; --text-1: #b3b9c4; --text-2: #7c8390;
+    --border: #383e4a; --text-0: #e8eaee; --text-1: #b3b9c4; --text-2: #9aa3b2;
     --accent: #5b9dff; --accent-text: #0b1420; --danger: #ff6b6b; --danger-bg: #3a2020;
     --success: #4fd18b; --focus-ring: #5b9dff; --radius: 6px;
   }
@@ -54,6 +54,7 @@
   #global-banner.show { display: block; }
   #global-banner.error { background: var(--danger-bg); color: #ffb3b3; }
   #global-banner.info { background: #1f3a4d; color: #bfe3ff; }
+  #global-banner.success { background: #1f3d2b; color: #b3f0c9; }
   main[data-layout="list-detail"] { flex: 1 1 auto; display: flex; min-height: 0; }
   nav.list-pane { width: 320px; min-width: 280px; flex: 0 0 auto; border-right: 1px solid var(--border);
     background: var(--bg-1); display: flex; flex-direction: column; min-height: 0; }
@@ -130,7 +131,7 @@
       <div class="list-header" data-placement="list-header">
         <div class="row-top"><h2 id="list-heading">称号列表</h2></div>
         <button type="button" class="btn primary block" id="btn-new" data-crud-operation="create" data-placement="list-header">+ 新建称号</button>
-        <input type="text" class="search-box" id="search-box" placeholder="按称号名 / ID 搜索" aria-label="搜索称号" />
+        <input type="search" class="search-box" id="search-box" placeholder="按称号名 / ID 搜索" aria-label="搜索称号" />
       </div>
       <div id="list-loading" class="list-status" hidden><span class="icon" aria-hidden="true">⏳</span>列表加载中…</div>
       <div id="list-error" class="list-status" hidden>
@@ -165,6 +166,11 @@
     };
   }
 
+  function actionUrl(path) {
+    if (!projectId) return path;
+    return path + (path.indexOf('?') >= 0 ? '&' : '?') + 'projectId=' + encodeURIComponent(projectId);
+  }
+
   function readActionResponse(res) {
     return res.text().then(function (text) {
       var json = null;
@@ -177,6 +183,13 @@
       }
       return json;
     });
+  }
+
+  function isRevisionConflictError(err) {
+    return !!(err && err.payload && (
+      err.payload.code === 'REVISION_CONFLICT' ||
+      /conflict|冲突/i.test(String(err.payload.code || err.payload.error || err.payload.message || ''))
+    ));
   }
 
   function normalizeItem(item) {
@@ -203,19 +216,24 @@
   }
 
   function listTitles() {
-    return fetch('/plugin-tool/project.title/project.title.list_titles', {
+    return fetch(`/plugin-tool/project.title/project.title.list_titles?projectId=${encodeURIComponent(projectId)}`, {
       method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ limit: 200 })
     }).then(readActionResponse).then(extractList);
   }
   function createTitle(record) {
-    return fetch('/plugin-tool/project.title/project.title.create_title', {
+    return fetch(`/plugin-tool/project.title/project.title.create_title?projectId=${encodeURIComponent(projectId)}`, {
       method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ document: record })
     }).then(readActionResponse).then(function (json) { return extractItem(json, record); });
   }
   function updateTitle(record, revision) {
-    return fetch('/plugin-tool/project.title/project.title.update_title', {
+    return fetch(`/plugin-tool/project.title/project.title.update_title?projectId=${encodeURIComponent(projectId)}`, {
       method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: record.id, patch: { name: record.name, description: record.description }, revision: revision })
     }).then(readActionResponse).then(function (json) { return extractItem(json, record); });
+  }
+  function deleteTitle(id, revision) {
+    return fetch(`/plugin-tool/project.title/project.title.delete_title?projectId=${encodeURIComponent(projectId)}`, {
+      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: id, revision: revision })
+    }).then(readActionResponse);
   }
 
   var state = {
@@ -223,7 +241,7 @@
     selectedId: null, isDraft: false, revision: null,
     form: { id: '', name: '', description: '' },
     originalSnapshot: null, dirty: false,
-    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null
+    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null, deleteInProgress: false
   };
 
   function genDraftId() { return 'title_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7); }
@@ -337,8 +355,8 @@
     btnDelete.type = 'button'; btnDelete.className = 'btn danger'; btnDelete.id = 'btn-delete';
     btnDelete.textContent = '删除';
     btnDelete.setAttribute('data-crud-operation', 'delete');
-    btnDelete.disabled = true;
-    btnDelete.title = '当前版本未开放删除操作';
+    btnDelete.setAttribute('aria-label', '删除当前称号');
+    btnDelete.disabled = state.isDraft || state.deleteInProgress;
     btnDelete.addEventListener('click', onDeleteClick);
 
     var btnSave = document.createElement('button');
@@ -379,7 +397,7 @@
 
   function buildIdField() {
     var wrap = document.createElement('div'); wrap.className = 'field';
-    var label = document.createElement('label'); label.setAttribute('for', 'field-id'); label.textContent = '称号ID';
+    var label = document.createElement('label'); label.setAttribute('for', 'field-id'); label.textContent = '编号';
     var input = document.createElement('input'); input.type = 'text'; input.id = 'field-id'; input.name = 'id';
     input.readOnly = true; input.value = state.form.id;
     var help = document.createElement('div'); help.className = 'help'; help.textContent = '系统自动生成的唯一标识，不可编辑';
@@ -425,7 +443,7 @@
   }
 
   function requestSelect(id) { if (state.selectedId === id && !state.isDraft) return; guardDirty(function () { doSelect(id); }); }
-  function requestNew() { guardDirty(function () { doNew(); }); }
+  function requestNew() { guardDirty(function () { showCreateModal(); }); }
   function guardDirty(action) {
     if (state.dirty) { state.pendingAction = action; showDirtyGuardModal(); return; }
     action();
@@ -439,14 +457,72 @@
     state.dirty = false; state.nameError = ''; state.saveState = 'idle'; state.saveErrorMessage = '';
     renderAll();
   }
-  function doNew() {
-    var draftId = genDraftId();
-    state.selectedId = draftId; state.isDraft = true; state.revision = null;
-    state.form = { id: draftId, name: '', description: '' };
-    state.originalSnapshot = cloneForm(state.form);
-    state.dirty = false; state.nameError = ''; state.saveState = 'idle'; state.saveErrorMessage = '';
-    renderAll();
-    var nameInput = document.getElementById('field-name'); if (nameInput) nameInput.focus();
+  function showCreateModal() {
+    var overlay = document.createElement('div'); overlay.className = 'modal-overlay';
+    overlay.innerHTML =
+      '<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="create-title">' +
+      '<h3 id="create-title">新建称号</h3>' +
+      '<div class="field">' +
+      '<label for="create-name">称号名 *</label>' +
+      '<input type="text" id="create-name" aria-required="true" autocomplete="off" />' +
+      '<div class="help">必填，全项目内唯一</div>' +
+      '<div class="field-error" id="create-name-error"></div>' +
+      '</div>' +
+      '<div class="modal-actions">' +
+      '<button type="button" class="btn" id="create-cancel">取消</button>' +
+      '<button type="button" class="btn primary" id="create-confirm">确认创建</button>' +
+      '</div></div>';
+    elModalRoot.appendChild(overlay);
+
+    var input = document.getElementById('create-name');
+    var errEl = document.getElementById('create-name-error');
+
+    function validateCreateName() {
+      var name = input.value.trim();
+      if (!name) { errEl.textContent = '称号名不能为空'; return false; }
+      var dup = state.items.some(function (it) { return (it.name || '').trim() === name; });
+      if (dup) { errEl.textContent = '已存在同名称号，请使用其他名称'; return false; }
+      errEl.textContent = ''; return true;
+    }
+
+    function doConfirm() {
+      if (!validateCreateName()) { input.focus(); return; }
+      var name = input.value.trim();
+      closeModal(overlay);
+      performCreate(name);
+    }
+
+    input.addEventListener('input', validateCreateName);
+    document.getElementById('create-cancel').addEventListener('click', function () { closeModal(overlay); });
+    document.getElementById('create-confirm').addEventListener('click', doConfirm);
+    input.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') { ev.preventDefault(); doConfirm(); }
+    });
+    overlay.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') { ev.preventDefault(); closeModal(overlay); }
+    });
+    input.focus();
+  }
+
+  function performCreate(name) {
+    var record = { id: genDraftId(), name: name, description: '' };
+    createTitle(record).then(function (saved) {
+      return listTitles().then(function (items) {
+        state.items = items;
+        var created = items.find(function (item) { return item.id === record.id; }) || Object.assign({}, record, saved || {});
+        state.selectedId = created.id; state.isDraft = false; state.revision = created.revision || null;
+        state.form = { id: created.id, name: created.name || '', description: created.description || '' };
+        state.originalSnapshot = cloneForm(state.form);
+        state.dirty = false; state.saveState = 'saved'; state.saveErrorMessage = ''; state.nameError = '';
+        hideBanner();
+        renderAll();
+        showBanner('success', '创建成功');
+      });
+    }).catch(function (err) {
+      state.saveState = 'error'; state.saveErrorMessage = (err && err.message) || '未知错误';
+      showBanner('error', '创建失败：' + (err && err.message || '未知错误'));
+      renderAll();
+    });
   }
 
   function validateName() {
@@ -476,25 +552,20 @@
       return;
     }
 
-    listTitles().then(function (latestItems) {
-      var latestItem = latestItems.find(function (it) { return it.id === record.id; });
-      var conflict = latestItem && state.originalSnapshot && (
-        (latestItem.name || '') !== state.originalSnapshot.name ||
-        (latestItem.description || '') !== state.originalSnapshot.description
-      );
-      if (conflict) {
-        state.items = latestItems; state.saveState = 'idle';
+    updateTitle(record, state.revision).then(function (saved) {
+      var normalized = Object.assign({}, record, saved || {});
+      state.items = state.items.map(function (it) { return it.id === normalized.id ? normalized : it; });
+      onSaveSuccess(normalized);
+    }).catch(function (err) {
+      if (!isRevisionConflictError(err)) { onSaveError(err); return; }
+      state.saveState = 'idle';
+      listTitles().then(function (latestItems) {
+        state.items = latestItems;
+        var latestItem = latestItems.find(function (it) { return it.id === record.id; }) || record;
         showConflictModal(latestItem);
         renderDetail();
-        return;
-      }
-      state.items = latestItems;
-      return updateTitle(record, latestItem && latestItem.revision || state.revision).then(function (saved) {
-        var normalized = Object.assign({}, record, saved || {});
-        state.items = state.items.map(function (it) { return it.id === normalized.id ? normalized : it; });
-        onSaveSuccess(normalized);
-      });
-    }).catch(onSaveError);
+      }).catch(onSaveError);
+    });
   }
 
   function onSaveSuccess(normalized) {
@@ -502,7 +573,7 @@
     state.form = { id: normalized.id, name: normalized.name || '', description: normalized.description || '' };
     state.originalSnapshot = cloneForm(state.form);
     state.dirty = false; state.saveState = 'saved'; state.saveErrorMessage = '';
-    hideBanner();
+    showBanner('success', '已保存');
     renderAll();
   }
   function onSaveError(err) {
@@ -511,7 +582,33 @@
   }
 
   function onDeleteClick() {
-    showBanner('info', '当前版本未开放删除操作，如需下线该称号请通过管理流程处理。');
+    if (state.isDraft || state.deleteInProgress) return;
+    var target = { id: state.selectedId, name: state.form.name, revision: state.revision };
+    var label = target.name || target.id;
+    if (!window.confirm('确认删除称号“' + label + '”？删除后不可恢复。')) return;
+    performDelete(target);
+  }
+
+  function performDelete(target) {
+    if (state.deleteInProgress) return;
+    state.deleteInProgress = true;
+    renderDetail();
+    showBanner('info', '正在删除…');
+    deleteTitle(target.id, target.revision).then(function () {
+      state.deleteInProgress = false;
+      state.items = state.items.filter(function (it) { return it.id !== target.id; });
+      state.selectedId = null; state.isDraft = false; state.revision = null;
+      state.form = { id: '', name: '', description: '' };
+      state.originalSnapshot = null; state.dirty = false;
+      state.saveState = 'idle'; state.saveErrorMessage = ''; state.nameError = '';
+      renderAll();
+      showBanner('success', '删除成功');
+    }).catch(function (err) {
+      state.deleteInProgress = false;
+      renderDetail();
+      showBanner('error', '删除失败：' + (err && err.message || '未知错误'));
+      loadList();
+    });
   }
 
   function showDirtyGuardModal() {
@@ -534,6 +631,7 @@
   }
 
   function showConflictModal(latestItem) {
+    showBanner('error', '保存冲突：该称号的数据已被其他人修改，请刷新或重新加载最新数据。');
     var overlay = document.createElement('div'); overlay.className = 'modal-overlay';
     overlay.innerHTML =
       '<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="conflict-title">' +

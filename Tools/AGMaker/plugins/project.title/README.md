@@ -27,6 +27,7 @@ Schema 为 `additionalProperties: false`，不接受未声明字段。
 - 新建 / 编辑 / 保存的必填校验与重名校验
 - 未保存修改的脏数据保护（切换选中项、离开页面前提示）
 - 保存冲突检测与“覆盖保存 / 放弃并重新加载”选择
+- 删除采用编辑器内单次确认：选中称号后点删除，弹出一次确认，取消不删除，确认后直接调用 `delete_title` 并刷新列表、清空详情、显示成功反馈；无审批、无令牌，不携带任何审批请求头
 - 列表、详情在加载中、空、错误、未选中状态下的对应提示
 
 ## 编辑器构建与交付
@@ -43,4 +44,4 @@ Schema 为 `additionalProperties: false`，不接受未声明字段。
 
 ## Agent 使用约束
 
-Agent 应通过 `project.title.*` 已声明的 Action 读写称号数据，不应直接编辑 `Content/Data/ToolGen/title/title/` 下的原始 JSON 文件，以保证 Schema 校验与唯一性规则一致生效。删除仅可用于用户明确指定的临时数据，必须先读取目标的当前 revision 并取得本次删除的明确确认。
+Agent 应通过 `project.title.*` 已声明的 Action 读写称号数据，不应直接编辑 `Content/Data/ToolGen/title/title/` 下的原始 JSON 文件，以保证 Schema 校验与唯一性规则一致生效。删除仅可用于用户明确指定的数据，必须先读取目标的当前 revision 并在编辑器内单次确认后直接删除。
