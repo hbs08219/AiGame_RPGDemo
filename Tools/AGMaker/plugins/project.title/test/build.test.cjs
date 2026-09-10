@@ -48,17 +48,23 @@ test('project.title 已交付的 dist 与受控源一致', () => {
   });
 });
 
-test('project.title 删除审批桥只把一次性令牌用于本次删除请求', () => {
+test('project.title 删除为编辑器内单次确认直接删除，不请求审批、不携带审批令牌', () => {
   const source = fs.readFileSync(SOURCE_PATH, 'utf8');
 
-  assert.match(source, /type: 'aigame-plugin-delete-approval-request'/);
-  assert.match(source, /pluginId: 'project\.title'/);
-  assert.match(source, /actionName: 'project\.title\.delete_title'/);
-  assert.match(source, /input: \{ id: target\.id, revision: target\.revision \}/);
-  assert.match(source, /data\.type !== 'aigame-plugin-delete-approval-result' \|\| data\.requestId !== requestId/);
-  assert.match(source, /data\.ok === true && typeof data\.token === 'string' && data\.token/);
-  assert.match(source, /result\['X-Harness-Interactive-Approval'\] = interactiveApproval/);
-  assert.match(source, /headers\(interactiveApproval\)/);
-  assert.match(source, /DELETE_APPROVAL_TIMEOUT_MS = 30000/);
+  assert.match(source, /function deleteTitle\(id, revision\)/);
+  assert.match(source, /project\.title\.delete_title/);
+  assert.match(source, /performDelete\(target\)/);
+  assert.match(source, /"actionName": "project\.title\.delete_title"/);
+
+  assert.doesNotMatch(source, /aigame-plugin-delete-approval-request/);
+  assert.doesNotMatch(source, /aigame-plugin-delete-approval-result/);
+  assert.doesNotMatch(source, /X-Harness-Interactive-Approval/);
+  assert.doesNotMatch(source, /interactiveApproval/);
+  assert.doesNotMatch(source, /DELETE_APPROVAL_TIMEOUT_MS/);
   assert.doesNotMatch(source, /localStorage|sessionStorage/);
+  assert.doesNotMatch(source, /当前版本未开放删除操作/);
+  assert.doesNotMatch(source, /btnDelete\.disabled = true/);
+
+  // id 字段标签与设计契约一致，避免字段契约校验失败
+  assert.match(source, /label\.textContent = '编号'/);
 });

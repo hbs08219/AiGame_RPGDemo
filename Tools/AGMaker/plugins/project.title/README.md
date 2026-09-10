@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 | `id` | string | 是 | 系统自动生成的唯一标识，只读，不可编辑 |
 | `name` | string | 是 | 称号名，全项目内唯一 |
+| `abbreviation` | string | 否 | 称号简称，可留空 |
 | `description` | string | 否 | 称号描述，可留空 |
 
 Schema 为 `additionalProperties: false`，不接受未声明字段。
@@ -24,12 +25,10 @@ Schema 为 `additionalProperties: false`，不接受未声明字段。
 `dist/index.html` 是本插件的项目私有静态编辑器，通过 `#agmaker-editor-contract` 中声明的受控 Action（`project.title.list_titles` / `create_title` / `update_title` / `delete_title`）读写称号数据，不直接读写底层 JSON 文件。编辑器实现了：
 
 - 列表 + 详情的浏览与编辑工作流（list-detail 布局，参考物品编辑器范式）
-- 新建采用模态窗口：点击列表头部「新建称号」弹出新建窗口，填写称号名（必填、全项目唯一）后确认创建；窗口内即时校验空名与重名，支持 Enter 提交、Esc 取消、取消不产生任何数据；创建成功后窗口关闭、列表刷新并自动选中新称号，右侧详情可继续编辑描述
-- 编辑 / 保存的必填校验与重名校验
+- 新建 / 编辑 / 保存的必填校验与重名校验
 - 未保存修改的脏数据保护（切换选中项、离开页面前提示）
 - 保存冲突检测与“覆盖保存 / 放弃并重新加载”选择
-- 删除先由编辑器内确认，再向父窗口请求一次性审批；只有审批成功时才将令牌置于本次 `delete_title` 请求的 `X-Harness-Interactive-Approval` 请求头。令牌不会进入 URL、存储或日志
-- 审批被拒绝、超时或删除遇到版本冲突时会显示可见提示并重新加载当前记录
+- 删除采用编辑器内单次确认：选中称号后点删除，弹出一次确认，取消不删除，确认后直接调用 `delete_title` 并刷新列表、清空详情、显示成功反馈；无审批、无令牌，不携带任何审批请求头
 - 列表、详情在加载中、空、错误、未选中状态下的对应提示
 
 ## 编辑器构建与交付
@@ -46,4 +45,4 @@ Schema 为 `additionalProperties: false`，不接受未声明字段。
 
 ## Agent 使用约束
 
-Agent 应通过 `project.title.*` 已声明的 Action 读写称号数据，不应直接编辑 `Content/Data/ToolGen/title/title/` 下的原始 JSON 文件，以保证 Schema 校验与唯一性规则一致生效。删除仅可用于用户明确指定的临时数据，必须先读取目标的当前 revision 并取得本次删除的明确确认。
+Agent 应通过 `project.title.*` 已声明的 Action 读写称号数据，不应直接编辑 `Content/Data/ToolGen/title/title/` 下的原始 JSON 文件，以保证 Schema 校验与唯一性规则一致生效。删除仅可用于用户明确指定的数据，必须先读取目标的当前 revision 并在编辑器内单次确认后直接删除。

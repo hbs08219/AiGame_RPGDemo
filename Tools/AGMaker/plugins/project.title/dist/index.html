@@ -38,7 +38,7 @@
 <style>
   :root {
     --bg-0: #14161a; --bg-1: #1b1e24; --bg-2: #232730; --bg-3: #2b303a;
-    --border: #383e4a; --text-0: #e8eaee; --text-1: #c3c9d3; --text-2: #9aa3b2;
+    --border: #383e4a; --text-0: #e8eaee; --text-1: #b3b9c4; --text-2: #9aa3b2;
     --accent: #5b9dff; --accent-text: #0b1420; --danger: #ff6b6b; --danger-bg: #3a2020;
     --success: #4fd18b; --focus-ring: #5b9dff; --radius: 6px;
   }
@@ -54,6 +54,7 @@
   #global-banner.show { display: block; }
   #global-banner.error { background: var(--danger-bg); color: #ffb3b3; }
   #global-banner.info { background: #1f3a4d; color: #bfe3ff; }
+  #global-banner.success { background: #1f3d2b; color: #b3f0c9; }
   main[data-layout="list-detail"] { flex: 1 1 auto; display: flex; min-height: 0; }
   nav.list-pane { width: 320px; min-width: 280px; flex: 0 0 auto; border-right: 1px solid var(--border);
     background: var(--bg-1); display: flex; flex-direction: column; min-height: 0; }
@@ -105,7 +106,6 @@
   .empty-state, .no-selection-state, .error-state, .loading-state { height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; color: var(--text-2); text-align: center; padding: 40px; }
   .empty-state .icon, .no-selection-state .icon, .error-state .icon, .loading-state .icon { font-size: 30px; }
   .error-state { color: #ffb3b3; }
-  .no-selection-hint { max-width: 640px; margin: 0 0 16px 0; padding: 10px 12px; border: 1px dashed var(--border); border-radius: 8px; color: var(--text-2); font-size: 13px; background: var(--bg-1); }
   [hidden] { display: none !important; }
   .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.55); display: flex; align-items: center; justify-content: center; z-index: 50; }
   .modal-box { background: var(--bg-1); border: 1px solid var(--border); border-radius: 8px; width: 420px; max-width: 90vw; padding: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.4); }
@@ -118,7 +118,7 @@
 <body>
 <div id="app">
   <header class="topbar">
-    <div><h1>称号系统编辑器<span class="sub">称号名称与描述配置</span></h1></div>
+    <div><h1>称号系统编辑器<span class="sub">称号名称、简称与描述配置</span></h1></div>
     <div class="actions">
       <button type="button" class="btn" id="btn-refresh" data-crud-operation="read" title="重新加载列表">刷新列表</button>
     </div>
@@ -157,16 +157,18 @@
   var authToken = '';
   var authReady = false;
 
-  function headers(interactiveApproval) {
-    var result = {
+  function headers() {
+    return {
       'Content-Type': 'application/json',
       'X-Aigame-Project-Context': 'iframe',
       'X-Aigame-Project-Id': projectId,
-      Authorization: `Bearer ${authToken}`
+      'Authorization': 'Bearer ' + authToken
     };
-    // 一次性审批令牌只存在于调用栈中，只附加到对应的 delete 请求。
-    if (interactiveApproval) result['X-Harness-Interactive-Approval'] = interactiveApproval;
-    return result;
+  }
+
+  function actionUrl(path) {
+    if (!projectId) return path;
+    return path + (path.indexOf('?') >= 0 ? '&' : '?') + 'projectId=' + encodeURIComponent(projectId);
   }
 
   function readActionResponse(res) {
@@ -176,13 +178,18 @@
       if (!res.ok || json.ok === false || json.error) {
         var msg = (json && (json.error || json.message)) || ('请求失败（HTTP ' + res.status + '）');
         var err = new Error(msg);
-        err.status = res.status;
-        err.code = json && (json.code || json.error);
         err.payload = json;
         throw err;
       }
       return json;
     });
+  }
+
+  function isRevisionConflictError(err) {
+    return !!(err && err.payload && (
+      err.payload.code === 'REVISION_CONFLICT' ||
+      /conflict|冲突/i.test(String(err.payload.code || err.payload.error || err.payload.message || ''))
+    ));
   }
 
   function normalizeItem(item) {
@@ -220,28 +227,28 @@
   }
   function updateTitle(record, revision) {
     return fetch(`/plugin-tool/project.title/project.title.update_title?projectId=${encodeURIComponent(projectId)}`, {
-      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: record.id, patch: { name: record.name, description: record.description }, revision: revision })
+      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: record.id, patch: { name: record.name, abbreviation: record.abbreviation, description: record.description }, revision: revision })
     }).then(readActionResponse).then(function (json) { return extractItem(json, record); });
   }
-  function deleteTitle(id, revision, interactiveApproval) {
+  function deleteTitle(id, revision) {
     return fetch(`/plugin-tool/project.title/project.title.delete_title?projectId=${encodeURIComponent(projectId)}`, {
-      method: 'POST', credentials: 'include', headers: headers(interactiveApproval), body: JSON.stringify({ id: id, revision: revision })
+      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: id, revision: revision })
     }).then(readActionResponse);
   }
 
   var state = {
     items: [], listStatus: 'loading', listErrorMessage: '', searchTerm: '',
-    selectedId: null, revision: null,
-    form: { id: '', name: '', description: '' },
+    selectedId: null, isDraft: false, revision: null,
+    form: { id: '', name: '', abbreviation: '', description: '' },
     originalSnapshot: null, dirty: false,
-    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null
+    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null, deleteInProgress: false
   };
 
-  function genTitleId() { return 'TT_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 6); }
-  function cloneForm(f) { return { id: f.id, name: f.name, description: f.description }; }
+  function genDraftId() { return 'title_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7); }
+  function cloneForm(f) { return { id: f.id, name: f.name, abbreviation: f.abbreviation, description: f.description }; }
   function computeDirty() {
     if (!state.originalSnapshot) return false;
-    return state.form.name !== state.originalSnapshot.name || state.form.description !== state.originalSnapshot.description;
+    return state.form.name !== state.originalSnapshot.name || state.form.abbreviation !== state.originalSnapshot.abbreviation || state.form.description !== state.originalSnapshot.description;
   }
 
   var elBanner = document.getElementById('global-banner');
@@ -295,7 +302,7 @@
     items.forEach(function (it) {
       var li = document.createElement('li');
       li.setAttribute('role', 'option'); li.setAttribute('tabindex', '0');
-      var selected = it.id === state.selectedId;
+      var selected = it.id === state.selectedId && !state.isDraft;
       li.setAttribute('aria-selected', selected ? 'true' : 'false');
       var row1 = document.createElement('div'); row1.className = 'row1';
       var marker = document.createElement('span'); marker.className = 'selected-marker'; marker.setAttribute('aria-hidden', 'true');
@@ -330,46 +337,47 @@
       err.appendChild(retry);
       elDetailPane.appendChild(err); return;
     }
-    var hasSelection = !!state.selectedId;
+    if (!state.selectedId) {
+      var noSel = document.createElement('div'); noSel.className = 'no-selection-state';
+      noSel.innerHTML = '<span class="icon" aria-hidden="true">🏷</span><div>请选择或新建一个称号</div>';
+      elDetailPane.appendChild(noSel); return;
+    }
 
     var header = document.createElement('div'); header.className = 'detail-header';
     var titleBlock = document.createElement('div'); titleBlock.className = 'title-block';
     var h2 = document.createElement('h2'); h2.id = 'detail-heading';
-    h2.textContent = hasSelection ? (state.form.name || '（未命名）') : '称号详情';
+    h2.textContent = state.form.name ? state.form.name : (state.isDraft ? '新建称号（未命名）' : '（未命名）');
     var statusLine = document.createElement('div'); statusLine.id = 'detail-status-line'; statusLine.className = 'status-line';
     titleBlock.appendChild(h2); titleBlock.appendChild(statusLine);
 
     var actions = document.createElement('div'); actions.className = 'actions';
-    actions.innerHTML =
-      '<button type="button" class="btn danger" id="btn-delete" data-crud-operation="delete"' +
-      (hasSelection && !deleteInProgress ? ' title="删除当前称号（需审批确认）"' : ' disabled title="' + (deleteInProgress ? '正在等待删除审批' : '请先在列表中选择一个称号') + '"') +
-      '>删除</button>' +
-      '<button type="button" class="btn primary" id="btn-save" data-crud-operation="update"' +
-      ((!hasSelection || state.saveState === 'saving') ? ' disabled' : '') +
-      '>保存</button>';
-    var btnDelete = actions.querySelector('#btn-delete');
+    var btnDelete = document.createElement('button');
+    btnDelete.type = 'button'; btnDelete.className = 'btn danger'; btnDelete.id = 'btn-delete';
+    btnDelete.textContent = '删除';
+    btnDelete.setAttribute('data-crud-operation', 'delete');
+    btnDelete.setAttribute('aria-label', '删除当前称号');
+    btnDelete.disabled = state.isDraft || state.deleteInProgress;
     btnDelete.addEventListener('click', onDeleteClick);
-    var btnSave = actions.querySelector('#btn-save');
+
+    var btnSave = document.createElement('button');
+    btnSave.type = 'button'; btnSave.className = 'btn primary'; btnSave.id = 'btn-save';
+    btnSave.textContent = '保存';
+    btnSave.setAttribute('data-crud-operation', state.isDraft ? 'create' : 'update');
+    btnSave.disabled = state.saveState === 'saving';
     btnSave.addEventListener('click', function () { doSave(); });
 
+    actions.appendChild(btnDelete); actions.appendChild(btnSave);
     header.appendChild(titleBlock); header.appendChild(actions);
     elDetailPane.appendChild(header);
 
     var body = document.createElement('div'); body.className = 'detail-body';
-    if (!hasSelection) {
-      var hint = document.createElement('div');
-      hint.className = 'no-selection-hint';
-      hint.textContent = state.listStatus === 'error'
-        ? '列表加载失败，请先在左侧重试加载；加载成功后请选择或新建一个称号'
-        : '请选择或新建一个称号';
-      body.appendChild(hint);
-    }
     var form = document.createElement('form');
     form.setAttribute('data-editor-form', ''); form.setAttribute('data-resource-id', 'title'); form.setAttribute('novalidate', 'novalidate');
     form.addEventListener('submit', function (ev) { ev.preventDefault(); doSave(); });
     form.appendChild(buildIdField());
-    form.appendChild(buildNameField(hasSelection));
-    form.appendChild(buildDescriptionField(hasSelection));
+    form.appendChild(buildNameField());
+    form.appendChild(buildAbbreviationField());
+    form.appendChild(buildDescriptionField());
     body.appendChild(form);
     elDetailPane.appendChild(body);
 
@@ -384,26 +392,25 @@
     if (state.saveState === 'saving') { el.innerHTML = '保存中…'; return; }
     if (state.saveState === 'error') { el.innerHTML = '<span style="color:#ffb3b3">保存失败：' + escapeHtml(state.saveErrorMessage) + '</span>'; return; }
     if (state.dirty) { el.innerHTML = '<span class="dirty-flag">● 有未保存的修改</span>'; return; }
-    if (!state.selectedId) { el.innerHTML = ''; return; }
+    if (state.isDraft) { el.innerHTML = '新建草稿，尚未保存入库'; return; }
     el.innerHTML = '<span class="saved-flag">已保存</span>';
   }
 
   function buildIdField() {
     var wrap = document.createElement('div'); wrap.className = 'field';
-    var label = document.createElement('label'); label.setAttribute('for', 'field-id'); label.textContent = '称号ID';
+    var label = document.createElement('label'); label.setAttribute('for', 'field-id'); label.textContent = '编号';
     var input = document.createElement('input'); input.type = 'text'; input.id = 'field-id'; input.name = 'id';
-    input.readOnly = true; input.value = state.form.id; input.setAttribute('data-field-path', 'id');
+    input.readOnly = true; input.value = state.form.id;
     var help = document.createElement('div'); help.className = 'help'; help.textContent = '系统自动生成的唯一标识，不可编辑';
     wrap.appendChild(label); wrap.appendChild(input); wrap.appendChild(help);
     return wrap;
   }
 
-  function buildNameField(enabled) {
+  function buildNameField() {
     var wrap = document.createElement('div'); wrap.className = 'field' + (state.nameError ? ' has-error' : '');
     var label = document.createElement('label'); label.setAttribute('for', 'field-name'); label.textContent = '称号名 *';
     var input = document.createElement('input'); input.type = 'text'; input.id = 'field-name'; input.name = 'name';
-    input.value = state.form.name; input.setAttribute('aria-required', 'true'); input.setAttribute('data-field-path', 'name');
-    input.disabled = !enabled;
+    input.value = state.form.name; input.setAttribute('aria-required', 'true');
     if (state.nameError) input.setAttribute('aria-describedby', 'field-name-error');
     input.addEventListener('input', function (ev) {
       state.form.name = ev.target.value; state.nameError = ''; state.dirty = computeDirty();
@@ -417,11 +424,22 @@
     return wrap;
   }
 
-  function buildDescriptionField(enabled) {
+  function buildAbbreviationField() {
+    var wrap = document.createElement('div'); wrap.className = 'field';
+    var label = document.createElement('label'); label.setAttribute('for', 'field-abbreviation'); label.textContent = '简称';
+    var input = document.createElement('input'); input.type = 'text'; input.id = 'field-abbreviation'; input.name = 'abbreviation';
+    input.value = state.form.abbreviation;
+    input.addEventListener('input', function (ev) { state.form.abbreviation = ev.target.value; state.dirty = computeDirty(); updateHeaderTexts(); });
+    var help = document.createElement('div'); help.className = 'help'; help.textContent = '可选，称号的简短称呼';
+    wrap.appendChild(label); wrap.appendChild(input); wrap.appendChild(help);
+    return wrap;
+  }
+
+  function buildDescriptionField() {
     var wrap = document.createElement('div'); wrap.className = 'field';
     var label = document.createElement('label'); label.setAttribute('for', 'field-description'); label.textContent = '称号描述';
     var textarea = document.createElement('textarea'); textarea.id = 'field-description'; textarea.name = 'description';
-    textarea.value = state.form.description; textarea.disabled = !enabled; textarea.setAttribute('data-field-path', 'description');
+    textarea.value = state.form.description;
     textarea.addEventListener('input', function (ev) { state.form.description = ev.target.value; state.dirty = computeDirty(); updateHeaderTexts(); });
     var help = document.createElement('div'); help.className = 'help'; help.textContent = '可选，说明称号的获取方式或效果描述';
     wrap.appendChild(label); wrap.appendChild(textarea); wrap.appendChild(help);
@@ -430,13 +448,14 @@
 
   function updateHeaderTexts() {
     var h2 = document.getElementById('detail-heading');
-    if (h2 && state.selectedId) h2.textContent = state.form.name ? state.form.name : '（未命名）';
+    if (h2) h2.textContent = state.form.name ? state.form.name : (state.isDraft ? '新建称号（未命名）' : '（未命名）');
     var statusLine = document.getElementById('detail-status-line');
     if (statusLine) updateStatusLineText(statusLine);
     renderList();
   }
 
-  function requestSelect(id) { if (state.selectedId === id) return; guardDirty(function () { doSelect(id); }); }
+  function requestSelect(id) { if (state.selectedId === id && !state.isDraft) return; guardDirty(function () { doSelect(id); }); }
+  function requestNew() { guardDirty(function () { showCreateModal(); }); }
   function guardDirty(action) {
     if (state.dirty) { state.pendingAction = action; showDirtyGuardModal(); return; }
     action();
@@ -444,11 +463,78 @@
   function doSelect(id) {
     var found = state.items.find(function (it) { return it.id === id; });
     if (!found) return;
-    state.selectedId = id; state.revision = found.revision || null;
-    state.form = { id: found.id, name: found.name || '', description: found.description || '' };
+    state.selectedId = id; state.isDraft = false; state.revision = found.revision || null;
+    state.form = { id: found.id, name: found.name || '', abbreviation: found.abbreviation || '', description: found.description || '' };
     state.originalSnapshot = cloneForm(state.form);
     state.dirty = false; state.nameError = ''; state.saveState = 'idle'; state.saveErrorMessage = '';
     renderAll();
+  }
+  function showCreateModal() {
+    var overlay = document.createElement('div'); overlay.className = 'modal-overlay';
+    overlay.innerHTML =
+      '<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="create-title">' +
+      '<h3 id="create-title">新建称号</h3>' +
+      '<div class="field">' +
+      '<label for="create-name">称号名 *</label>' +
+      '<input type="text" id="create-name" aria-required="true" autocomplete="off" />' +
+      '<div class="help">必填，全项目内唯一</div>' +
+      '<div class="field-error" id="create-name-error"></div>' +
+      '</div>' +
+      '<div class="modal-actions">' +
+      '<button type="button" class="btn" id="create-cancel">取消</button>' +
+      '<button type="button" class="btn primary" id="create-confirm">确认创建</button>' +
+      '</div></div>';
+    elModalRoot.appendChild(overlay);
+
+    var input = document.getElementById('create-name');
+    var errEl = document.getElementById('create-name-error');
+
+    function validateCreateName() {
+      var name = input.value.trim();
+      if (!name) { errEl.textContent = '称号名不能为空'; return false; }
+      var dup = state.items.some(function (it) { return (it.name || '').trim() === name; });
+      if (dup) { errEl.textContent = '已存在同名称号，请使用其他名称'; return false; }
+      errEl.textContent = ''; return true;
+    }
+
+    function doConfirm() {
+      if (!validateCreateName()) { input.focus(); return; }
+      var name = input.value.trim();
+      closeModal(overlay);
+      performCreate(name);
+    }
+
+    input.addEventListener('input', validateCreateName);
+    document.getElementById('create-cancel').addEventListener('click', function () { closeModal(overlay); });
+    document.getElementById('create-confirm').addEventListener('click', doConfirm);
+    input.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Enter') { ev.preventDefault(); doConfirm(); }
+    });
+    overlay.addEventListener('keydown', function (ev) {
+      if (ev.key === 'Escape') { ev.preventDefault(); closeModal(overlay); }
+    });
+    input.focus();
+  }
+
+  function performCreate(name) {
+    var record = { id: genDraftId(), name: name, abbreviation: '', description: '' };
+    createTitle(record).then(function (saved) {
+      return listTitles().then(function (items) {
+        state.items = items;
+        var created = items.find(function (item) { return item.id === record.id; }) || Object.assign({}, record, saved || {});
+        state.selectedId = created.id; state.isDraft = false; state.revision = created.revision || null;
+        state.form = { id: created.id, name: created.name || '', abbreviation: created.abbreviation || '', description: created.description || '' };
+        state.originalSnapshot = cloneForm(state.form);
+        state.dirty = false; state.saveState = 'saved'; state.saveErrorMessage = ''; state.nameError = '';
+        hideBanner();
+        renderAll();
+        showBanner('success', '创建成功');
+      });
+    }).catch(function (err) {
+      state.saveState = 'error'; state.saveErrorMessage = (err && err.message) || '未知错误';
+      showBanner('error', '创建失败：' + (err && err.message || '未知错误'));
+      renderAll();
+    });
   }
 
   function validateName() {
@@ -460,50 +546,46 @@
   }
 
   function doSave() {
-    if (!state.selectedId) return;
     if (!validateName()) {
       renderDetail();
       var input = document.getElementById('field-name'); if (input) input.focus();
       return;
     }
     state.saveState = 'saving'; renderDetail();
-    var record = { id: state.form.id, name: state.form.name.trim(), description: state.form.description || '' };
+    var record = { id: state.form.id, name: state.form.name.trim(), abbreviation: (state.form.abbreviation || '').trim(), description: state.form.description || '' };
 
-    listTitles().then(function (latestItems) {
-      var latestItem = latestItems.find(function (it) { return it.id === record.id; });
-      var conflict = latestItem && state.originalSnapshot && (
-        (latestItem.name || '') !== state.originalSnapshot.name ||
-        (latestItem.description || '') !== state.originalSnapshot.description
-      );
-      if (conflict) {
-        state.items = latestItems; state.saveState = 'idle';
+    if (state.isDraft) {
+      createTitle(record).then(function (saved) {
+        return listTitles().then(function (items) {
+          state.items = items;
+          return items.find(function (item) { return item.id === record.id; }) || Object.assign({}, record, saved || {});
+        });
+      }).then(onSaveSuccess).catch(onSaveError);
+      return;
+    }
+
+    updateTitle(record, state.revision).then(function (saved) {
+      var normalized = Object.assign({}, record, saved || {});
+      state.items = state.items.map(function (it) { return it.id === normalized.id ? normalized : it; });
+      onSaveSuccess(normalized);
+    }).catch(function (err) {
+      if (!isRevisionConflictError(err)) { onSaveError(err); return; }
+      state.saveState = 'idle';
+      listTitles().then(function (latestItems) {
+        state.items = latestItems;
+        var latestItem = latestItems.find(function (it) { return it.id === record.id; }) || record;
         showConflictModal(latestItem);
         renderDetail();
-        return;
-      }
-      state.items = latestItems;
-      return updateTitle(record, latestItem && latestItem.revision || state.revision).then(function (saved) {
-        var normalized = Object.assign({}, record, saved || {});
-        state.items = state.items.map(function (it) { return it.id === normalized.id ? normalized : it; });
-        onSaveSuccess(normalized);
-      });
-    }).catch(function (err) {
-      if (err && err.status === 409) {
-        state.saveState = 'idle';
-        showBanner('error', '保存冲突：该称号已在服务端被更新，请刷新后重试。');
-        showConflictModal(record, err);
-      } else {
-        onSaveError(err);
-      }
+      }).catch(onSaveError);
     });
   }
 
   function onSaveSuccess(normalized) {
-    state.selectedId = normalized.id; state.revision = normalized.revision || state.revision;
-    state.form = { id: normalized.id, name: normalized.name || '', description: normalized.description || '' };
+    state.isDraft = false; state.selectedId = normalized.id; state.revision = normalized.revision || state.revision;
+    state.form = { id: normalized.id, name: normalized.name || '', abbreviation: normalized.abbreviation || '', description: normalized.description || '' };
     state.originalSnapshot = cloneForm(state.form);
     state.dirty = false; state.saveState = 'saved'; state.saveErrorMessage = '';
-    showBanner('info', '保存成功');
+    showBanner('success', '已保存');
     renderAll();
   }
   function onSaveError(err) {
@@ -511,248 +593,34 @@
     renderDetail();
   }
 
-  var deleteInProgress = false;
-  var DELETE_APPROVAL_TIMEOUT_MS = 30000;
-
-  function makeDeleteApprovalRequestId() {
-    if (window.crypto && typeof window.crypto.randomUUID === 'function') return window.crypto.randomUUID();
-    if (window.crypto && typeof window.crypto.getRandomValues === 'function') {
-      var values = new Uint32Array(4);
-      window.crypto.getRandomValues(values);
-      return 'delete-' + Array.prototype.map.call(values, function (value) { return value.toString(16); }).join('-');
-    }
-    return 'delete-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2);
-  }
-
-  function requestDeleteApproval(target) {
-    return new Promise(function (resolve, reject) {
-      var requestId = makeDeleteApprovalRequestId();
-      var settled = false;
-      var timeoutId = window.setTimeout(function () {
-        finish(new Error('删除审批超时，请重新确认。'));
-      }, DELETE_APPROVAL_TIMEOUT_MS);
-
-      function finish(error, token) {
-        if (settled) return;
-        settled = true;
-        window.clearTimeout(timeoutId);
-        window.removeEventListener('message', onApprovalResult);
-        if (error) reject(error);
-        else resolve(token);
-      }
-
-      function onApprovalResult(event) {
-        var data = event.data;
-        if (event.source !== window.parent || !data || data.type !== 'aigame-plugin-delete-approval-result' || data.requestId !== requestId) return;
-        if (data.ok === true && typeof data.token === 'string' && data.token) {
-          finish(null, data.token);
-          return;
-        }
-        finish(new Error(data.error || '删除审批未获通过。'));
-      }
-
-      window.addEventListener('message', onApprovalResult);
-      try {
-        window.parent.postMessage({
-          type: 'aigame-plugin-delete-approval-request',
-          requestId: requestId,
-          pluginId: 'project.title',
-          actionName: 'project.title.delete_title',
-          input: { id: target.id, revision: target.revision }
-        }, '*');
-      } catch (err) {
-        finish(new Error('无法请求删除审批。'));
-      }
-    });
-  }
-
-  function reloadCurrentTitle(id) {
-    return listTitles().then(function (items) {
-      state.items = items;
-      state.listStatus = 'loaded';
-      var latest = items.find(function (item) { return item.id === id; });
-      if (latest) {
-        state.selectedId = latest.id;
-        state.revision = latest.revision || null;
-        state.form = { id: latest.id, name: latest.name || '', description: latest.description || '' };
-        state.originalSnapshot = cloneForm(state.form);
-      } else {
-        state.selectedId = null; state.revision = null;
-        state.form = { id: '', name: '', description: '' };
-        state.originalSnapshot = null;
-      }
-      state.dirty = false;
-      state.nameError = '';
-      state.saveState = 'idle';
-    });
-  }
-
-  function deleteFailureMessage(err) {
-    if (err && err.status === 409) return '删除冲突：记录已变化，已重新加载当前记录。';
-    return '删除失败：' + ((err && err.message) || '未知错误') + ' 已重新加载当前记录。';
-  }
-
-  function requestApprovedDelete(target) {
-    if (deleteInProgress) return;
-    deleteInProgress = true;
-    renderDetail();
-    showBanner('info', '正在等待删除审批…');
-
-    requestDeleteApproval(target).then(function (interactiveApproval) {
-      // 令牌是此回调的局部值；deleteTitle 只在本次请求头中使用它。
-      return deleteTitle(target.id, target.revision, interactiveApproval);
-    }).then(function () {
-      deleteInProgress = false;
-      state.items = state.items.filter(function (it) { return it.id !== target.id; });
-      state.selectedId = null; state.revision = null;
-      state.form = { id: '', name: '', description: '' };
-      state.originalSnapshot = null; state.dirty = false; state.nameError = ''; state.saveState = 'idle';
-      showBanner('info', '删除成功');
-      loadList();
-    }).catch(function (err) {
-      deleteInProgress = false;
-      var message = deleteFailureMessage(err);
-      reloadCurrentTitle(target.id).then(function () {
-        renderAll();
-        showBanner('error', message);
-      }).catch(function () {
-        renderAll();
-        showBanner('error', message + ' 重新加载失败，请手动刷新列表。');
-      });
-    });
-  }
-
-  function openDeleteConfirmation(target) {
-    var overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
-    overlay.id = 'delete-confirmation-modal';
-    overlay.innerHTML =
-      '<div class="modal-box" role="alertdialog" aria-modal="true" aria-labelledby="delete-confirmation-title" aria-describedby="delete-confirmation-description">' +
-      '<h3 id="delete-confirmation-title">确认删除称号</h3>' +
-      '<p id="delete-confirmation-description">确定删除称号「' + escapeHtml(target.label) + '」？此操作不可恢复。</p>' +
-      '<div class="modal-actions">' +
-      '<button type="button" class="btn" data-delete-confirm-action="cancel">取消</button>' +
-      '<button type="button" class="btn danger" data-delete-confirm-action="confirm">确认删除</button>' +
-      '</div></div>';
-    elModalRoot.appendChild(overlay);
-
-    var cancelButton = overlay.querySelector('[data-delete-confirm-action="cancel"]');
-    var confirmButton = overlay.querySelector('[data-delete-confirm-action="confirm"]');
-    function close() {
-      closeModal(overlay);
-      var deleteButton = document.getElementById('btn-delete');
-      if (deleteButton) deleteButton.focus();
-    }
-    cancelButton.addEventListener('click', close);
-    confirmButton.addEventListener('click', function () {
-      if (confirmButton.disabled) return;
-      confirmButton.disabled = true;
-      close();
-      requestApprovedDelete(target);
-    });
-    overlay.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Escape') { ev.preventDefault(); close(); return; }
-      if (ev.key === 'Tab') {
-        var focusables = [cancelButton, confirmButton].filter(function (button) { return !button.disabled; });
-        if (ev.shiftKey && document.activeElement === focusables[0]) { ev.preventDefault(); focusables[focusables.length - 1].focus(); }
-        else if (!ev.shiftKey && document.activeElement === focusables[focusables.length - 1]) { ev.preventDefault(); focusables[0].focus(); }
-      }
-    });
-    cancelButton.focus();
-  }
-
   function onDeleteClick() {
-    if (!state.selectedId || deleteInProgress) return;
-    if (typeof state.revision !== 'string' || !state.revision) {
-      showBanner('error', '无法确认当前称号版本，正在重新加载记录。');
-      reloadCurrentTitle(state.selectedId).then(renderAll).catch(function () { renderAll(); });
-      return;
-    }
-    var target = { id: state.form.id, label: state.form.name || state.form.id, revision: state.revision };
-    openDeleteConfirmation(target);
+    if (state.isDraft || state.deleteInProgress) return;
+    var target = { id: state.selectedId, name: state.form.name, revision: state.revision };
+    var label = target.name || target.id;
+    if (!window.confirm('确认删除称号“' + label + '”？删除后不可恢复。')) return;
+    performDelete(target);
   }
 
-  // ---------- 新建称号模态窗口 ----------
-  // 打开弹窗不修改右侧表单内容，无需脏数据确认；脏数据保护保留在手动切换列表项与离开页面场景。
-  function openCreateModal() {
-    var overlay = document.createElement('div');
-    overlay.className = 'modal-overlay';
-    overlay.id = 'create-modal';
-    overlay.setAttribute('role', 'dialog');
-    overlay.setAttribute('aria-modal', 'true');
-    overlay.setAttribute('aria-labelledby', 'create-modal-title');
-    overlay.innerHTML =
-      '<div class="modal-box">' +
-      '<h3 id="create-modal-title">新建称号</h3>' +
-      '<div class="field">' +
-      '<label for="create-modal-name">称号名</label>' +
-      '<input type="text" id="create-modal-name" aria-required="true" aria-describedby="create-modal-name-help create-modal-name-error" />' +
-      '<div class="help" id="create-modal-name-help">必填，全项目内唯一；创建后可在右侧详情中补充描述</div>' +
-      '<div class="field-error" id="create-modal-name-error" role="alert"></div>' +
-      '</div>' +
-      '<div class="modal-actions">' +
-      '<button type="button" class="btn" data-modal-action="cancel">取消</button>' +
-      '<button type="button" class="btn primary" data-modal-action="confirm">创建</button>' +
-      '</div></div>';
-    elModalRoot.appendChild(overlay);
-
-    var nameInput = document.getElementById('create-modal-name');
-    var errorEl = document.getElementById('create-modal-name-error');
-
-    function setError(text) { errorEl.textContent = text || ''; }
-    function close() { closeModal(overlay); var btnNew = document.getElementById('btn-new'); if (btnNew) btnNew.focus(); }
-    function validateModalName() {
-      var name = (nameInput.value || '').trim();
-      if (!name) { setError('称号名不能为空'); return null; }
-      var dup = state.items.some(function (it) { return (it.name || '').trim().toLowerCase() === name.toLowerCase(); });
-      if (dup) { setError('称号名与已有称号重复，请更换'); return null; }
-      setError('');
-      return name;
-    }
-    function confirmCreate() {
-      var name = validateModalName();
-      if (!name) { nameInput.focus(); return; }
-      var record = { id: genTitleId(), name: name, description: '' };
-      createTitle(record).then(function () {
-        closeModal(overlay);
-        showBanner('info', '创建成功');
-        return listTitles();
-      }).then(function (items) {
-        if (!items) return;
-        state.items = items;
-        var created = null;
-        for (var i = 0; i < items.length; i += 1) { if (items[i].id === record.id) { created = items[i]; break; } }
-        if (created) {
-          doSelect(created.id);
-        } else {
-          renderAll();
-        }
-      }).catch(function (err) {
-        var message = '创建失败：' + ((err && err.message) || '未知错误');
-        if (overlay.parentNode) setError(message);
-        else showBanner('error', message);
-      });
-    }
-
-    overlay.querySelector('[data-modal-action="cancel"]').addEventListener('click', close);
-    overlay.querySelector('[data-modal-action="confirm"]').addEventListener('click', confirmCreate);
-    nameInput.addEventListener('input', function () { setError(''); });
-    overlay.addEventListener('keydown', function (ev) {
-      if (ev.key === 'Escape') { ev.preventDefault(); close(); return; }
-      if (ev.key === 'Enter' && ev.target === nameInput) { ev.preventDefault(); confirmCreate(); return; }
-      if (ev.key === 'Tab') {
-        var focusables = Array.prototype.slice.call(overlay.querySelectorAll('input, button')).filter(function (el) { return !el.disabled; });
-        if (focusables.length === 0) return;
-        var first = focusables[0];
-        var last = focusables[focusables.length - 1];
-        if (ev.shiftKey && (document.activeElement === first || !overlay.contains(document.activeElement))) {
-          ev.preventDefault(); last.focus();
-        } else if (!ev.shiftKey && document.activeElement === last) {
-          ev.preventDefault(); first.focus();
-        }
-      }
+  function performDelete(target) {
+    if (state.deleteInProgress) return;
+    state.deleteInProgress = true;
+    renderDetail();
+    showBanner('info', '正在删除…');
+    deleteTitle(target.id, target.revision).then(function () {
+      state.deleteInProgress = false;
+      state.items = state.items.filter(function (it) { return it.id !== target.id; });
+      state.selectedId = null; state.isDraft = false; state.revision = null;
+      state.form = { id: '', name: '', abbreviation: '', description: '' };
+      state.originalSnapshot = null; state.dirty = false;
+      state.saveState = 'idle'; state.saveErrorMessage = ''; state.nameError = '';
+      renderAll();
+      showBanner('success', '删除成功');
+    }).catch(function (err) {
+      state.deleteInProgress = false;
+      renderDetail();
+      showBanner('error', '删除失败：' + (err && err.message || '未知错误'));
+      loadList();
     });
-    nameInput.focus();
   }
 
   function showDirtyGuardModal() {
@@ -774,13 +642,13 @@
     document.getElementById('dirty-guard-discard').focus();
   }
 
-  function showConflictModal(latestItem, err) {
-    var targetId = latestItem && latestItem.id;
+  function showConflictModal(latestItem) {
+    showBanner('error', '保存冲突：该称号的数据已被其他人修改，请刷新或重新加载最新数据。');
     var overlay = document.createElement('div'); overlay.className = 'modal-overlay';
     overlay.innerHTML =
       '<div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="conflict-title">' +
       '<h3 id="conflict-title">保存冲突</h3>' +
-      '<p>该称号的数据已在服务端被更新。请放弃本地修改并重新加载最新数据后重试，或覆盖保存。</p>' +
+      '<p>该称号的数据已被其他人修改（最新称号名：“' + escapeHtml(latestItem.name || '') + '”）。请选择覆盖保存，或放弃本地修改并重新加载最新数据。</p>' +
       '<div class="modal-actions">' +
       '<button type="button" class="btn" id="conflict-reload" data-conflict-action="reload">放弃并重新加载</button>' +
       '<button type="button" class="btn primary" id="conflict-overwrite">覆盖保存</button>' +
@@ -788,24 +656,12 @@
     elModalRoot.appendChild(overlay);
     document.getElementById('conflict-reload').addEventListener('click', function () {
       closeModal(overlay);
-      state.saveState = 'idle'; state.dirty = false;
-      renderDetail();
-      listTitles().then(function (items) {
-        state.items = items;
-        var found = items.find(function (it) { return it.id === targetId; });
-        if (found) {
-          state.selectedId = found.id; state.revision = found.revision || null;
-          state.form = { id: found.id, name: found.name || '', description: found.description || '' };
-          state.originalSnapshot = cloneForm(state.form);
-        }
-        renderAll();
-        showBanner('info', '已重新加载最新数据，请重新编辑后保存。');
-      }).catch(function (e) { showBanner('error', '重新加载失败：' + ((e && e.message) || '未知错误')); });
+      doSelect(latestItem.id);
+      showBanner('info', '已重新加载最新数据，请重新编辑后保存。');
     });
     document.getElementById('conflict-overwrite').addEventListener('click', function () {
       closeModal(overlay);
-      state.originalSnapshot = { id: latestItem.id, name: latestItem.name || '', description: latestItem.description || '' };
-      state.revision = latestItem.revision || state.revision;
+      state.originalSnapshot = { id: latestItem.id, name: latestItem.name || '', abbreviation: latestItem.abbreviation || '', description: latestItem.description || '' };
       doSave();
     });
   }
@@ -822,7 +678,7 @@
     });
   }
 
-  document.getElementById('btn-new').addEventListener('click', openCreateModal);
+  document.getElementById('btn-new').addEventListener('click', requestNew);
   document.getElementById('btn-refresh').addEventListener('click', loadList);
   document.getElementById('btn-list-retry').addEventListener('click', loadList);
   elSearch.addEventListener('input', function (ev) { state.searchTerm = ev.target.value; renderList(); });
