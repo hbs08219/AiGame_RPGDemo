@@ -5,7 +5,7 @@
   "distribution": "project-private",
   "enabledByDefault": false,
   "name": "称号系统",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "项目私有插件：称号系统",
   "author": "Project Team",
   "category": "plugin-workshop/iteration",
@@ -22,6 +22,11 @@
       {
         "displayName": "称号",
         "id": "title",
+        "limits": {
+          "maxDocumentBytes": 8192,
+          "maxDocuments": 1000,
+          "maxListResults": 500
+        },
         "operations": {
           "create": true,
           "delete": true,
@@ -47,7 +52,7 @@
   "domainCapabilities": [
     {
       "id": "project.title",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "title": "称号系统",
       "description": "项目私有插件：称号系统",
       "maturity": "experimental",

@@ -8,6 +8,7 @@
 | --- | --- | --- | --- |
 | `id` | string | 是 | 系统自动生成的唯一标识，只读，不可编辑 |
 | `name` | string | 是 | 称号名，全项目内唯一 |
+| `abbreviation` | string | 否 | 称号简称，可留空 |
 | `description` | string | 否 | 称号描述，可留空 |
 
 Schema 为 `additionalProperties: false`，不接受未声明字段。
