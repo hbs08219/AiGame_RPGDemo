@@ -68,3 +68,17 @@ test('project.title 删除为编辑器内单次确认直接删除，不请求审
   // id 字段标签与设计契约一致，避免字段契约校验失败
   assert.match(source, /label\.textContent = '编号'/);
 });
+
+test('project.title 已移除简称（abbreviation）字段：Schema 与编辑器均不再包含', () => {
+  const source = fs.readFileSync(SOURCE_PATH, 'utf8');
+  const schemaText = fs.readFileSync(path.join(PLUGIN_ROOT, 'schemas', 'title.schema.json'), 'utf8');
+
+  assert.doesNotMatch(source, /abbreviation/i);
+  assert.doesNotMatch(source, /field-abbreviation/);
+  assert.doesNotMatch(schemaText, /abbreviation/i);
+
+  const schema = JSON.parse(schemaText);
+  assert.deepEqual(Object.keys(schema.properties).sort(), ['description', 'id', 'name']);
+  assert.deepEqual(schema.required, ['id', 'name']);
+  assert.strictEqual(schema.additionalProperties, false);
+});
