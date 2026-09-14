@@ -32,11 +32,9 @@
       "path": "/plugin-tool/project.title/project.title.update_title"
     },
     "delete": {
-      "available": true,
-      "operation": "delete",
-      "method": "POST",
-      "actionName": "project.title.delete_title",
-      "path": "/plugin-tool/project.title/project.title.delete_title"
+      "available": false,
+      "disabled": true,
+      "operation": "delete"
     }
   },
   "coreResourceId": "title",
@@ -46,7 +44,7 @@
       "displayName": "称号",
       "operations": {
         "create": true,
-        "delete": true,
+        "delete": false,
         "findReferences": false,
         "get": true,
         "list": true,
@@ -76,11 +74,9 @@
           "path": "/plugin-tool/project.title/project.title.update_title"
         },
         "delete": {
-          "available": true,
-          "operation": "delete",
-          "method": "POST",
-          "actionName": "project.title.delete_title",
-          "path": "/plugin-tool/project.title/project.title.delete_title"
+          "available": false,
+          "disabled": true,
+          "operation": "delete"
         }
       }
     }

@@ -17,19 +17,19 @@
     "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
     "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
     "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
-    "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
+    "delete": { "available": false, "disabled": true, "operation": "delete" }
   },
   "coreResourceId": "title",
   "resources": [
     {
       "id": "title",
       "displayName": "称号",
-      "operations": { "create": true, "delete": true, "findReferences": false, "get": true, "list": true, "update": true, "validate": true },
+      "operations": { "create": true, "delete": false, "findReferences": false, "get": true, "list": true, "update": true, "validate": true },
       "actions": {
         "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
         "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
         "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
-        "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
+        "delete": { "available": false, "disabled": true, "operation": "delete" }
       }
     }
   ]
@@ -230,18 +230,13 @@
       method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: record.id, patch: { name: record.name, description: record.description }, revision: revision })
     }).then(readActionResponse).then(function (json) { return extractItem(json, record); });
   }
-  function deleteTitle(id, revision) {
-    return fetch(`/plugin-tool/project.title/project.title.delete_title?projectId=${encodeURIComponent(projectId)}`, {
-      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: id, revision: revision })
-    }).then(readActionResponse);
-  }
 
   var state = {
     items: [], listStatus: 'loading', listErrorMessage: '', searchTerm: '',
     selectedId: null, isDraft: false, revision: null,
     form: { id: '', name: '', description: '' },
     originalSnapshot: null, dirty: false,
-    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null, deleteInProgress: false
+    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null
   };
 
   function genDraftId() { return 'title_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7); }
@@ -351,14 +346,6 @@
     titleBlock.appendChild(h2); titleBlock.appendChild(statusLine);
 
     var actions = document.createElement('div'); actions.className = 'actions';
-    var btnDelete = document.createElement('button');
-    btnDelete.type = 'button'; btnDelete.className = 'btn danger'; btnDelete.id = 'btn-delete';
-    btnDelete.textContent = '删除';
-    btnDelete.setAttribute('data-crud-operation', 'delete');
-    btnDelete.setAttribute('aria-label', '删除当前称号');
-    btnDelete.disabled = state.isDraft || state.deleteInProgress;
-    btnDelete.addEventListener('click', onDeleteClick);
-
     var btnSave = document.createElement('button');
     btnSave.type = 'button'; btnSave.className = 'btn primary'; btnSave.id = 'btn-save';
     btnSave.textContent = '保存';
@@ -366,7 +353,7 @@
     btnSave.disabled = state.saveState === 'saving';
     btnSave.addEventListener('click', function () { doSave(); });
 
-    actions.appendChild(btnDelete); actions.appendChild(btnSave);
+    actions.appendChild(btnSave);
     header.appendChild(titleBlock); header.appendChild(actions);
     elDetailPane.appendChild(header);
 
@@ -579,36 +566,6 @@
   function onSaveError(err) {
     state.saveState = 'error'; state.saveErrorMessage = (err && err.message) || '未知错误';
     renderDetail();
-  }
-
-  function onDeleteClick() {
-    if (state.isDraft || state.deleteInProgress) return;
-    var target = { id: state.selectedId, name: state.form.name, revision: state.revision };
-    var label = target.name || target.id;
-    if (!window.confirm('确认删除称号“' + label + '”？删除后不可恢复。')) return;
-    performDelete(target);
-  }
-
-  function performDelete(target) {
-    if (state.deleteInProgress) return;
-    state.deleteInProgress = true;
-    renderDetail();
-    showBanner('info', '正在删除…');
-    deleteTitle(target.id, target.revision).then(function () {
-      state.deleteInProgress = false;
-      state.items = state.items.filter(function (it) { return it.id !== target.id; });
-      state.selectedId = null; state.isDraft = false; state.revision = null;
-      state.form = { id: '', name: '', description: '' };
-      state.originalSnapshot = null; state.dirty = false;
-      state.saveState = 'idle'; state.saveErrorMessage = ''; state.nameError = '';
-      renderAll();
-      showBanner('success', '删除成功');
-    }).catch(function (err) {
-      state.deleteInProgress = false;
-      renderDetail();
-      showBanner('error', '删除失败：' + (err && err.message || '未知错误'));
-      loadList();
-    });
   }
 
   function showDirtyGuardModal() {

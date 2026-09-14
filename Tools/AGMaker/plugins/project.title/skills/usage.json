@@ -6,7 +6,6 @@
     "读取称号列表使用 Action project.title.list_titles（POST /plugin-tool/project.title/project.title.list_titles）。",
     "创建称号使用 Action project.title.create_title，需提供 id（唯一标识）、name（必填，全项目唯一）、description（可选）。",
     "更新称号使用 Action project.title.update_title，需提供完整的 id、name、description 与当前 revision。",
-    "删除称号使用 Action project.title.delete_title，必须先从列表读取目标的当前 revision，并在用户通过编辑器内单次确认后直接删除该 id；删除无需审批令牌，绝不写入 URL、存储或日志。",
     "不得直接读写 Content/Data/ToolGen/title/title/ 下的原始 JSON 文件。",
     "保存前必须校验 name 非空且在现有称号中唯一，否则应拒绝保存并提示原因。"
   ]
