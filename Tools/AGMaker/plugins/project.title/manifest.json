@@ -5,7 +5,7 @@
   "distribution": "project-private",
   "enabledByDefault": false,
   "name": "称号系统",
-  "version": "0.1.5",
+  "version": "0.1.8",
   "description": "项目私有插件：称号系统",
   "author": "Project Team",
   "category": "plugin-workshop/iteration",
@@ -29,7 +29,7 @@
         },
         "operations": {
           "create": true,
-          "delete": true,
+          "delete": false,
           "findReferences": false,
           "get": true,
           "list": true,
@@ -52,7 +52,7 @@
   "domainCapabilities": [
     {
       "id": "project.title",
-      "version": "0.1.5",
+      "version": "0.1.8",
       "title": "称号系统",
       "description": "项目私有插件：称号系统",
       "maturity": "experimental",

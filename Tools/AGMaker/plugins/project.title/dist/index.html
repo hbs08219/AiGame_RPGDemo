@@ -17,19 +17,19 @@
     "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
     "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
     "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
-    "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
+    "delete": { "available": false, "disabled": true, "operation": "delete" }
   },
   "coreResourceId": "title",
   "resources": [
     {
       "id": "title",
       "displayName": "称号",
-      "operations": { "create": true, "delete": true, "findReferences": false, "get": true, "list": true, "update": true, "validate": true },
+      "operations": { "create": true, "delete": false, "findReferences": false, "get": true, "list": true, "update": true, "validate": true },
       "actions": {
         "read": { "available": true, "operation": "list", "method": "POST", "actionName": "project.title.list_titles", "path": "/plugin-tool/project.title/project.title.list_titles" },
         "create": { "available": true, "operation": "create", "method": "POST", "actionName": "project.title.create_title", "path": "/plugin-tool/project.title/project.title.create_title" },
         "update": { "available": true, "operation": "update", "method": "POST", "actionName": "project.title.update_title", "path": "/plugin-tool/project.title/project.title.update_title" },
-        "delete": { "available": true, "operation": "delete", "method": "POST", "actionName": "project.title.delete_title", "path": "/plugin-tool/project.title/project.title.delete_title" }
+        "delete": { "available": false, "disabled": true, "operation": "delete" }
       }
     }
   ]
@@ -118,7 +118,7 @@
 <body>
 <div id="app">
   <header class="topbar">
-    <div><h1>称号系统编辑器<span class="sub">称号名称、简称与描述配置</span></h1></div>
+    <div><h1>称号系统编辑器<span class="sub">称号名称与描述配置</span></h1></div>
     <div class="actions">
       <button type="button" class="btn" id="btn-refresh" data-crud-operation="read" title="重新加载列表">刷新列表</button>
     </div>
@@ -227,28 +227,23 @@
   }
   function updateTitle(record, revision) {
     return fetch(`/plugin-tool/project.title/project.title.update_title?projectId=${encodeURIComponent(projectId)}`, {
-      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: record.id, patch: { name: record.name, abbreviation: record.abbreviation, description: record.description }, revision: revision })
+      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: record.id, patch: { name: record.name, description: record.description }, revision: revision })
     }).then(readActionResponse).then(function (json) { return extractItem(json, record); });
-  }
-  function deleteTitle(id, revision) {
-    return fetch(`/plugin-tool/project.title/project.title.delete_title?projectId=${encodeURIComponent(projectId)}`, {
-      method: 'POST', credentials: 'include', headers: headers(), body: JSON.stringify({ id: id, revision: revision })
-    }).then(readActionResponse);
   }
 
   var state = {
     items: [], listStatus: 'loading', listErrorMessage: '', searchTerm: '',
     selectedId: null, isDraft: false, revision: null,
-    form: { id: '', name: '', abbreviation: '', description: '' },
+    form: { id: '', name: '', description: '' },
     originalSnapshot: null, dirty: false,
-    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null, deleteInProgress: false
+    saveState: 'idle', saveErrorMessage: '', nameError: '', pendingAction: null
   };
 
   function genDraftId() { return 'title_' + Date.now().toString(36) + '_' + Math.random().toString(36).slice(2, 7); }
-  function cloneForm(f) { return { id: f.id, name: f.name, abbreviation: f.abbreviation, description: f.description }; }
+  function cloneForm(f) { return { id: f.id, name: f.name, description: f.description }; }
   function computeDirty() {
     if (!state.originalSnapshot) return false;
-    return state.form.name !== state.originalSnapshot.name || state.form.abbreviation !== state.originalSnapshot.abbreviation || state.form.description !== state.originalSnapshot.description;
+    return state.form.name !== state.originalSnapshot.name || state.form.description !== state.originalSnapshot.description;
   }
 
   var elBanner = document.getElementById('global-banner');
@@ -351,14 +346,6 @@
     titleBlock.appendChild(h2); titleBlock.appendChild(statusLine);
 
     var actions = document.createElement('div'); actions.className = 'actions';
-    var btnDelete = document.createElement('button');
-    btnDelete.type = 'button'; btnDelete.className = 'btn danger'; btnDelete.id = 'btn-delete';
-    btnDelete.textContent = '删除';
-    btnDelete.setAttribute('data-crud-operation', 'delete');
-    btnDelete.setAttribute('aria-label', '删除当前称号');
-    btnDelete.disabled = state.isDraft || state.deleteInProgress;
-    btnDelete.addEventListener('click', onDeleteClick);
-
     var btnSave = document.createElement('button');
     btnSave.type = 'button'; btnSave.className = 'btn primary'; btnSave.id = 'btn-save';
     btnSave.textContent = '保存';
@@ -366,7 +353,7 @@
     btnSave.disabled = state.saveState === 'saving';
     btnSave.addEventListener('click', function () { doSave(); });
 
-    actions.appendChild(btnDelete); actions.appendChild(btnSave);
+    actions.appendChild(btnSave);
     header.appendChild(titleBlock); header.appendChild(actions);
     elDetailPane.appendChild(header);
 
@@ -376,7 +363,6 @@
     form.addEventListener('submit', function (ev) { ev.preventDefault(); doSave(); });
     form.appendChild(buildIdField());
     form.appendChild(buildNameField());
-    form.appendChild(buildAbbreviationField());
     form.appendChild(buildDescriptionField());
     body.appendChild(form);
     elDetailPane.appendChild(body);
@@ -424,17 +410,6 @@
     return wrap;
   }
 
-  function buildAbbreviationField() {
-    var wrap = document.createElement('div'); wrap.className = 'field';
-    var label = document.createElement('label'); label.setAttribute('for', 'field-abbreviation'); label.textContent = '简称';
-    var input = document.createElement('input'); input.type = 'text'; input.id = 'field-abbreviation'; input.name = 'abbreviation';
-    input.value = state.form.abbreviation;
-    input.addEventListener('input', function (ev) { state.form.abbreviation = ev.target.value; state.dirty = computeDirty(); updateHeaderTexts(); });
-    var help = document.createElement('div'); help.className = 'help'; help.textContent = '可选，称号的简短称呼';
-    wrap.appendChild(label); wrap.appendChild(input); wrap.appendChild(help);
-    return wrap;
-  }
-
   function buildDescriptionField() {
     var wrap = document.createElement('div'); wrap.className = 'field';
     var label = document.createElement('label'); label.setAttribute('for', 'field-description'); label.textContent = '称号描述';
@@ -464,7 +439,7 @@
     var found = state.items.find(function (it) { return it.id === id; });
     if (!found) return;
     state.selectedId = id; state.isDraft = false; state.revision = found.revision || null;
-    state.form = { id: found.id, name: found.name || '', abbreviation: found.abbreviation || '', description: found.description || '' };
+    state.form = { id: found.id, name: found.name || '', description: found.description || '' };
     state.originalSnapshot = cloneForm(state.form);
     state.dirty = false; state.nameError = ''; state.saveState = 'idle'; state.saveErrorMessage = '';
     renderAll();
@@ -517,13 +492,13 @@
   }
 
   function performCreate(name) {
-    var record = { id: genDraftId(), name: name, abbreviation: '', description: '' };
+    var record = { id: genDraftId(), name: name, description: '' };
     createTitle(record).then(function (saved) {
       return listTitles().then(function (items) {
         state.items = items;
         var created = items.find(function (item) { return item.id === record.id; }) || Object.assign({}, record, saved || {});
         state.selectedId = created.id; state.isDraft = false; state.revision = created.revision || null;
-        state.form = { id: created.id, name: created.name || '', abbreviation: created.abbreviation || '', description: created.description || '' };
+        state.form = { id: created.id, name: created.name || '', description: created.description || '' };
         state.originalSnapshot = cloneForm(state.form);
         state.dirty = false; state.saveState = 'saved'; state.saveErrorMessage = ''; state.nameError = '';
         hideBanner();
@@ -552,7 +527,7 @@
       return;
     }
     state.saveState = 'saving'; renderDetail();
-    var record = { id: state.form.id, name: state.form.name.trim(), abbreviation: (state.form.abbreviation || '').trim(), description: state.form.description || '' };
+    var record = { id: state.form.id, name: state.form.name.trim(), description: state.form.description || '' };
 
     if (state.isDraft) {
       createTitle(record).then(function (saved) {
@@ -582,7 +557,7 @@
 
   function onSaveSuccess(normalized) {
     state.isDraft = false; state.selectedId = normalized.id; state.revision = normalized.revision || state.revision;
-    state.form = { id: normalized.id, name: normalized.name || '', abbreviation: normalized.abbreviation || '', description: normalized.description || '' };
+    state.form = { id: normalized.id, name: normalized.name || '', description: normalized.description || '' };
     state.originalSnapshot = cloneForm(state.form);
     state.dirty = false; state.saveState = 'saved'; state.saveErrorMessage = '';
     showBanner('success', '已保存');
@@ -591,36 +566,6 @@
   function onSaveError(err) {
     state.saveState = 'error'; state.saveErrorMessage = (err && err.message) || '未知错误';
     renderDetail();
-  }
-
-  function onDeleteClick() {
-    if (state.isDraft || state.deleteInProgress) return;
-    var target = { id: state.selectedId, name: state.form.name, revision: state.revision };
-    var label = target.name || target.id;
-    if (!window.confirm('确认删除称号“' + label + '”？删除后不可恢复。')) return;
-    performDelete(target);
-  }
-
-  function performDelete(target) {
-    if (state.deleteInProgress) return;
-    state.deleteInProgress = true;
-    renderDetail();
-    showBanner('info', '正在删除…');
-    deleteTitle(target.id, target.revision).then(function () {
-      state.deleteInProgress = false;
-      state.items = state.items.filter(function (it) { return it.id !== target.id; });
-      state.selectedId = null; state.isDraft = false; state.revision = null;
-      state.form = { id: '', name: '', abbreviation: '', description: '' };
-      state.originalSnapshot = null; state.dirty = false;
-      state.saveState = 'idle'; state.saveErrorMessage = ''; state.nameError = '';
-      renderAll();
-      showBanner('success', '删除成功');
-    }).catch(function (err) {
-      state.deleteInProgress = false;
-      renderDetail();
-      showBanner('error', '删除失败：' + (err && err.message || '未知错误'));
-      loadList();
-    });
   }
 
   function showDirtyGuardModal() {
@@ -661,7 +606,7 @@
     });
     document.getElementById('conflict-overwrite').addEventListener('click', function () {
       closeModal(overlay);
-      state.originalSnapshot = { id: latestItem.id, name: latestItem.name || '', abbreviation: latestItem.abbreviation || '', description: latestItem.description || '' };
+      state.originalSnapshot = { id: latestItem.id, name: latestItem.name || '', description: latestItem.description || '' };
       doSave();
     });
   }

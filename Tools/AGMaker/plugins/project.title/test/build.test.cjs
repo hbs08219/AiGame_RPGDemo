@@ -48,23 +48,37 @@ test('project.title 已交付的 dist 与受控源一致', () => {
   });
 });
 
-test('project.title 删除为编辑器内单次确认直接删除，不请求审批、不携带审批令牌', () => {
+test('project.title 删除不可用：契约声明 disabled 且无删除实现', () => {
   const source = fs.readFileSync(SOURCE_PATH, 'utf8');
 
-  assert.match(source, /function deleteTitle\(id, revision\)/);
-  assert.match(source, /project\.title\.delete_title/);
-  assert.match(source, /performDelete\(target\)/);
-  assert.match(source, /"actionName": "project\.title\.delete_title"/);
-
-  assert.doesNotMatch(source, /aigame-plugin-delete-approval-request/);
-  assert.doesNotMatch(source, /aigame-plugin-delete-approval-result/);
-  assert.doesNotMatch(source, /X-Harness-Interactive-Approval/);
-  assert.doesNotMatch(source, /interactiveApproval/);
-  assert.doesNotMatch(source, /DELETE_APPROVAL_TIMEOUT_MS/);
-  assert.doesNotMatch(source, /localStorage|sessionStorage/);
-  assert.doesNotMatch(source, /当前版本未开放删除操作/);
-  assert.doesNotMatch(source, /btnDelete\.disabled = true/);
+  assert.ok(source.includes('"available": false, "disabled": true, "operation": "delete"'));
+  assert.ok(!source.includes('delete_title'));
+  assert.ok(!source.includes('function deleteTitle'));
+  assert.ok(!source.includes('function performDelete'));
+  assert.ok(!source.includes('onDeleteClick'));
+  assert.ok(!source.includes('btnDelete'));
+  assert.ok(!source.includes('btn-delete'));
+  assert.ok(!source.includes('aigame-plugin-delete-approval-request'));
+  assert.ok(!source.includes('X-Harness-Interactive-Approval'));
+  assert.ok(!source.includes('interactiveApproval'));
+  assert.ok(!source.includes('DELETE_APPROVAL_TIMEOUT_MS'));
+  assert.ok(!source.includes('localStorage'));
+  assert.ok(!source.includes('sessionStorage'));
 
   // id 字段标签与设计契约一致，避免字段契约校验失败
-  assert.match(source, /label\.textContent = '编号'/);
+  assert.ok(source.includes("label.textContent = '编号'"));
+});
+
+test('project.title 已移除简称（abbreviation）字段：Schema 与编辑器均不再包含', () => {
+  const source = fs.readFileSync(SOURCE_PATH, 'utf8');
+  const schemaText = fs.readFileSync(path.join(PLUGIN_ROOT, 'schemas', 'title.schema.json'), 'utf8');
+
+  assert.doesNotMatch(source, /abbreviation/i);
+  assert.doesNotMatch(source, /field-abbreviation/);
+  assert.doesNotMatch(schemaText, /abbreviation/i);
+
+  const schema = JSON.parse(schemaText);
+  assert.deepEqual(Object.keys(schema.properties).sort(), ['description', 'id', 'name']);
+  assert.deepEqual(schema.required, ['id', 'name']);
+  assert.strictEqual(schema.additionalProperties, false);
 });
